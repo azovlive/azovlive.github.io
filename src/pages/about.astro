@@ -215,7 +215,23 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			.btn-home:hover {
 				background: #1d4ed8;
 			}
-			.btn-github {
+			.btn-email {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.75rem 1.5rem;
+				background: #2563eb;
+				color: #ffffff !important;
+				text-decoration: none;
+				border-radius: 10px;
+				font-weight: 600;
+				font-size: 0.95rem;
+				transition: background 0.2s;
+			}
+			.btn-email:hover {
+				background: #1d4ed8;
+			}
+			.btn-x {
 				display: inline-flex;
 				align-items: center;
 				gap: 0.5rem;
@@ -229,7 +245,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				border: 1px solid rgba(255, 255, 255, 0.2);
 				transition: background 0.2s;
 			}
-			.btn-github:hover {
+			.btn-x:hover {
 				background: rgba(255, 255, 255, 0.18);
 			}
 
@@ -362,9 +378,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				</p>
 				<div class="cta-buttons">
 					<a href="/" class="btn-home">🚀 앱 스토어 목록 보기</a>
-					<a href="https://github.com/azovlive" target="_blank" rel="noopener noreferrer" class="btn-github">
-						GitHub 프로필 방문
-					</a>
+					<a href="mailto:umaking@gmail.com" class="btn-email">✉️ 이메일 문의하기</a>
+					<a href="https://x.com/azovlive" target="_blank" rel="noopener noreferrer" class="btn-x">𝕏 @azovlive</a>
 				</div>
 			</section>
 		</main>
