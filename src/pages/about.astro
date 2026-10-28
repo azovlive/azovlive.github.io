@@ -1,63 +1,373 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`About UWILL - ${SITE_TITLE}`}
+			description="UWILL이 만드는 소프트웨어와 개발 철학을 소개합니다."
+		/>
+		<style>
+			main {
+				max-width: 920px;
+				margin: 0 auto;
+				padding: 3rem 1.5rem 5rem;
+			}
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+			/* Hero Header */
+			.about-hero {
+				text-align: center;
+				padding: 3.5rem 2rem;
+				background: radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.08) 0%, rgba(248, 250, 252, 0.8) 100%);
+				border: 1px solid #e2e8f0;
+				border-radius: 24px;
+				margin-bottom: 3.5rem;
+			}
+			.logo-badge {
+				width: 88px;
+				height: 88px;
+				margin: 0 auto 1.5rem;
+				border-radius: 22px;
+				background: #ffffff;
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+				border: 1px solid #edf2f7;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+			}
+			.logo-badge img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			.hero-title {
+				font-size: 2.5rem;
+				font-weight: 800;
+				letter-spacing: -0.025em;
+				color: #0f172a;
+				margin: 0 0 1rem;
+				line-height: 1.25;
+			}
+			.hero-subtitle {
+				font-size: 1.15rem;
+				color: #475569;
+				max-width: 600px;
+				margin: 0 auto;
+				line-height: 1.65;
+			}
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+			/* Stat Highlights */
+			.stats-row {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.25rem;
+				margin-bottom: 3.5rem;
+			}
+			.stat-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 1.5rem;
+				text-align: center;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+			}
+			.stat-number {
+				font-size: 2.2rem;
+				font-weight: 800;
+				color: #2563eb;
+				margin-bottom: 0.35rem;
+				letter-spacing: -0.02em;
+			}
+			.stat-label {
+				font-size: 0.88rem;
+				font-weight: 600;
+				color: #64748b;
+			}
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+			/* Core Section: What We Build */
+			.section-title {
+				font-size: 1.75rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin: 0 0 0.5rem;
+				letter-spacing: -0.02em;
+			}
+			.section-lead {
+				font-size: 1.05rem;
+				color: #475569;
+				margin: 0 0 2rem;
+				line-height: 1.65;
+			}
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+			.product-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+				gap: 1.25rem;
+				margin-bottom: 3.5rem;
+			}
+			.product-item {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 1.5rem;
+				transition: all 0.2s ease;
+			}
+			.product-item:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+				border-color: #cbd5e1;
+			}
+			.product-icon {
+				font-size: 2rem;
+				margin-bottom: 0.75rem;
+			}
+			.product-name {
+				font-size: 1.15rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin: 0 0 0.4rem;
+			}
+			.product-desc {
+				font-size: 0.9rem;
+				color: #64748b;
+				line-height: 1.55;
+				margin: 0;
+			}
+
+			/* Philosophy Cards */
+			.values-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 1.5rem;
+				margin-bottom: 3.5rem;
+			}
+			.value-card {
+				background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+				border: 1px solid #e2e8f0;
+				border-radius: 18px;
+				padding: 1.75rem;
+				position: relative;
+			}
+			.value-icon {
+				font-size: 2rem;
+				margin-bottom: 1rem;
+				display: inline-block;
+			}
+			.value-title {
+				font-size: 1.2rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin: 0 0 0.6rem;
+			}
+			.value-desc {
+				font-size: 0.93rem;
+				color: #475569;
+				line-height: 1.6;
+				margin: 0;
+			}
+
+			/* Contact / Links Box */
+			.contact-box {
+				background: #0f172a;
+				color: #ffffff;
+				border-radius: 20px;
+				padding: 2.5rem 2rem;
+				text-align: center;
+			}
+			.contact-box h3 {
+				font-size: 1.6rem;
+				font-weight: 700;
+				margin: 0 0 0.8rem;
+				color: #ffffff;
+			}
+			.contact-box p {
+				color: #94a3b8;
+				font-size: 1rem;
+				margin: 0 auto 1.75rem;
+				max-width: 540px;
+				line-height: 1.6;
+			}
+			.cta-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+			.btn-home {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.75rem 1.5rem;
+				background: #2563eb;
+				color: #ffffff !important;
+				text-decoration: none;
+				border-radius: 10px;
+				font-weight: 600;
+				font-size: 0.95rem;
+				transition: background 0.2s;
+			}
+			.btn-home:hover {
+				background: #1d4ed8;
+			}
+			.btn-github {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.75rem 1.5rem;
+				background: rgba(255, 255, 255, 0.1);
+				color: #ffffff !important;
+				text-decoration: none;
+				border-radius: 10px;
+				font-weight: 500;
+				font-size: 0.95rem;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				transition: background 0.2s;
+			}
+			.btn-github:hover {
+				background: rgba(255, 255, 255, 0.18);
+			}
+
+			@media (max-width: 680px) {
+				.hero-title {
+					font-size: 1.9rem;
+				}
+				.stats-row {
+					grid-template-columns: 1fr;
+					gap: 0.75rem;
+				}
+				.about-hero {
+					padding: 2rem 1rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!-- Hero Section -->
+			<section class="about-hero">
+				<div class="logo-badge">
+					<img src="/Newlogo.png" alt="UWILL Logo" onerror="this.src='/logo.png'" />
+				</div>
+				<h1 class="hero-title">우리는 일상의 몰입을 돕는<br/>소프트웨어를 만듭니다</h1>
+				<p class="hero-subtitle">
+					<strong>UWILL</strong>은 군더더기 없는 인터페이스와 철저한 개인정보 보호를 바탕으로,
+					누구나 켜자마자 직관적으로 목적을 달성할 수 있는 네이티브 앱을 설계하고 서비스하는 인디 소프트웨어 스튜디오입니다.
+				</p>
+			</section>
+
+			<!-- Quick Stats -->
+			<section class="stats-row">
+				<div class="stat-card">
+					<div class="stat-number">2015~</div>
+					<div class="stat-label">10년 이상의 지속적인 운영</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">7+</div>
+					<div class="stat-label">자체 개발 멀티플랫폼 앱</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">100%</div>
+					<div class="stat-label">기기 로컬 완결형 (No Server)</div>
+				</div>
+			</section>
+
+			<!-- What We Build -->
+			<section>
+				<h2 class="section-title">📦 우리가 만드는 것들 (What We Build)</h2>
+				<p class="section-lead">
+					복잡한 규칙과 불필요한 기능은 덜어내고, 사용자가 꼭 필요로 하는 핵심 가치에 집중한 7가지 라인업을 개발합니다.
+				</p>
+
+				<div class="product-grid">
+					<div class="product-item">
+						<div class="product-icon">⏱️</div>
+						<h3 class="product-name">루프셋 (LoopSet)</h3>
+						<p class="product-desc">50분 수업, 10분 휴식처럼 블록을 조립해 누르기만 하면 순서대로 흘러가는 나만의 반복 타이머입니다.</p>
+					</div>
+					<div class="product-item">
+						<div class="product-icon">📈</div>
+						<h3 class="product-name">증시 타이머</h3>
+						<p class="product-desc">한국거래소(KRX)와 넥스트레이드(NXT)의 복잡한 시장 거래 시간과 세션 전환을 실시간으로 알려줍니다.</p>
+					</div>
+					<div class="product-item">
+						<div class="product-icon">⌨️</div>
+						<h3 class="product-name">키캡 클리커</h3>
+						<p class="product-desc">손끝으로 누르는 실제 기계식 키보드의 찰진 타격감과 소리를 스마트폰에서 즐기는 힐링 인터랙션 앱입니다.</p>
+					</div>
+					<div class="product-item">
+						<div class="product-icon">🌙</div>
+						<h3 class="product-name">음력 알리미 (MyLunar)</h3>
+						<p class="product-desc">매년 날짜가 달라져 놓치기 쉬운 음력 생신, 제사, 명절을 한 번 등록으로 매년 양력으로 변환해 제때 알려줍니다.</p>
+					</div>
+					<div class="product-item">
+						<div class="product-icon">🎨</div>
+						<h3 class="product-name">컬러 피커 (Color Picker)</h3>
+						<p class="product-desc">카메라로 실물을 비추면 가장 가까운 색 이름과 HEX·RGB를 즉시 추출해 주는 현실 세계의 디지털 스포이드입니다.</p>
+					</div>
+					<div class="product-item">
+						<div class="product-icon">📊</div>
+						<h3 class="product-name">스마트 입찰예가산정</h3>
+						<p class="product-desc">조달청 나라장터 법정 층화 방식을 그대로 적용하여 복수예비가격 15개와 최적의 투찰금액을 시뮬레이션합니다.</p>
+					</div>
+					<div class="product-item">
+						<div class="product-icon">⭕</div>
+						<h3 class="product-name">O/X (Yes or No)</h3>
+						<p class="product-desc">말로 하기 어렵거나 시끄러울 때 화면을 상대에게 보이고 터치하면 명확한 O나 X로 답해주는 첫 오리지널 앱입니다.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Core Principles -->
+			<section>
+				<h2 class="section-title">💡 개발 철학 및 핵심 가치</h2>
+				<p class="section-lead">UWILL이 모든 제품을 만들 때 타협하지 않는 3가지 원칙입니다.</p>
+
+				<div class="values-grid">
+					<div class="value-card">
+						<div class="value-icon">🔒</div>
+						<h3 class="value-title">Zero Server Storage</h3>
+						<p class="value-desc">
+							사용자의 민감한 개인정보를 수집하는 서버를 두지 않습니다. 별도의 회원가입이나 로그인 없이 모든 데이터는 사용자의 기기 안에만 안전하게 머뭅니다.
+						</p>
+					</div>
+					<div class="value-card">
+						<div class="value-icon">⚡</div>
+						<h3 class="value-title">직관성과 빠른 속도</h3>
+						<p class="value-desc">
+							설명서를 읽을 필요 없이 켜자마자 바로 쓸 수 있는 단순함을 추구합니다. 가볍고 쾌적한 네이티브 성능으로 일상의 작은 불편을 지체 없이 해결합니다.
+						</p>
+					</div>
+					<div class="value-card">
+						<div class="value-icon">🛠️</div>
+						<h3 class="value-title">10년의 지속성</h3>
+						<p class="value-desc">
+							2015년 첫 앱 출시 이후 최신 OS와 화면 규격에 맞춰 앱을 끊임없이 다듬고 업데이트해 왔습니다. 한 번 설치한 앱을 오랫동안 안심하고 사용할 수 있습니다.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Bottom CTA -->
+			<section class="contact-box">
+				<h3>지금 UWILL의 다양한 앱을 만나보세요</h3>
+				<p>
+					모든 앱은 Apple App Store 및 Google Play Store를 통해 안전하게 다운로드하실 수 있습니다.
+				</p>
+				<div class="cta-buttons">
+					<a href="/" class="btn-home">🚀 앱 스토어 목록 보기</a>
+					<a href="https://github.com/azovlive" target="_blank" rel="noopener noreferrer" class="btn-github">
+						GitHub 프로필 방문
+					</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
