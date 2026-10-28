@@ -1,0 +1,317 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const apps = (await getCollection('apps')).sort(
+	(a, b) => b.data.releaseDate.valueOf() - a.data.releaseDate.valueOf()
+);
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead title={`${SITE_TITLE} - 앱 스토어`} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				max-width: 1080px;
+				margin: 0 auto;
+				padding: 2.5rem 1.5rem 4rem;
+			}
+			.hero {
+				text-align: center;
+				margin-bottom: 3.5rem;
+				padding: 3rem 1.5rem;
+				background: radial-gradient(circle at top, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+				border-radius: 24px;
+				border: 1px solid rgba(229, 231, 235, 0.8);
+			}
+			.hero h1 {
+				font-size: 2.75rem;
+				margin: 0 0 1rem;
+				font-weight: 800;
+				letter-spacing: -0.025em;
+				background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			.hero p {
+				font-size: 1.2rem;
+				color: #4b5563;
+				max-width: 640px;
+				margin: 0 auto;
+				line-height: 1.6;
+			}
+			.section-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 1.5rem;
+			}
+			.section-header h2 {
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: #1f2937;
+				margin: 0;
+			}
+			.app-count {
+				font-size: 0.95rem;
+				color: #6b7280;
+			}
+			.apps-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+				gap: 1.75rem;
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.app-card {
+				display: flex;
+				flex-direction: column;
+				background: #ffffff;
+				border-radius: 16px;
+				border: 1px solid #e5e7eb;
+				padding: 1.5rem;
+				transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+				position: relative;
+				overflow: hidden;
+			}
+			.app-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.1);
+				border-color: #93c5fd;
+			}
+			.card-header {
+				display: flex;
+				align-items: flex-start;
+				gap: 1rem;
+				margin-bottom: 1rem;
+			}
+			.app-icon {
+				font-size: 2.25rem;
+				width: 56px;
+				height: 56px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: #f8fafc;
+				border: 1px solid #f1f5f9;
+				border-radius: 14px;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+				flex-shrink: 0;
+			}
+			.card-title-group {
+				flex: 1;
+				min-width: 0;
+			}
+			.card-title {
+				font-size: 1.25rem;
+				font-weight: 700;
+				margin: 0 0 0.25rem 0;
+				color: #111827;
+				line-height: 1.3;
+			}
+			.card-title a {
+				color: inherit;
+				text-decoration: none;
+			}
+			.card-title a:hover {
+				color: #2563eb;
+			}
+			.badges-row {
+				display: flex;
+				gap: 0.4rem;
+				align-items: center;
+				flex-wrap: wrap;
+			}
+			.version-badge {
+				font-size: 0.75rem;
+				font-weight: 600;
+				background: #eff6ff;
+				color: #1d4ed8;
+				padding: 0.15rem 0.5rem;
+				border-radius: 9999px;
+				border: 1px solid #dbeafe;
+			}
+			.category-badge {
+				font-size: 0.72rem;
+				background: #f1f5f9;
+				color: #475569;
+				padding: 0.15rem 0.45rem;
+				border-radius: 4px;
+			}
+			.meta-date {
+				font-size: 0.8rem;
+				color: #9ca3af;
+				margin-bottom: 0.75rem;
+				display: flex;
+				align-items: center;
+				gap: 0.3rem;
+			}
+			.card-description {
+				font-size: 0.95rem;
+				color: #4b5563;
+				line-height: 1.55;
+				margin: 0 0 1.25rem 0;
+				flex: 1;
+			}
+			.platforms-list {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.35rem;
+				margin-bottom: 1.25rem;
+			}
+			.platform-pill {
+				font-size: 0.75rem;
+				color: #374151;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				padding: 0.15rem 0.5rem;
+				border-radius: 6px;
+			}
+			.card-actions {
+				display: flex;
+				gap: 0.6rem;
+				align-items: center;
+				margin-top: auto;
+				padding-top: 1rem;
+				border-top: 1px solid #f3f4f6;
+			}
+			.btn-primary {
+				flex: 1;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.4rem;
+				padding: 0.6rem 0.9rem;
+				background: #2563eb;
+				color: #ffffff !important;
+				text-decoration: none;
+				border-radius: 8px;
+				font-size: 0.88rem;
+				font-weight: 600;
+				transition: background 0.2s;
+			}
+			.btn-primary:hover {
+				background: #1d4ed8;
+			}
+			.btn-secondary {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.6rem 0.9rem;
+				background: #f8fafc;
+				color: #334155 !important;
+				border: 1px solid #cbd5e1;
+				text-decoration: none;
+				border-radius: 8px;
+				font-size: 0.88rem;
+				font-weight: 500;
+				transition: all 0.2s;
+			}
+			.btn-secondary:hover {
+				background: #e2e8f0;
+			}
+			.empty-state {
+				text-align: center;
+				padding: 4rem 1rem;
+				color: #6b7280;
+			}
+			@media (max-width: 640px) {
+				.hero {
+					padding: 2rem 1rem;
+				}
+				.hero h1 {
+					font-size: 2rem;
+				}
+				.apps-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<h1>🚀 편리한 유틸리티 & 앱 허브</h1>
+				<p>
+					업무와 일상의 생산성을 높여주는 다양한 도구와 앱을 만나보세요.
+					언제 어디서든 안전하고 빠르게 다운로드하여 사용할 수 있습니다.
+				</p>
+			</section>
+
+			<section>
+				<div class="section-header">
+					<h2>📦 등록된 앱 목록</h2>
+					<span class="app-count">총 {apps.length}개</span>
+				</div>
+
+				{apps.length === 0 ? (
+					<div class="empty-state">
+						<p>등록된 앱이 아직 없습니다. <code>src/content/apps/</code>에 새 앱을 추가해보세요!</p>
+					</div>
+				) : (
+					<ul class="apps-grid">
+						{apps.map((app) => (
+							<li class="app-card">
+								<div class="card-header">
+									<div class="app-icon">{app.data.icon || '📱'}</div>
+									<div class="card-title-group">
+										<h3 class="card-title">
+											<a href={`/apps/${app.id}/`}>{app.data.title}</a>
+										</h3>
+										<div class="badges-row">
+											{app.data.version && (
+												<span class="version-badge">v{app.data.version}</span>
+											)}
+											{app.data.category && (
+												<span class="category-badge">{app.data.category}</span>
+											)}
+										</div>
+									</div>
+								</div>
+
+								<div class="meta-date">
+									<span>🗓️ 릴리즈:</span>
+									<FormattedDate date={app.data.releaseDate} />
+								</div>
+
+								<p class="card-description">{app.data.description}</p>
+
+								{app.data.platforms && app.data.platforms.length > 0 && (
+									<div class="platforms-list">
+										{app.data.platforms.map((platform) => (
+											<span class="platform-pill">{platform}</span>
+										))}
+									</div>
+								)}
+
+								<div class="card-actions">
+									{app.data.downloadUrl && (
+										<a
+											href={app.data.downloadUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="btn-primary"
+										>
+											⬇️ 다운로드
+										</a>
+									)}
+									<a href={`/apps/${app.id}/`} class="btn-secondary">
+										자세히 보기
+									</a>
+								</div>
+							</li>
+						))}
+					</ul>
+				)}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
