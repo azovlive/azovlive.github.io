@@ -1,9 +1,10 @@
 ---
 title: "키캡 클리커"
 description: "키캡을 탭하면 실제 기계식 키보드 같은 시원한 타격감과 소리."
-releaseDate: 2026-01-01
+releaseDate: 2026-07-23
+updatedDate: 2026-07-23
 icon: "⌨️"
-version: "1.0.0"
+version: "1.0"
 downloadUrl: "https://apps.apple.com/kr/app/id6792473118?l=ko"
 category: "엔터테인먼트"
 platforms: ["iOS","iPadOS","Android"]

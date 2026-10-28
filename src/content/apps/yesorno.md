@@ -1,9 +1,10 @@
 ---
 title: "O/X"
 description: "화면을 상대에게 향하고 터치하면 O나 X로 답합니다. 2015년의 첫 앱."
-releaseDate: 2015-01-01
+releaseDate: 2015-10-04
+updatedDate: 2026-09-02
 icon: "⭕"
-version: "1.0.0"
+version: "1.2(10)"
 downloadUrl: "https://apps.apple.com/kr/app/id1042498842?l=ko"
 category: "엔터테인먼트"
 platforms: ["iOS","iPadOS","macOS"]

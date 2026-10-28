@@ -1,9 +1,10 @@
 ---
 title: "루프셋"
 description: "50분 수업과 10분 휴식을 블록으로 묶어 4교시로. 한 번 조립해 두면 누르기만 하면 되는 반복 타이머."
-releaseDate: 2026-01-01
+releaseDate: 2026-10-16
+updatedDate: 2026-10-16
 icon: "⏱️"
-version: "1.0.0"
+version: "1.0"
 downloadUrl: "https://apps.apple.com/kr/app/id6821636483?l=ko"
 category: "라이프스타일"
 platforms: ["iOS","iPadOS","macOS"]

@@ -1,9 +1,10 @@
 ---
 title: "증시 타이머"
 description: "KRX·NXT가 지금 받는 주문을 한국 시간으로 보여 주고, 세션이 바뀔 때 알려 드려요."
-releaseDate: 2026-01-01
+releaseDate: 2026-10-12
+updatedDate: 2026-10-16
 icon: "📈"
-version: "1.0.0"
+version: "1.0.1"
 downloadUrl: "https://apps.apple.com/kr/app/id6813923359?l=ko"
 category: "라이프스타일"
 platforms: ["iOS","iPadOS","Android"]

@@ -27,20 +27,22 @@ const {
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
-				width: calc(100% - 2em);
+				width: 100%;
 				max-width: 860px;
 				margin: 2rem auto;
-				padding: 0 1rem;
+				padding: 0 1rem 4rem;
+				box-sizing: border-box;
 			}
 			.app-header {
 				display: flex;
 				align-items: center;
 				gap: 1.5rem;
 				padding: 2rem;
-				background: linear-gradient(135deg, rgba(var(--accent-rgb, 99, 102, 241), 0.08) 0%, rgba(255, 255, 255, 0.9) 100%);
-				border: 1px solid rgba(var(--gray), 0.2);
+				background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+				border: 1px solid #dbeafe;
 				border-radius: 16px;
 				margin-bottom: 2rem;
+				box-sizing: border-box;
 			}
 			.app-icon {
 				font-size: 3.5rem;
@@ -152,6 +154,30 @@ const {
 			.content-body {
 				line-height: 1.7;
 				color: #374151;
+			}
+			@media (max-width: 640px) {
+				main {
+					padding: 0 1rem 2rem;
+					margin: 1rem auto;
+				}
+				.app-header {
+					flex-direction: column;
+					align-items: flex-start;
+					padding: 1.25rem 1rem;
+					gap: 1rem;
+				}
+				.app-title {
+					font-size: 1.5rem;
+				}
+				.actions {
+					flex-direction: column;
+					width: 100%;
+				}
+				.btn-download,
+				.btn-back {
+					width: 100%;
+					justify-content: center;
+				}
 			}
 		</style>
 	</head>

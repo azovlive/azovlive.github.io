@@ -1,9 +1,10 @@
 ---
 title: "음력 알리미"
 description: "음력 제사·생신·명절을 매년 양력으로 환산해 보름 전·1주 전에 미리 알려 줍니다."
-releaseDate: 2026-01-01
+releaseDate: 2026-06-25
+updatedDate: 2026-07-19
 icon: "🌙"
-version: "1.0.0"
+version: "1.1.1"
 downloadUrl: "https://apps.apple.com/kr/app/id6784240271?l=ko"
 category: "라이프스타일"
 platforms: ["iOS","iPadOS","Android"]

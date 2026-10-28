@@ -1,9 +1,10 @@
 ---
 title: "스마트 입찰예가산정"
 description: "기초금액만 넣으면 복수예비가격 15개 생성부터 예정가격·투찰금액, PDF 보고서까지."
-releaseDate: 2020-01-01
+releaseDate: 2020-01-21
+updatedDate: 2026-10-14
 icon: "📊"
-version: "1.0.0"
+version: "1.21"
 downloadUrl: "https://apps.apple.com/kr/app/id1493703106?l=ko"
 category: "생산성"
 platforms: ["iOS","iPadOS","Android"]

@@ -2,8 +2,9 @@
 title: "컬러 피커"
 description: "카메라로 비추면 색 이름과 HEX·RGB·HSV가 바로. 실물 색을 캡처해 팔레트로 저장하세요."
 releaseDate: 2020-01-01
+updatedDate: 2026-07-29
 icon: "🎨"
-version: "1.0.0"
+version: "3.1.0"
 downloadUrl: "https://apps.apple.com/kr/app/id1525122455?l=ko"
 category: "그래픽 및 디자인"
 platforms: ["iOS","iPadOS","Android"]
