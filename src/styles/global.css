@@ -1,19 +1,50 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+/* UWILL - Studio Glass & Tech Canvas Design System */
 
 :root {
+	/* Primary Palette */
+	--primary: #004ac6;
+	--primary-hover: #1d4ed8;
+	--primary-container: #2563eb;
+	--on-primary: #ffffff;
+	--on-primary-container: #eeefff;
+
+	/* Secondary Palette */
+	--secondary: #0058be;
+	--secondary-container: #2170e4;
+	--secondary-hover: #1e40af;
+
+	/* Neutral / Slate Palette */
+	--surface: #f8fafc;
+	--surface-bg: #f8f9ff;
+	--surface-card: #ffffff;
+	--surface-container-low: #eff4ff;
+	--surface-container-high: #dce9ff;
+	--surface-tinted-blue: #eff6ff;
+
+	--on-surface: #0b1c30;
+	--on-surface-variant: #475569;
+	--outline: #94a3b8;
+	--border-subtle: #e2e8f0;
+
+	/* Accent Badges */
+	--badge-neutral-bg: #f1f5f9;
+	--badge-neutral-text: #475569;
+	--badge-version-bg: #dbeafe;
+	--badge-version-text: #1d4ed8;
+	--accent-emerald: #10b981;
+	--accent-amber: #f59e0b;
+
+	/* Legacy variables for compatibility */
 	--accent: #2563eb;
 	--accent-dark: #1d4ed8;
-	--black: 15, 23, 42;
+	--black: 11, 28, 48;
 	--gray: 100, 116, 139;
 	--gray-light: 241, 245, 249;
-	--gray-dark: 30, 41, 59;
-	--gray-gradient: #f1f5f9, #ffffff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 15%), 0 8px 24px rgba(var(--gray), 20%);
+	--gray-dark: 15, 23, 42;
+
+	/* Typography */
+	--font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 *,
@@ -23,135 +54,111 @@
 }
 
 html {
-	overflow-x: hidden;
+	scroll-behavior: smooth;
 	-webkit-text-size-adjust: 100%;
 	margin: 0;
 	padding: 0;
 }
 
 body {
-	font-family: var(--font-atkinson);
+	font-family: var(--font-sans);
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: #f8fafc;
+	background-color: var(--surface);
+	color: var(--on-surface);
 	min-height: 100vh;
 	overflow-x: hidden;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 18px;
-	line-height: 1.7;
+	font-size: 15px;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-main {
-	width: 100%;
-	max-width: 1080px;
-	margin: 0 auto;
-	padding: 2.5rem 1.5rem 4rem;
-	box-sizing: border-box;
+/* Material Icons Helper */
+.material-symbols-outlined {
+	font-family: 'Material Symbols Outlined';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 20px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+	vertical-align: middle;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+/* Typography Headings */
+h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
-}
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
+	color: var(--on-surface);
+	font-family: var(--font-sans);
 	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.25;
 }
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
+
 p {
-	margin-bottom: 1em;
+	margin: 0 0 1rem 0;
 }
-.prose p {
-	margin-bottom: 2em;
+
+a {
+	color: var(--primary-container);
+	text-decoration: none;
+	transition: color 0.2s ease;
 }
-textarea {
-	width: 100%;
-	font-size: 16px;
+
+a:hover {
+	color: var(--primary-hover);
 }
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
+
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 16px;
-	}
-	main {
-		padding: 1.25rem 1rem 3rem;
-	}
+	display: block;
 }
 
-.sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+/* Glassmorphism utility */
+.glass-panel {
+	background: rgba(255, 255, 255, 0.92);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid var(--border-subtle);
+}
+
+/* Card hover animation */
+.hover-lift {
+	transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.hover-lift:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
+	border-color: rgba(37, 99, 235, 0.3);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #cbd5e1;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #94a3b8;
 }

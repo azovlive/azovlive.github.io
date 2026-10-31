@@ -9,75 +9,436 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 const apps = (await getCollection('apps')).sort(
 	(a, b) => b.data.releaseDate.valueOf() - a.data.releaseDate.valueOf()
 );
+
+const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 ---
 
 <!doctype html>
 <html lang="ko">
 	<head>
-		<BaseHead title={`${SITE_TITLE} - 앱 스토어`} description={SITE_DESCRIPTION} />
+		<BaseHead title={`${SITE_TITLE} - 스튜디오 앱 허브`} description={SITE_DESCRIPTION} />
 		<style>
 			main {
 				width: 100%;
-				max-width: 1080px;
+				max-width: 1160px;
 				margin: 0 auto;
-				padding: 2.5rem 1.5rem 4rem;
+				padding: 2.5rem 1.5rem 5rem;
 				box-sizing: border-box;
 			}
+
+			/* Hero Section */
 			.hero {
-				width: 100%;
-				max-width: 100%;
-				box-sizing: border-box;
-				text-align: center;
-				margin-bottom: 3.5rem;
-				padding: 3.5rem 2rem;
-				background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
-				border-radius: 24px;
-				border: 1px solid #dbeafe;
-				box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.06);
 				position: relative;
+				text-align: center;
+				padding: 3.5rem 1.5rem;
+				background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+				border-radius: 28px;
+				border: 1px solid #dbeafe;
+				box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.05);
+				margin-bottom: 3rem;
 				overflow: hidden;
 			}
+			.hero-glow {
+				position: absolute;
+				top: -120px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 700px;
+				height: 350px;
+				background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(99, 102, 241, 0.05) 60%, transparent 80%);
+				filter: blur(50px);
+				pointer-events: none;
+			}
+			.hero-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.35rem 0.9rem;
+				border-radius: 9999px;
+				background: rgba(220, 233, 255, 0.7);
+				color: #004ac6;
+				font-size: 0.78rem;
+				font-weight: 700;
+				letter-spacing: 0.02em;
+				margin-bottom: 1.25rem;
+			}
+			.pulse-dot {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: #2563eb;
+				box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+				animation: pulse 2s infinite;
+			}
+			@keyframes pulse {
+				0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+				70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(37, 99, 235, 0); }
+				100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+			}
 			.hero h1 {
-				font-size: clamp(1.4rem, 4.5vw, 2.75rem);
-				margin: 0 0 1rem;
+				font-size: clamp(1.8rem, 4.5vw, 2.85rem);
 				font-weight: 800;
-				letter-spacing: -0.025em;
-				line-height: 1.3;
-				word-break: keep-all;
-				overflow-wrap: break-word;
-				background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
+				letter-spacing: -0.03em;
+				line-height: 1.25;
+				margin: 0 0 1rem;
+				color: #0b1c30;
+			}
+			.gradient-text {
+				background: linear-gradient(135deg, #004ac6 0%, #4f46e5 100%);
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 			}
-			.hero p {
-				font-size: clamp(0.95rem, 2.2vw, 1.2rem);
-				color: #4b5563;
+			.hero-desc {
+				font-size: clamp(0.95rem, 2vw, 1.12rem);
+				color: #475569;
 				max-width: 640px;
-				margin: 0 auto;
+				margin: 0 auto 2rem;
 				line-height: 1.65;
 				word-break: keep-all;
-				overflow-wrap: break-word;
 			}
-			.section-header {
+			.hero-actions {
 				display: flex;
-				justify-content: space-between;
 				align-items: center;
-				margin-bottom: 1.5rem;
+				justify-content: center;
+				gap: 0.75rem;
+				flex-wrap: wrap;
+				margin-bottom: 2.5rem;
 			}
-			.section-header h2 {
-				font-size: 1.5rem;
+			.btn-cta-primary {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				padding: 0.75rem 1.4rem;
+				background: #2563eb;
+				color: #ffffff !important;
+				font-size: 0.92rem;
+				font-weight: 600;
+				border-radius: 12px;
+				box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+				transition: all 0.2s;
+			}
+			.btn-cta-primary:hover {
+				background: #1d4ed8;
+				transform: translateY(-1px);
+			}
+			.btn-cta-secondary {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				padding: 0.75rem 1.4rem;
+				background: #ffffff;
+				color: #0b1c30 !important;
+				font-size: 0.92rem;
+				font-weight: 600;
+				border-radius: 12px;
+				border: 1px solid #e2e8f0;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+				transition: all 0.2s;
+			}
+			.btn-cta-secondary:hover {
+				background: #eff6ff;
+				border-color: #cbd5e1;
+				transform: translateY(-1px);
+			}
+
+			/* Studio Metrics Grid */
+			.metrics-bar {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 1rem;
+				background: rgba(255, 255, 255, 0.85);
+				backdrop-filter: blur(12px);
+				border: 1px solid #e2e8f0;
+				border-radius: 20px;
+				padding: 1.25rem 1.5rem;
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			.metric-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+			}
+			.metric-value {
+				font-size: 1.75rem;
+				font-weight: 800;
+				line-height: 1.2;
+				letter-spacing: -0.02em;
+			}
+			.metric-value.c-blue { color: #004ac6; }
+			.metric-value.c-indigo { color: #4f46e5; }
+			.metric-value.c-dark { color: #0b1c30; }
+			.metric-value.c-emerald { color: #10b981; }
+			.metric-label {
+				font-size: 0.76rem;
+				color: #64748b;
+				margin-top: 0.2rem;
+				font-weight: 500;
+			}
+
+			/* Featured Spotlight */
+			.featured-section {
+				margin-bottom: 3.5rem;
+			}
+			.spotlight-banner {
+				position: relative;
+				border-radius: 24px;
+				background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #004ac6 100%);
+				color: #ffffff;
+				padding: 2.5rem 2.5rem 2rem;
+				overflow: hidden;
+				box-shadow: 0 16px 36px -10px rgba(37, 99, 235, 0.35);
+			}
+			.spotlight-bg-glow {
+				position: absolute;
+				right: -60px;
+				bottom: -60px;
+				width: 320px;
+				height: 320px;
+				background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+				border-radius: 50%;
+				pointer-events: none;
+			}
+			.spotlight-content {
+				position: relative;
+				z-index: 2;
+				max-width: 780px;
+			}
+			.spotlight-badges {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+				margin-bottom: 1rem;
+			}
+			.spotlight-pill {
+				background: rgba(255, 255, 255, 0.2);
+				backdrop-filter: blur(8px);
+				padding: 0.2rem 0.65rem;
+				border-radius: 9999px;
+				font-size: 0.74rem;
 				font-weight: 700;
-				color: #1f2937;
+				color: #ffffff;
+			}
+			.spotlight-title-row {
+				display: flex;
+				align-items: center;
+				gap: 0.85rem;
+				margin-bottom: 0.75rem;
+			}
+			.spotlight-icon {
+				width: 48px;
+				height: 48px;
+				border-radius: 14px;
+				background: #ffffff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.75rem;
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+				flex-shrink: 0;
+			}
+			.spotlight-title-row h2 {
+				font-size: 1.85rem;
+				font-weight: 800;
+				color: #ffffff;
 				margin: 0;
 			}
-			.app-count {
-				font-size: 0.95rem;
-				color: #6b7280;
+			.spotlight-quote {
+				font-size: 1.1rem;
+				font-weight: 600;
+				color: #dbeafe;
+				margin-bottom: 0.5rem;
 			}
+			.spotlight-desc {
+				font-size: 0.92rem;
+				color: rgba(255, 255, 255, 0.9);
+				line-height: 1.6;
+				margin-bottom: 1.5rem;
+			}
+			.spotlight-actions {
+				display: flex;
+				gap: 0.75rem;
+				flex-wrap: wrap;
+				margin-bottom: 2rem;
+			}
+			.btn-spotlight-store {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				background: #ffffff;
+				color: #004ac6 !important;
+				font-size: 0.88rem;
+				font-weight: 700;
+				padding: 0.65rem 1.25rem;
+				border-radius: 12px;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+				transition: all 0.2s;
+			}
+			.btn-spotlight-store:hover {
+				background: #f8fafc;
+				transform: translateY(-1px);
+			}
+			.btn-spotlight-detail {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				background: rgba(255, 255, 255, 0.18);
+				backdrop-filter: blur(8px);
+				color: #ffffff !important;
+				font-size: 0.88rem;
+				font-weight: 600;
+				padding: 0.65rem 1.25rem;
+				border-radius: 12px;
+				border: 1px solid rgba(255, 255, 255, 0.3);
+				transition: all 0.2s;
+			}
+			.btn-spotlight-detail:hover {
+				background: rgba(255, 255, 255, 0.28);
+			}
+			.spotlight-features {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 1rem;
+				margin-top: 1.25rem;
+			}
+			.feature-card {
+				background: #ffffff;
+				border-radius: 18px;
+				padding: 1.25rem;
+				border: 1px solid #e2e8f0;
+				box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+			}
+			.feature-icon-wrap {
+				width: 36px;
+				height: 36px;
+				border-radius: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 0.75rem;
+			}
+			.feature-icon-wrap.blue { background: #dbeafe; color: #1d4ed8; }
+			.feature-icon-wrap.indigo { background: #e0e7ff; color: #4338ca; }
+			.feature-icon-wrap.amber { background: #fef3c7; color: #b45309; }
+			.feature-icon-wrap.emerald { background: #d1fae5; color: #047857; }
+			.feature-card h4 {
+				font-size: 0.95rem;
+				font-weight: 700;
+				color: #0b1c30;
+				margin-bottom: 0.35rem;
+			}
+			.feature-card p {
+				font-size: 0.78rem;
+				color: #64748b;
+				line-height: 1.5;
+				margin: 0;
+			}
+
+			/* Catalog Section */
+			.catalog-section {
+				margin-bottom: 4rem;
+			}
+			.catalog-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+				flex-wrap: wrap;
+			}
+			.catalog-title-group h2 {
+				font-size: 1.6rem;
+				font-weight: 800;
+				color: #0b1c30;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin-bottom: 0.25rem;
+			}
+			.catalog-total-pill {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.75rem;
+				font-weight: 700;
+				background: #eff6ff;
+				color: #1d4ed8;
+				padding: 0.2rem 0.6rem;
+				border-radius: 9999px;
+				border: 1px solid #dbeafe;
+			}
+			.catalog-sub {
+				font-size: 0.85rem;
+				color: #64748b;
+				margin: 0;
+			}
+			.search-bar-wrap {
+				position: relative;
+				width: 100%;
+				max-width: 320px;
+			}
+			.search-input {
+				width: 100%;
+				padding: 0.65rem 1rem 0.65rem 2.4rem;
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 12px;
+				font-size: 0.85rem;
+				font-family: inherit;
+				color: #0b1c30;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+				transition: all 0.2s;
+			}
+			.search-input:focus {
+				outline: none;
+				border-color: #2563eb;
+				box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+			}
+			.search-icon {
+				position: absolute;
+				left: 0.75rem;
+				top: 50%;
+				transform: translateY(-50%);
+				color: #94a3b8;
+				font-size: 18px;
+			}
+
+			/* Category Filter Tabs */
+			.filter-tabs {
+				display: flex;
+				align-items: center;
+				gap: 0.4rem;
+				overflow-x: auto;
+				padding-bottom: 0.75rem;
+				margin-bottom: 1.5rem;
+			}
+			.filter-btn {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 9999px;
+				padding: 0.35rem 0.85rem;
+				font-size: 0.78rem;
+				font-weight: 600;
+				color: #475569;
+				cursor: pointer;
+				transition: all 0.15s;
+				white-space: nowrap;
+			}
+			.filter-btn:hover {
+				background: #f8fafc;
+				border-color: #cbd5e1;
+			}
+			.filter-btn.active {
+				background: #0b1c30;
+				color: #ffffff;
+				border-color: #0b1c30;
+			}
+
+			/* Apps Grid */
 			.apps-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-				gap: 1.75rem;
+				grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+				gap: 1.5rem;
 				list-style: none;
 				padding: 0;
 				margin: 0;
@@ -85,171 +446,468 @@ const apps = (await getCollection('apps')).sort(
 			.app-card {
 				display: flex;
 				flex-direction: column;
+				justify-content: space-between;
 				background: #ffffff;
-				border-radius: 16px;
-				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				border: 1px solid #e2e8f0;
 				padding: 1.5rem;
-				transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-				position: relative;
-				overflow: hidden;
+				transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+				box-shadow: 0 1px 4px rgba(15, 23, 42, 0.02);
 			}
 			.app-card:hover {
-				transform: translateY(-4px);
-				box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.1);
-				border-color: #93c5fd;
+				transform: translateY(-3px);
+				box-shadow: 0 14px 28px -8px rgba(15, 23, 42, 0.07), 0 4px 8px -2px rgba(15, 23, 42, 0.03);
+				border-color: rgba(37, 99, 235, 0.3);
 			}
-			.card-header {
+			.card-head {
 				display: flex;
 				align-items: flex-start;
-				gap: 1rem;
-				margin-bottom: 1rem;
+				gap: 0.9rem;
+				margin-bottom: 0.85rem;
 			}
-			.app-icon {
-				font-size: 2.25rem;
-				width: 56px;
-				height: 56px;
+			.card-icon {
+				font-size: 2rem;
+				width: 52px;
+				height: 52px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				background: #f8fafc;
 				border: 1px solid #f1f5f9;
 				border-radius: 14px;
-				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 				flex-shrink: 0;
 			}
-			.card-title-group {
+			.card-meta-head {
 				flex: 1;
 				min-width: 0;
 			}
-			.card-title {
-				font-size: 1.25rem;
+			.card-app-title {
+				font-size: 1.15rem;
 				font-weight: 700;
-				margin: 0 0 0.25rem 0;
-				color: #111827;
-				line-height: 1.3;
+				margin: 0 0 0.3rem 0;
+				color: #0b1c30;
 			}
-			.card-title a {
+			.card-app-title a {
 				color: inherit;
 				text-decoration: none;
 			}
-			.card-title a:hover {
+			.card-app-title a:hover {
 				color: #2563eb;
 			}
-			.badges-row {
+			.card-tag-row {
 				display: flex;
-				gap: 0.4rem;
 				align-items: center;
+				gap: 0.35rem;
 				flex-wrap: wrap;
 			}
-			.version-badge {
-				font-size: 0.75rem;
-				font-weight: 600;
+			.ver-badge {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.7rem;
+				font-weight: 700;
 				background: #eff6ff;
 				color: #1d4ed8;
-				padding: 0.15rem 0.5rem;
-				border-radius: 9999px;
-				border: 1px solid #dbeafe;
+				padding: 0.1rem 0.45rem;
+				border-radius: 6px;
 			}
-			.category-badge {
-				font-size: 0.72rem;
+			.cat-badge {
+				font-size: 0.7rem;
+				font-weight: 500;
 				background: #f1f5f9;
 				color: #475569;
-				padding: 0.15rem 0.45rem;
-				border-radius: 4px;
+				padding: 0.1rem 0.45rem;
+				border-radius: 6px;
 			}
-			.meta-date {
-				font-size: 0.8rem;
-				color: #9ca3af;
-				margin-bottom: 0.75rem;
+			.card-date {
+				font-size: 0.78rem;
+				color: #64748b;
 				display: flex;
 				align-items: center;
 				gap: 0.3rem;
+				margin-bottom: 0.75rem;
 			}
-			.card-description {
-				font-size: 0.95rem;
-				color: #4b5563;
+			.card-desc {
+				font-size: 0.88rem;
+				color: #475569;
 				line-height: 1.55;
-				margin: 0 0 1.25rem 0;
+				margin: 0 0 1rem 0;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
 				flex: 1;
 			}
-			.platforms-list {
+			.card-platforms {
 				display: flex;
 				flex-wrap: wrap;
-				gap: 0.35rem;
+				gap: 0.3rem;
 				margin-bottom: 1.25rem;
 			}
-			.platform-pill {
-				font-size: 0.75rem;
-				color: #374151;
-				background: #f3f4f6;
-				border: 1px solid #e5e7eb;
-				padding: 0.15rem 0.5rem;
+			.plat-chip {
+				font-size: 0.72rem;
+				font-weight: 600;
+				color: #475569;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				padding: 0.15rem 0.45rem;
 				border-radius: 6px;
 			}
-			.card-actions {
+			.card-foot {
 				display: flex;
-				gap: 0.6rem;
+				gap: 0.5rem;
 				align-items: center;
-				margin-top: auto;
 				padding-top: 1rem;
-				border-top: 1px solid #f3f4f6;
+				border-top: 1px solid #f1f5f9;
 			}
-			.btn-primary {
+			.btn-card-store {
 				flex: 1;
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
-				gap: 0.4rem;
-				padding: 0.6rem 0.9rem;
+				gap: 0.35rem;
+				padding: 0.55rem 0.85rem;
 				background: #2563eb;
 				color: #ffffff !important;
-				text-decoration: none;
-				border-radius: 8px;
-				font-size: 0.88rem;
+				border-radius: 10px;
+				font-size: 0.82rem;
 				font-weight: 600;
-				transition: background 0.2s;
+				transition: background 0.15s;
 			}
-			.btn-primary:hover {
+			.btn-card-store:hover {
 				background: #1d4ed8;
 			}
-			.btn-secondary {
+			.btn-card-detail {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
-				padding: 0.6rem 0.9rem;
+				padding: 0.55rem 0.85rem;
 				background: #f8fafc;
 				color: #334155 !important;
 				border: 1px solid #cbd5e1;
-				text-decoration: none;
-				border-radius: 8px;
-				font-size: 0.88rem;
-				font-weight: 500;
-				transition: all 0.2s;
+				border-radius: 10px;
+				font-size: 0.82rem;
+				font-weight: 600;
+				transition: all 0.15s;
 			}
-			.btn-secondary:hover {
+			.btn-card-detail:hover {
 				background: #e2e8f0;
 			}
-			.empty-state {
-				text-align: center;
-				padding: 4rem 1rem;
-				color: #6b7280;
+
+			/* Interactive Playground (Keycap Clicker Sound Simulator) */
+			.playground-section {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 2rem 2.5rem;
+				margin-bottom: 3.5rem;
+				box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
 			}
+			.playground-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+			}
+			.playground-title {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+			}
+			.playground-title h3 {
+				font-size: 1.35rem;
+				font-weight: 800;
+				color: #0b1c30;
+				margin: 0;
+			}
+			.playground-badge {
+				font-size: 0.72rem;
+				font-family: 'JetBrains Mono', monospace;
+				font-weight: 700;
+				background: #e0e7ff;
+				color: #4338ca;
+				padding: 0.2rem 0.55rem;
+				border-radius: 9999px;
+			}
+			.playground-layout {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 2rem;
+				align-items: center;
+			}
+			.keycap-interactive-stage {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+				border-radius: 20px;
+				padding: 2.5rem 1.5rem;
+				border: 1px solid #e2e8f0;
+			}
+			.keycap-3d-btn {
+				width: 140px;
+				height: 120px;
+				background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+				border: 2px solid #cbd5e1;
+				border-radius: 24px;
+				cursor: pointer;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				transform: perspective(600px) rotateX(10deg);
+				box-shadow: 0 16px 0 #94a3b8, 0 22px 25px -4px rgba(0, 0, 0, 0.18);
+				transition: all 0.06s cubic-bezier(0.2, 0.8, 0.2, 1);
+				user-select: none;
+				-webkit-user-select: none;
+			}
+			.keycap-3d-btn:active,
+			.keycap-3d-btn.pressed {
+				transform: perspective(600px) rotateX(4deg) translateY(12px) !important;
+				box-shadow: 0 4px 0 #64748b, 0 6px 12px -2px rgba(0, 0, 0, 0.2) !important;
+			}
+			.keycap-label-main {
+				font-size: 1.5rem;
+				font-weight: 800;
+				color: #0b1c30;
+				line-height: 1;
+			}
+			.keycap-label-sub {
+				font-size: 0.72rem;
+				font-family: 'JetBrains Mono', monospace;
+				color: #2563eb;
+				font-weight: 700;
+				margin-top: 0.35rem;
+			}
+			.keycap-hint {
+				font-size: 0.78rem;
+				color: #64748b;
+				margin-top: 1.5rem;
+			}
+			.playground-controls {
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+			}
+			.switch-selector {
+				display: flex;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
+			.switch-pill {
+				padding: 0.45rem 0.85rem;
+				border-radius: 10px;
+				font-size: 0.8rem;
+				font-weight: 700;
+				border: 1px solid #e2e8f0;
+				background: #ffffff;
+				color: #475569;
+				cursor: pointer;
+				transition: all 0.15s;
+			}
+			.switch-pill.active {
+				background: #4f46e5;
+				color: #ffffff;
+				border-color: #4f46e5;
+				box-shadow: 0 2px 6px rgba(79, 70, 229, 0.25);
+			}
+			.switch-info-box {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 14px;
+				padding: 1rem 1.25rem;
+			}
+			.switch-spec-name {
+				font-size: 0.95rem;
+				font-weight: 700;
+				color: #0b1c30;
+				margin-bottom: 0.25rem;
+			}
+			.switch-spec-pressure {
+				font-size: 0.78rem;
+				font-family: 'JetBrains Mono', monospace;
+				color: #4f46e5;
+				font-weight: 600;
+				margin-bottom: 0.45rem;
+			}
+			.switch-spec-desc {
+				font-size: 0.82rem;
+				color: #64748b;
+				line-height: 1.5;
+				margin: 0;
+			}
+			.playground-stats {
+				display: flex;
+				gap: 1rem;
+			}
+			.pg-stat-box {
+				flex: 1;
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 12px;
+				padding: 0.65rem 0.85rem;
+				text-align: center;
+			}
+			.pg-stat-val {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #0b1c30;
+			}
+			.pg-stat-lbl {
+				font-size: 0.7rem;
+				color: #64748b;
+			}
+
+			/* Studio Philosophy Preview */
+			.philosophy-preview {
+				background: #eff4ff;
+				border-radius: 24px;
+				padding: 2.5rem;
+				display: grid;
+				grid-template-columns: 1.2fr 0.8fr;
+				gap: 2rem;
+				align-items: center;
+			}
+			.philosophy-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				padding: 0.25rem 0.75rem;
+				border-radius: 9999px;
+				background: #ffffff;
+				color: #004ac6;
+				font-size: 0.74rem;
+				font-weight: 700;
+				margin-bottom: 0.75rem;
+			}
+			.philosophy-left h3 {
+				font-size: 1.6rem;
+				font-weight: 800;
+				color: #0b1c30;
+				margin-bottom: 0.75rem;
+				line-height: 1.3;
+			}
+			.philosophy-left p {
+				font-size: 0.9rem;
+				color: #475569;
+				line-height: 1.65;
+				margin-bottom: 1.25rem;
+			}
+			.philosophy-cards {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 0.75rem;
+				margin-bottom: 1.25rem;
+			}
+			.phil-mini-card {
+				background: #ffffff;
+				border-radius: 12px;
+				padding: 0.85rem 1rem;
+				border: 1px solid #dbeafe;
+			}
+			.phil-mini-card h5 {
+				font-size: 0.85rem;
+				font-weight: 700;
+				color: #0b1c30;
+				margin-bottom: 0.2rem;
+				display: flex;
+				align-items: center;
+				gap: 0.35rem;
+			}
+			.phil-mini-card p {
+				font-size: 0.75rem;
+				color: #64748b;
+				margin: 0;
+			}
+			.btn-phil-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.88rem;
+				font-weight: 700;
+				color: #004ac6;
+			}
+			.btn-phil-link:hover {
+				color: #1d4ed8;
+				text-decoration: underline;
+			}
+			.philosophy-right-visual {
+				background: #ffffff;
+				border-radius: 20px;
+				padding: 1.5rem;
+				border: 1px solid #dbeafe;
+				box-shadow: 0 4px 12px rgba(37, 99, 235, 0.04);
+			}
+			.chart-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 1rem;
+			}
+			.chart-title {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.75rem;
+				font-weight: 700;
+				color: #004ac6;
+			}
+			.chart-badge {
+				font-size: 0.72rem;
+				background: #d1fae5;
+				color: #065f46;
+				padding: 0.15rem 0.5rem;
+				border-radius: 9999px;
+				font-weight: 700;
+			}
+			.timeline-years {
+				display: flex;
+				justify-content: space-between;
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.7rem;
+				color: #64748b;
+				margin-top: 0.5rem;
+			}
+
+			/* Responsive */
+			@media (max-width: 900px) {
+				.spotlight-features {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.playground-layout {
+					grid-template-columns: 1fr;
+				}
+				.philosophy-preview {
+					grid-template-columns: 1fr;
+				}
+			}
+
 			@media (max-width: 640px) {
 				main {
-					padding: 1.25rem 1rem 3rem;
+					padding: 1.25rem 1rem 4rem;
 				}
 				.hero {
-					padding: 2rem 1.25rem;
+					padding: 2.25rem 1rem;
+					border-radius: 20px;
 					margin-bottom: 2rem;
-					border-radius: 18px;
 				}
 				.hero h1 {
-					font-size: 1.45rem;
-					margin-bottom: 0.75rem;
+					font-size: 1.55rem;
 				}
-				.hero p {
-					font-size: 0.92rem;
-					line-height: 1.6;
+				.metrics-bar {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 0.75rem;
+					padding: 1rem;
+				}
+				.spotlight-banner {
+					padding: 1.75rem 1.25rem;
+					border-radius: 20px;
+				}
+				.spotlight-title-row h2 {
+					font-size: 1.45rem;
+				}
+				.spotlight-features {
+					grid-template-columns: 1fr;
 				}
 				.apps-grid {
 					grid-template-columns: 1fr;
@@ -258,87 +916,590 @@ const apps = (await getCollection('apps')).sort(
 				.app-card {
 					padding: 1.25rem 1rem;
 				}
+				.playground-section {
+					padding: 1.5rem 1rem;
+				}
+				.philosophy-preview {
+					padding: 1.5rem 1rem;
+				}
+				.philosophy-cards {
+					grid-template-columns: 1fr;
+				}
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
+			<!-- Hero Section -->
 			<section class="hero">
-				<h1>🚀 편리한 유틸리티 & 앱 허브</h1>
-				<p>
-					업무와 일상의 생산성을 높여주는 다양한 도구와 앱을 만나보세요.
-					언제 어디서든 안전하고 빠르게 다운로드하여 사용할 수 있습니다.
+				<div class="hero-glow"></div>
+				<div class="hero-badge">
+					<span class="pulse-dot"></span>
+					<span>독립 소프트웨어 스튜디오 · INDEPENDENT APP STUDIO</span>
+				</div>
+				<h1>일상과 업무의 몰입을 돕는<br /><span class="gradient-text">심플하고 단단한 도구들</span></h1>
+				<p class="hero-desc">
+					시간 관리부터 네이티브 유틸리티까지, 군더더기 없는 완성도로 설계된 UWILL의 7가지 소프트웨어를 소개합니다.
 				</p>
-			</section>
-
-			<section>
-				<div class="section-header">
-					<h2>📦 등록된 앱 목록</h2>
-					<span class="app-count">총 {apps.length}개</span>
+				<div class="hero-actions">
+					<a href="#apps-catalog" class="btn-cta-primary">
+						<span class="material-symbols-outlined">grid_view</span>
+						<span>등록된 앱 살펴보기</span>
+					</a>
+					<a href="/about" class="btn-cta-secondary">
+						<span class="material-symbols-outlined">info</span>
+						<span>스튜디오 소개</span>
+					</a>
 				</div>
 
-				{apps.length === 0 ? (
-					<div class="empty-state">
-						<p>등록된 앱이 아직 없습니다. <code>src/content/apps/</code>에 새 앱을 추가해보세요!</p>
+				<!-- Metrics Bar -->
+				<div class="metrics-bar">
+					<div class="metric-item">
+						<span class="metric-value c-blue">7개</span>
+						<span class="metric-label">등록된 자체 앱</span>
 					</div>
-				) : (
-					<ul class="apps-grid">
-						{apps.map((app) => (
-							<li class="app-card">
-								<div class="card-header">
-									<div class="app-icon">{app.data.icon || '📱'}</div>
-									<div class="card-title-group">
-										<h3 class="card-title">
+					<div class="metric-item">
+						<span class="metric-value c-indigo">10+년</span>
+						<span class="metric-label">2015-2026 지속적 릴리즈</span>
+					</div>
+					<div class="metric-item">
+						<span class="metric-value c-dark">100%</span>
+						<span class="metric-label">네이티브 최적화</span>
+					</div>
+					<div class="metric-item">
+						<span class="metric-value c-emerald">0 Tracker</span>
+						<span class="metric-label">광고 없는 순수 유틸리티</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- Featured Spotlight: LoopSet -->
+			<section class="featured-section">
+				<div class="spotlight-banner">
+					<div class="spotlight-bg-glow"></div>
+					<div class="spotlight-content">
+						<div class="spotlight-badges">
+							<span class="spotlight-pill">Featured Spotlight · v1.0</span>
+							<span class="spotlight-pill">라이프스타일</span>
+							<span class="spotlight-pill">2026.10.16 릴리즈</span>
+						</div>
+						<div class="spotlight-title-row">
+							<div class="spotlight-icon">⏱️</div>
+							<h2>루프셋 (LoopSet)</h2>
+						</div>
+						<p class="spotlight-quote">“정해진 시간에 울리는 알람 대신, 순서대로 이어지는 루프”</p>
+						<p class="spotlight-desc">
+							50분 수업과 10분 휴식을 블록으로 묶어 4교시로. 한번 조립해 두면 누르기만 하면 되는 반복 타이머.
+							작업 흐름을 끊지 않고 다음 동작으로 자연스럽게 안내합니다.
+						</p>
+						<div class="spotlight-actions">
+							<a
+								href="https://apps.apple.com/kr/app/id6821636483?l=ko"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="btn-spotlight-store"
+							>
+								<span class="material-symbols-outlined">download</span>
+								<span>App Store 다운로드</span>
+							</a>
+							<a href="/apps/loopset/" class="btn-spotlight-detail">
+								<span class="material-symbols-outlined">read_more</span>
+								<span>자세히 보기</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="spotlight-features">
+					<div class="feature-card">
+						<div class="feature-icon-wrap blue">
+							<span class="material-symbols-outlined">view_in_ar</span>
+						</div>
+						<h4>블록으로 조립하는 루틴</h4>
+						<p>구간과 반복 그룹을 하나의 플로우로 연결. 마지막 세트의 휴식은 자동 제외하고 전체 시간을 실시간으로 계산합니다.</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon-wrap indigo">
+							<span class="material-symbols-outlined">touch_app</span>
+						</div>
+						<h4>탭 몇 번으로 완성되는 프리셋</h4>
+						<p>타바타 4분, 3세트 운동, 뽀모도로, 시험 시간표 등 세트 수와 시간만 넣으면 즉시 실행 가능한 템플릿 번들을 제공합니다.</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon-wrap amber">
+							<span class="material-symbols-outlined">notifications_active</span>
+						</div>
+						<h4>스마트 세그먼트 알림</h4>
+						<p>구간 전환 직전 3·2·1 사전 카운트다운과 시작 문구 음성/메시지. 남은 시간 프로그레스 바로 현재 위치를 직관적으로 파악합니다.</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon-wrap emerald">
+							<span class="material-symbols-outlined">volume_off</span>
+						</div>
+						<h4>기기 무음 스위치 연동</h4>
+						<p>폰이 무음 모드일 땐 소리 없이 화면과 햅틱으로만 상태 안내. 소리, 진동, LED 플래시 중 상황에 맞게 유연하게 설정할 수 있습니다.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Apps Catalog -->
+			<section class="catalog-section" id="apps-catalog">
+				<div class="catalog-header">
+					<div class="catalog-title-group">
+						<h2>
+							<span>📦 등록된 앱 목록</span>
+							<span class="catalog-total-pill">총 {apps.length}개</span>
+						</h2>
+						<p class="catalog-sub">원하는 플랫폼과 용도에 맞춰 검증된 네이티브 도구를 탐색하세요.</p>
+					</div>
+
+					<div class="search-bar-wrap">
+						<span class="material-symbols-outlined search-icon">search</span>
+						<input
+							type="text"
+							id="appSearchInput"
+							class="search-input"
+							placeholder="앱 이름, 키워드 검색..."
+						/>
+					</div>
+				</div>
+
+				<!-- Category Filter Chips -->
+				<div class="filter-tabs">
+					<button class="filter-btn active" data-category="all">전체 ({apps.length})</button>
+					<button class="filter-btn" data-category="라이프스타일">라이프스타일</button>
+					<button class="filter-btn" data-category="엔터테인먼트">엔터테인먼트</button>
+					<button class="filter-btn" data-category="생산성">생산성</button>
+					<button class="filter-btn" data-category="디자인">디자인</button>
+				</div>
+
+				<ul class="apps-grid" id="appsGrid">
+					{apps.map((app) => (
+						<li
+							class="app-card"
+							data-title={app.data.title}
+							data-category={app.data.category || ''}
+							data-desc={app.data.description}
+						>
+							<div>
+								<div class="card-head">
+									<div class="card-icon">{app.data.icon || '📱'}</div>
+									<div class="card-meta-head">
+										<h3 class="card-app-title">
 											<a href={`/apps/${app.id}/`}>{app.data.title}</a>
 										</h3>
-										<div class="badges-row">
+										<div class="card-tag-row">
 											{app.data.version && (
-												<span class="version-badge">v{app.data.version}</span>
+												<span class="ver-badge">v{app.data.version}</span>
 											)}
 											{app.data.category && (
-												<span class="category-badge">{app.data.category}</span>
+												<span class="cat-badge">{app.data.category}</span>
 											)}
 										</div>
 									</div>
 								</div>
 
-								<div class="meta-date">
-									<span>🗓️ 릴리즈:</span>
+								<div class="card-date">
+									<span class="material-symbols-outlined" style="font-size: 15px;">calendar_today</span>
 									<FormattedDate date={app.data.releaseDate} />
 								</div>
 
-								<p class="card-description">{app.data.description}</p>
+								<p class="card-desc">{app.data.description}</p>
 
 								{app.data.platforms && app.data.platforms.length > 0 && (
-									<div class="platforms-list">
+									<div class="card-platforms">
 										{app.data.platforms.map((platform) => (
-											<span class="platform-pill">{platform}</span>
+											<span class="plat-chip">{platform}</span>
 										))}
 									</div>
 								)}
+							</div>
 
-								<div class="card-actions">
-									{app.data.downloadUrl && (
-										<a
-											href={app.data.downloadUrl}
-											target="_blank"
-											rel="noopener noreferrer"
-											class="btn-primary"
-										>
-											⬇️ 다운로드
-										</a>
-									)}
-									<a href={`/apps/${app.id}/`} class="btn-secondary">
-										자세히 보기
+							<div class="card-foot">
+								{app.data.downloadUrl ? (
+									<a
+										href={app.data.downloadUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="btn-card-store"
+									>
+										<span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+										<span>App Store</span>
 									</a>
-								</div>
-							</li>
-						))}
-					</ul>
-				)}
+								) : (
+									<a href={`/apps/${app.id}/`} class="btn-card-store">
+										<span>소개 보기</span>
+									</a>
+								)}
+								<a href={`/apps/${app.id}/`} class="btn-card-detail">
+									자세히
+								</a>
+							</div>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			<!-- Interactive Playground: Keycap Clicker -->
+			<section class="playground-section">
+				<div class="playground-header">
+					<div class="playground-title">
+						<span style="font-size: 1.5rem;">⌨️</span>
+						<h3>키캡 클리커 (Keycap Clicker) 타건 체험</h3>
+						<span class="playground-badge">Web Audio Synth</span>
+					</div>
+					<button id="toggleMuteBtn" class="filter-btn" style="display: inline-flex; align-items: center; gap: 0.3rem;">
+						<span class="material-symbols-outlined" id="muteIcon" style="font-size: 16px;">volume_up</span>
+						<span id="muteText">소리 켬</span>
+					</button>
+				</div>
+
+				<div class="playground-layout">
+					<div class="keycap-interactive-stage">
+						<button id="mainKeycapBtn" class="keycap-3d-btn" type="button" aria-label="키캡 클릭">
+							<span class="keycap-label-main">UW</span>
+							<span class="keycap-label-sub" id="keycapSubLabel">CLICK</span>
+						</button>
+						<p class="keycap-hint">💡 키캡을 마우스로 클릭하거나 스페이스바를 눌러보세요!</p>
+					</div>
+
+					<div class="playground-controls">
+						<div>
+							<div style="font-size: 0.85rem; font-weight: 700; color: #0b1c30; margin-bottom: 0.5rem;">
+								스위치 종류 선택 (Switch Types)
+							</div>
+							<div class="switch-selector" id="switchSelector">
+								<button class="switch-pill active" data-switch="blue">청축 (Blue)</button>
+								<button class="switch-pill" data-switch="red">적축 (Red)</button>
+								<button class="switch-pill" data-switch="brown">갈축 (Brown)</button>
+								<button class="switch-pill" data-switch="topre">토프레 (Topre)</button>
+							</div>
+						</div>
+
+						<div class="switch-info-box">
+							<div class="switch-spec-name" id="switchSpecName">Cherry MX Blue · 청축 클릭</div>
+							<div class="switch-spec-pressure" id="switchSpecPressure">50g 압력 · 클릭감 뚜렷</div>
+							<p class="switch-spec-desc" id="switchSpecDesc">
+								고음의 찰칵거리는 클릭 재킷 소리와 바닥 충돌음이 결합된 가장 경쾌한 기계식의 정석 사운드입니다.
+							</p>
+						</div>
+
+						<div class="playground-stats">
+							<div class="pg-stat-box">
+								<div class="pg-stat-val" id="statClicks">0</div>
+								<div class="pg-stat-lbl">누적 클릭 수</div>
+							</div>
+							<div class="pg-stat-box">
+								<div class="pg-stat-val" id="statCombo">0x</div>
+								<div class="pg-stat-lbl">현재 콤보 (Combo)</div>
+							</div>
+							<div class="pg-stat-box">
+								<div class="pg-stat-val" id="statSpeed">0.0</div>
+								<div class="pg-stat-lbl">CPS (초당 속도)</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Studio Philosophy Preview -->
+			<section class="philosophy-preview">
+				<div class="philosophy-left">
+					<div class="philosophy-badge">
+						<span class="material-symbols-outlined" style="font-size: 15px;">terminal</span>
+						<span>Crafted by Independent Engineer</span>
+					</div>
+					<h3>10년 이상 유용한 도구를 만드는<br />1인 소프트웨어 스튜디오 UWILL</h3>
+					<p>
+						복잡한 설정이나 가입 절차 없이, 설치 즉시 본연의 목적을 가장 충실하게 수행하는 네이티브 소프트웨어를 만듭니다.
+						불필요한 트래커와 무분별한 광고를 배제하고 투명하고 견고한 사용자 경험을 지향합니다.
+					</p>
+
+					<div class="philosophy-cards">
+						<div class="phil-mini-card">
+							<h5>
+								<span class="material-symbols-outlined" style="font-size: 16px; color: #2563eb;">verified</span>
+								<span>네이티브 퍼포먼스</span>
+							</h5>
+							<p>OS 공식 API 준수로 배터리와 메모리를 절약합니다.</p>
+						</div>
+						<div class="phil-mini-card">
+							<h5>
+								<span class="material-symbols-outlined" style="font-size: 16px; color: #10b981;">lock</span>
+								<span>프라이버시 중심</span>
+							</h5>
+							<p>모든 데이터는 기기 로컬에만 안전하게 보관됩니다.</p>
+						</div>
+					</div>
+
+					<a href="/about" class="btn-phil-link">
+						<span>스튜디오 4대 원칙과 여정 자세히 보기</span>
+						<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+					</a>
+				</div>
+
+				<div class="philosophy-right-visual">
+					<div class="chart-header">
+						<span class="chart-title">STUDIO_METRICS_2015_2026</span>
+						<span class="chart-badge">100% Native</span>
+					</div>
+					<svg class="w-full" fill="none" viewBox="0 0 300 65" style="width: 100%; height: 80px; color: #2563eb;">
+						<path d="M0,52 Q40,50 80,40 T160,26 T240,15 T300,6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path>
+						<path d="M0,52 Q40,50 80,40 T160,26 T240,15 T300,6 L300,65 L0,65 Z" fill="currentColor" fill-opacity="0.08"></path>
+						<circle cx="0" cy="52" fill="currentColor" r="4"></circle>
+						<circle cx="80" cy="40" fill="currentColor" r="4"></circle>
+						<circle cx="160" cy="26" fill="currentColor" r="4"></circle>
+						<circle cx="240" cy="15" fill="currentColor" r="4"></circle>
+						<circle cx="300" cy="6" fill="#10b981" r="5"></circle>
+					</svg>
+					<div class="timeline-years">
+						<span>2015 (O/X Launch)</span>
+						<span>2020 (입찰, 컬러)</span>
+						<span>2026 (루프셋 7종)</span>
+					</div>
+				</div>
 			</section>
 		</main>
 		<Footer />
+
+		<!-- Interactive Client Scripts -->
+		<script is:inline>
+			// 1. Search and Filter Logic
+			const searchInput = document.getElementById('appSearchInput');
+			const filterBtns = document.querySelectorAll('.filter-btn[data-category]');
+			const appCards = document.querySelectorAll('.app-card');
+
+			let activeCategory = 'all';
+
+			function applyFilter() {
+				const query = (searchInput?.value || '').toLowerCase().trim();
+
+				appCards.forEach(card => {
+					const title = (card.getAttribute('data-title') || '').toLowerCase();
+					const cat = card.getAttribute('data-category') || '';
+					const desc = (card.getAttribute('data-desc') || '').toLowerCase();
+
+					const matchesCategory = activeCategory === 'all' || cat.includes(activeCategory);
+					const matchesQuery = !query || title.includes(query) || desc.includes(query);
+
+					if (matchesCategory && matchesQuery) {
+						card.style.display = 'flex';
+					} else {
+						card.style.display = 'none';
+					}
+				});
+			}
+
+			searchInput?.addEventListener('input', applyFilter);
+
+			filterBtns.forEach(btn => {
+				btn.addEventListener('click', () => {
+					filterBtns.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+					activeCategory = btn.getAttribute('data-category') || 'all';
+					applyFilter();
+				});
+			});
+
+			// 2. Web Audio Synthesizer for Keycap Clicker Playground
+			let audioCtx = null;
+			let isMuted = false;
+			let currentSwitch = 'blue';
+			let clickCount = 0;
+			let comboCount = 0;
+			let comboTimer = null;
+
+			function getAudioCtx() {
+				if (!audioCtx) {
+					const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+					if (AudioContextClass) {
+						audioCtx = new AudioContextClass();
+					}
+				}
+				if (audioCtx && audioCtx.state === 'suspended') {
+					audioCtx.resume();
+				}
+				return audioCtx;
+			}
+
+			function playKeycapSound(type) {
+				if (isMuted) return;
+				const ctx = getAudioCtx();
+				if (!ctx) return;
+				const now = ctx.currentTime;
+
+				if (type === 'blue') {
+					// Clicky
+					const osc = ctx.createOscillator();
+					const gain = ctx.createGain();
+					osc.type = 'triangle';
+					osc.frequency.setValueAtTime(2600, now);
+					osc.frequency.exponentialRampToValueAtTime(600, now + 0.03);
+					gain.gain.setValueAtTime(0.35, now);
+					gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+					osc.connect(gain);
+					gain.connect(ctx.destination);
+					osc.start(now);
+					osc.stop(now + 0.04);
+
+					const osc2 = ctx.createOscillator();
+					const gain2 = ctx.createGain();
+					osc2.type = 'sine';
+					osc2.frequency.setValueAtTime(320, now + 0.015);
+					osc2.frequency.exponentialRampToValueAtTime(110, now + 0.05);
+					gain2.gain.setValueAtTime(0.25, now + 0.015);
+					gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+					osc2.connect(gain2);
+					gain2.connect(ctx.destination);
+					osc2.start(now + 0.015);
+					osc2.stop(now + 0.07);
+				} else if (type === 'red') {
+					// Linear
+					const osc = ctx.createOscillator();
+					const gain = ctx.createGain();
+					osc.type = 'sine';
+					osc.frequency.setValueAtTime(220, now);
+					osc.frequency.exponentialRampToValueAtTime(80, now + 0.04);
+					gain.gain.setValueAtTime(0.25, now);
+					gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+					osc.connect(gain);
+					gain.connect(ctx.destination);
+					osc.start(now);
+					osc.stop(now + 0.055);
+				} else if (type === 'brown') {
+					// Tactile
+					const osc = ctx.createOscillator();
+					const gain = ctx.createGain();
+					osc.type = 'triangle';
+					osc.frequency.setValueAtTime(800, now);
+					osc.frequency.exponentialRampToValueAtTime(200, now + 0.03);
+					gain.gain.setValueAtTime(0.28, now);
+					gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+					osc.connect(gain);
+					gain.connect(ctx.destination);
+					osc.start(now);
+					osc.stop(now + 0.045);
+				} else if (type === 'topre') {
+					// Thock
+					const osc = ctx.createOscillator();
+					const gain = ctx.createGain();
+					osc.type = 'sine';
+					osc.frequency.setValueAtTime(180, now);
+					osc.frequency.exponentialRampToValueAtTime(70, now + 0.06);
+					gain.gain.setValueAtTime(0.4, now);
+					gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+					osc.connect(gain);
+					gain.connect(ctx.destination);
+					osc.start(now);
+					osc.stop(now + 0.075);
+				}
+			}
+
+			const keycapBtn = document.getElementById('mainKeycapBtn');
+			const statClicks = document.getElementById('statClicks');
+			const statCombo = document.getElementById('statCombo');
+			const statSpeed = document.getElementById('statSpeed');
+
+			function triggerKeypress() {
+				playKeycapSound(currentSwitch);
+				if (keycapBtn) {
+					keycapBtn.classList.add('pressed');
+					setTimeout(() => keycapBtn.classList.remove('pressed'), 80);
+				}
+				clickCount++;
+				comboCount++;
+				if (statClicks) statClicks.innerText = clickCount;
+				if (statCombo) statCombo.innerText = comboCount + 'x';
+
+				clearTimeout(comboTimer);
+				comboTimer = setTimeout(() => {
+					comboCount = 0;
+					if (statCombo) statCombo.innerText = '0x';
+				}, 1200);
+
+				if (statSpeed) {
+					statSpeed.innerText = (Math.min(comboCount * 1.1, 9.9)).toFixed(1);
+				}
+			}
+
+			keycapBtn?.addEventListener('click', triggerKeypress);
+
+			window.addEventListener('keydown', (e) => {
+				if (e.code === 'Space' && e.target === document.body) {
+					e.preventDefault();
+					triggerKeypress();
+				}
+			});
+
+			// Switch selector tabs
+			const switchPills = document.querySelectorAll('.switch-pill');
+			const switchSpecName = document.getElementById('switchSpecName');
+			const switchSpecPressure = document.getElementById('switchSpecPressure');
+			const switchSpecDesc = document.getElementById('switchSpecDesc');
+			const keycapSubLabel = document.getElementById('keycapSubLabel');
+
+			const switchDetails = {
+				blue: {
+					name: 'Cherry MX Blue · 청축 클릭',
+					pressure: '50g 압력 · 클릭감 뚜렷',
+					desc: '고음의 찰칵거리는 클릭 재킷 소리와 바닥 충돌음이 결합된 가장 경쾌한 기계식의 정석 사운드입니다.',
+					sub: 'CLICK'
+				},
+				red: {
+					name: 'Cherry MX Red · 적축 리니어',
+					pressure: '45g 압력 · 걸림 없는 부드러움',
+					desc: '걸림이 없어 조용하고 매끄러운 타이핑이 가능하며 바닥을 부드럽게 때리는 서걱거림이 특징입니다.',
+					sub: 'LINEAR'
+				},
+				brown: {
+					name: 'Cherry MX Brown · 갈축 넌클릭',
+					pressure: '45g~55g 압력 · 쫀득한 구분감',
+					desc: '청축의 찰칵거리는 소음은 줄이면서 손끝의 쫀득한 반발력 구분감은 살린 올라운더 스위치입니다.',
+					sub: 'TACTILE'
+				},
+				topre: {
+					name: 'Topre Electrostatic · 무접점',
+					pressure: '35g~45g 압력 · 몽글몽글 조약돌 소리',
+					desc: '조약돌이 부딪히는 듯한 깊고 먹먹한 도각도각(Thock) 사운드로 장시간 타건 시 피로감이 가장 적습니다.',
+					sub: 'THOCK'
+				}
+			};
+
+			switchPills.forEach(pill => {
+				pill.addEventListener('click', () => {
+					switchPills.forEach(p => p.classList.remove('active'));
+					pill.classList.add('active');
+					const type = pill.getAttribute('data-switch') || 'blue';
+					currentSwitch = type;
+
+					const spec = switchDetails[type];
+					if (spec) {
+						if (switchSpecName) switchSpecName.innerText = spec.name;
+						if (switchSpecPressure) switchSpecPressure.innerText = spec.pressure;
+						if (switchSpecDesc) switchSpecDesc.innerText = spec.desc;
+						if (keycapSubLabel) keycapSubLabel.innerText = spec.sub;
+					}
+					playKeycapSound(type);
+				});
+			});
+
+			// Mute button
+			const toggleMuteBtn = document.getElementById('toggleMuteBtn');
+			const muteIcon = document.getElementById('muteIcon');
+			const muteText = document.getElementById('muteText');
+
+			toggleMuteBtn?.addEventListener('click', () => {
+				isMuted = !isMuted;
+				if (isMuted) {
+					if (muteIcon) muteIcon.innerText = 'volume_off';
+					if (muteText) muteText.innerText = '음소거 됨';
+				} else {
+					if (muteIcon) muteIcon.innerText = 'volume_up';
+					if (muteText) muteText.innerText = '소리 켬';
+					playKeycapSound(currentSwitch);
+				}
+			});
+		</script>
 	</body>
 </html>

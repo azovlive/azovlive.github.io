@@ -2,56 +2,174 @@
 const today = new Date();
 ---
 
-<footer>
-	&copy; {today.getFullYear()} UWILLSOFT. All rights reserved.
-	<div class="social-links">
-		<a href="mailto:umaking@gmail.com" title="Email: umaking@gmail.com">
-			<span class="sr-only">Send email to UWILL</span>
-			<svg
-				viewBox="0 0 16 16"
-				aria-hidden="true"
-				width="28"
-				height="28"
-				fill="currentColor"
-			>
-				<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-			</svg>
-		</a>
-		<a href="https://x.com/azovlive" target="_blank" rel="noopener noreferrer" title="X (@azovlive)">
-			<span class="sr-only">Follow @azovlive on X</span>
-			<svg
-				viewBox="0 0 16 16"
-				aria-hidden="true"
-				width="28"
-				height="28"
-				fill="currentColor"
-			>
-				<path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.147H2.865l8.875 11.631Z"/>
-			</svg>
-		</a>
+<footer class="studio-footer">
+	<div class="footer-container">
+		<div class="footer-brand-row">
+			<div class="footer-brand">
+				<img src="/Newlogo-2.png" alt="UWILL Logo" class="footer-logo" onerror="this.src='/Newlogo.png'" />
+				<div>
+					<span class="footer-brand-name">UWILL</span>
+					<span class="footer-copy">© {today.getFullYear()} UWILL Studio. All rights reserved.</span>
+				</div>
+			</div>
+			<div class="footer-tagline">
+				<span>Independent Software Studio · 1인 독립 개발 스튜디오</span>
+			</div>
+		</div>
+
+		<div class="footer-divider"></div>
+
+		<div class="footer-bottom-row">
+			<div class="footer-links">
+				<a href="mailto:umaking@gmail.com" class="footer-link">
+					<span class="material-symbols-outlined icon-sm">mail</span>
+					<span>umaking@gmail.com</span>
+				</a>
+				<a href="https://x.com/azovlive" target="_blank" rel="noopener noreferrer" class="footer-link">
+					<span class="material-symbols-outlined icon-sm">alternate_email</span>
+					<span>@azovlive</span>
+				</a>
+				<a href="/about" class="footer-link">
+					<span class="material-symbols-outlined icon-sm">info</span>
+					<span>스튜디오 소개</span>
+				</a>
+			</div>
+			<div class="footer-metrics">
+				<span class="metric-pill">100% Native OS APIs</span>
+				<span class="metric-pill">Zero Server Storage</span>
+			</div>
+		</div>
 	</div>
 </footer>
+
 <style>
-	footer {
+	.studio-footer {
 		width: 100%;
-		box-sizing: border-box;
-		padding: 2.5em 1em 5em 1em;
 		background: #ffffff;
 		border-top: 1px solid #e2e8f0;
-		color: rgb(var(--gray));
-		text-align: center;
+		padding: 3rem 1.5rem 4rem;
+		box-sizing: border-box;
+		margin-top: auto;
 	}
-	.social-links {
+
+	.footer-container {
+		max-width: 1160px;
+		margin: 0 auto;
 		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
+		flex-col: column;
+		gap: 1.5rem;
+		flex-direction: column;
 	}
-	.social-links a {
+
+	.footer-brand-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.footer-brand {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.footer-logo {
+		width: 32px;
+		height: 32px;
+		border-radius: 8px;
+		border: 1px solid #e2e8f0;
+	}
+
+	.footer-brand-name {
+		font-weight: 800;
+		color: #0b1c30;
+		font-size: 1rem;
+		margin-right: 0.5rem;
+	}
+
+	.footer-copy {
+		font-size: 0.82rem;
+		color: #64748b;
+	}
+
+	.footer-tagline {
+		font-size: 0.8rem;
+		color: #64748b;
+		font-weight: 500;
+	}
+
+	.footer-divider {
+		height: 1px;
+		background: #f1f5f9;
+		width: 100%;
+	}
+
+	.footer-bottom-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.footer-links {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.footer-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		color: #475569;
 		text-decoration: none;
-		color: rgb(var(--gray));
+		font-size: 0.85rem;
+		transition: color 0.15s ease;
 	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
+
+	.footer-link:hover {
+		color: #2563eb;
+	}
+
+	.icon-sm {
+		font-size: 16px;
+	}
+
+	.footer-metrics {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.metric-pill {
+		font-size: 0.72rem;
+		font-family: 'JetBrains Mono', monospace;
+		padding: 0.2rem 0.55rem;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 6px;
+		color: #475569;
+	}
+
+	@media (max-width: 640px) {
+		.studio-footer {
+			padding: 2rem 1rem 3rem;
+		}
+		.footer-brand-row,
+		.footer-bottom-row {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.75rem;
+		}
+		.footer-links {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
 	}
 </style>

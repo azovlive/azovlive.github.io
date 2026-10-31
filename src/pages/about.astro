@@ -9,271 +9,720 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 <html lang="ko">
 	<head>
 		<BaseHead
-			title={`About UWILL - ${SITE_TITLE}`}
-			description="UWILL이 만드는 소프트웨어와 개발 철학을 소개합니다."
+			title={`스튜디오 소개 - ${SITE_TITLE}`}
+			description="UWILL의 10년 여정과 네이티브 소프트웨어 개발 철학을 소개합니다."
 		/>
 		<style>
 			main {
 				width: 100%;
-				max-width: 920px;
+				max-width: 1160px;
 				margin: 0 auto;
-				padding: 3rem 1.5rem 5rem;
+				padding: 2.5rem 1.5rem 5rem;
 				box-sizing: border-box;
 			}
 
-			/* Hero Header */
+			/* Hero Section */
 			.about-hero {
-				width: 100%;
-				max-width: 100%;
-				box-sizing: border-box;
-				text-align: center;
-				padding: 3.5rem 2rem;
-				background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+				background: #eff4ff;
 				border: 1px solid #dbeafe;
-				border-radius: 24px;
-				box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.06);
+				border-radius: 28px;
+				padding: 3rem 2.5rem;
 				margin-bottom: 3.5rem;
-				overflow: hidden;
+				display: grid;
+				grid-template-columns: 1.25fr 0.75fr;
+				gap: 2.5rem;
+				align-items: center;
+				box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.04);
 			}
-			.logo-badge {
-				width: 88px;
-				height: 88px;
-				margin: 0 auto 1.5rem;
-				border-radius: 22px;
+
+			.hero-badge-wrap {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.35rem 0.85rem;
+				border-radius: 9999px;
+				background: #dce9ff;
+				color: #004ac6;
+				font-size: 0.76rem;
+				font-weight: 700;
+				margin-bottom: 1.25rem;
+			}
+
+			.pulse-indicator {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: #10b981;
+				box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+				animation: pulse-green 2s infinite;
+			}
+
+			@keyframes pulse-green {
+				0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+				70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+				100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+			}
+
+			.about-hero h1 {
+				font-size: clamp(1.8rem, 4vw, 2.7rem);
+				font-weight: 800;
+				letter-spacing: -0.025em;
+				line-height: 1.25;
+				color: #0b1c30;
+				margin-bottom: 1.25rem;
+			}
+
+			.about-hero h1 .text-highlight {
+				color: #004ac6;
+			}
+
+			.hero-desc {
+				font-size: 1rem;
+				color: #475569;
+				line-height: 1.7;
+				margin-bottom: 2rem;
+			}
+
+			.hero-cta-group {
+				display: flex;
+				gap: 0.75rem;
+				flex-wrap: wrap;
+			}
+
+			.btn-cta-blue {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				padding: 0.75rem 1.4rem;
+				background: #2563eb;
+				color: #ffffff !important;
+				font-weight: 600;
+				font-size: 0.92rem;
+				border-radius: 12px;
+				box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+				transition: all 0.2s;
+			}
+
+			.btn-cta-blue:hover {
+				background: #1d4ed8;
+				transform: translateY(-1px);
+			}
+
+			.btn-cta-white {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				padding: 0.75rem 1.4rem;
 				background: #ffffff;
-				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-				border: 1px solid #edf2f7;
+				color: #0b1c30 !important;
+				font-weight: 600;
+				font-size: 0.92rem;
+				border-radius: 12px;
+				border: 1px solid #e2e8f0;
+				transition: all 0.2s;
+			}
+
+			.btn-cta-white:hover {
+				background: #f8fafc;
+				border-color: #cbd5e1;
+				transform: translateY(-1px);
+			}
+
+			/* Studio Identity Card */
+			.identity-card {
+				background: #ffffff;
+				border-radius: 24px;
+				padding: 2rem 1.75rem;
+				border: 1px solid #dbeafe;
+				box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.identity-logo-wrap {
+				width: 96px;
+				height: 96px;
+				border-radius: 22px;
+				background: #f1f5f9;
+				padding: 8px;
+				border: 1px solid #e2e8f0;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+				margin-bottom: 1rem;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				overflow: hidden;
 			}
-			.logo-badge img {
+
+			.identity-logo-img {
 				width: 100%;
 				height: 100%;
-				object-fit: cover;
-			}
-			.hero-title {
-				font-size: 2.5rem;
-				font-weight: 800;
-				letter-spacing: -0.025em;
-				color: #0f172a;
-				margin: 0 0 1rem;
-				line-height: 1.25;
-			}
-			.hero-subtitle {
-				font-size: 1.15rem;
-				color: #475569;
-				max-width: 600px;
-				margin: 0 auto;
-				line-height: 1.65;
+				object-fit: contain;
+				border-radius: 16px;
 			}
 
-			/* Stat Highlights */
-			.stats-row {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 1.25rem;
-				margin-bottom: 3.5rem;
+			.identity-title {
+				font-size: 1.35rem;
+				font-weight: 800;
+				color: #0b1c30;
+				margin-bottom: 0.25rem;
 			}
-			.stat-card {
+
+			.identity-tagline {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.72rem;
+				font-weight: 600;
+				background: #eff6ff;
+				color: #1d4ed8;
+				padding: 0.2rem 0.6rem;
+				border-radius: 9999px;
+				border: 1px solid #dbeafe;
+				margin-bottom: 1.5rem;
+			}
+
+			.identity-stats-grid {
+				width: 100%;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 0.6rem;
+				background: #f8fafc;
+				padding: 0.75rem;
+				border-radius: 16px;
+			}
+
+			.id-stat-cell {
+				background: #ffffff;
+				border-radius: 10px;
+				padding: 0.75rem 0.5rem;
+				border: 1px solid #e2e8f0;
+			}
+
+			.id-stat-num {
+				font-size: 1.4rem;
+				font-weight: 800;
+				color: #004ac6;
+				line-height: 1.1;
+			}
+
+			.id-stat-num.emerald { color: #10b981; }
+			.id-stat-num.dark { color: #0b1c30; }
+
+			.id-stat-lbl {
+				font-size: 0.7rem;
+				color: #64748b;
+				margin-top: 0.2rem;
+				font-weight: 500;
+			}
+
+			/* Principles Section */
+			.principles-section {
+				margin-bottom: 4rem;
+			}
+
+			.section-heading-wrap {
+				margin-bottom: 2rem;
+			}
+
+			.section-eyebrow {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-size: 0.75rem;
+				font-weight: 700;
+				color: #004ac6;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+				margin-bottom: 0.35rem;
+			}
+
+			.section-main-title {
+				font-size: 1.85rem;
+				font-weight: 800;
+				color: #0b1c30;
+				letter-spacing: -0.02em;
+				margin-bottom: 0.5rem;
+			}
+
+			.section-lead-text {
+				font-size: 0.95rem;
+				color: #64748b;
+				margin: 0;
+			}
+
+			.principles-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.5rem;
+			}
+
+			.principle-card {
 				background: #ffffff;
 				border: 1px solid #e2e8f0;
-				border-radius: 16px;
-				padding: 1.5rem;
-				text-align: center;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-			}
-			.stat-number {
-				font-size: 2.2rem;
-				font-weight: 800;
-				color: #2563eb;
-				margin-bottom: 0.35rem;
-				letter-spacing: -0.02em;
-			}
-			.stat-label {
-				font-size: 0.88rem;
-				font-weight: 600;
-				color: #64748b;
+				border-radius: 20px;
+				padding: 1.75rem;
+				box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02);
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
 			}
 
-			/* Core Section: What We Build */
-			.section-title {
-				font-size: 1.75rem;
+			.principle-card:hover {
+				border-color: #cbd5e1;
+				box-shadow: 0 10px 20px rgba(15, 23, 42, 0.04);
+			}
+
+			.principle-top {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 1.25rem;
+			}
+
+			.principle-code {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.72rem;
 				font-weight: 700;
-				color: #0f172a;
-				margin: 0 0 0.5rem;
-				letter-spacing: -0.02em;
-			}
-			.section-lead {
-				font-size: 1.05rem;
-				color: #475569;
-				margin: 0 0 2rem;
-				line-height: 1.65;
+				padding: 0.25rem 0.6rem;
+				border-radius: 8px;
 			}
 
-			.product-grid {
+			.principle-code.blue { background: #eff6ff; color: #1d4ed8; }
+			.principle-code.emerald { background: #ecfdf5; color: #047857; }
+			.principle-code.amber { background: #fffbeb; color: #b45309; }
+			.principle-code.indigo { background: #e0e7ff; color: #4338ca; }
+
+			.principle-icon {
+				width: 40px;
+				height: 40px;
+				border-radius: 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 20px;
+			}
+
+			.principle-icon.blue { background: #dbeafe; color: #1d4ed8; }
+			.principle-icon.emerald { background: #d1fae5; color: #047857; }
+			.principle-icon.amber { background: #fef3c7; color: #b45309; }
+			.principle-icon.indigo { background: #e0e7ff; color: #4338ca; }
+
+			.principle-title {
+				font-size: 1.2rem;
+				font-weight: 700;
+				color: #0b1c30;
+				margin-bottom: 0.5rem;
+			}
+
+			.principle-desc {
+				font-size: 0.9rem;
+				color: #475569;
+				line-height: 1.65;
+				margin-bottom: 1.5rem;
+			}
+
+			.principle-tag {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-size: 0.74rem;
+				font-weight: 600;
+				font-family: 'JetBrains Mono', monospace;
+			}
+
+			.principle-tag.blue { color: #1d4ed8; }
+			.principle-tag.emerald { color: #047857; }
+			.principle-tag.amber { color: #b45309; }
+			.principle-tag.indigo { color: #4338ca; }
+
+			/* Timeline Section */
+			.timeline-section {
+				background: #eff4ff;
+				border-radius: 28px;
+				padding: 3rem 2.5rem;
+				margin-bottom: 4rem;
+				border: 1px solid #dbeafe;
+			}
+
+			.timeline-header {
+				text-align: center;
+				max-width: 600px;
+				margin: 0 auto 3rem;
+			}
+
+			.timeline-tree {
+				position: relative;
+				max-width: 760px;
+				margin: 0 auto;
+				padding-left: 2rem;
+			}
+
+			.timeline-tree::before {
+				content: '';
+				position: absolute;
+				left: 6px;
+				top: 8px;
+				bottom: 8px;
+				width: 2px;
+				background: #cbd5e1;
+			}
+
+			.timeline-node {
+				position: relative;
+				margin-bottom: 2.5rem;
+			}
+
+			.timeline-node:last-child {
+				margin-bottom: 0;
+			}
+
+			.node-dot {
+				position: absolute;
+				left: -2rem;
+				top: 4px;
+				width: 14px;
+				height: 14px;
+				border-radius: 50%;
+				background: #ffffff;
+				border: 3px solid #004ac6;
+				box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+			}
+
+			.node-dot.current {
+				background: #2563eb;
+				border-color: #ffffff;
+				box-shadow: 0 0 0 4px #2563eb;
+			}
+
+			.node-content-card {
+				background: #ffffff;
+				border-radius: 18px;
+				padding: 1.5rem;
+				border: 1px solid #e2e8f0;
+				box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+			}
+
+			.node-year-badge {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.node-year {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #004ac6;
+				font-family: 'JetBrains Mono', monospace;
+			}
+
+			.node-stage {
+				font-size: 0.72rem;
+				background: #eff6ff;
+				color: #1d4ed8;
+				padding: 0.15rem 0.5rem;
+				border-radius: 9999px;
+				font-weight: 600;
+			}
+
+			.node-title {
+				font-size: 1.05rem;
+				font-weight: 700;
+				color: #0b1c30;
+				margin-bottom: 0.35rem;
+			}
+
+			.node-text {
+				font-size: 0.88rem;
+				color: #475569;
+				line-height: 1.6;
+				margin: 0 0 0.75rem 0;
+			}
+
+			.node-chips {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.35rem;
+			}
+
+			.node-chip {
+				font-size: 0.72rem;
+				background: #f1f5f9;
+				color: #475569;
+				padding: 0.15rem 0.5rem;
+				border-radius: 6px;
+				font-weight: 500;
+			}
+
+			/* What We Build (7 Apps Showcase) */
+			.apps-showcase-section {
+				margin-bottom: 4rem;
+			}
+
+			.apps-showcase-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 				gap: 1.25rem;
-				margin-bottom: 3.5rem;
 			}
-			.product-item {
+
+			.showcase-item {
 				background: #ffffff;
 				border: 1px solid #e2e8f0;
-				border-radius: 16px;
+				border-radius: 18px;
 				padding: 1.5rem;
 				transition: all 0.2s ease;
+				text-decoration: none;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
 			}
-			.product-item:hover {
+
+			.showcase-item:hover {
 				transform: translateY(-3px);
-				box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+				box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
 				border-color: #cbd5e1;
 			}
-			.product-icon {
-				font-size: 2rem;
+
+			.showcase-icon {
+				font-size: 2.2rem;
 				margin-bottom: 0.75rem;
 			}
-			.product-name {
+
+			.showcase-name {
 				font-size: 1.15rem;
 				font-weight: 700;
-				color: #0f172a;
-				margin: 0 0 0.4rem;
+				color: #0b1c30;
+				margin-bottom: 0.35rem;
 			}
-			.product-desc {
-				font-size: 0.9rem;
+
+			.showcase-desc {
+				font-size: 0.86rem;
 				color: #64748b;
 				line-height: 1.55;
-				margin: 0;
+				margin: 0 0 1rem 0;
+				flex: 1;
 			}
 
-			/* Philosophy Cards */
-			.values-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-				gap: 1.5rem;
-				margin-bottom: 3.5rem;
+			.showcase-link-text {
+				font-size: 0.82rem;
+				font-weight: 600;
+				color: #004ac6;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.25rem;
 			}
-			.value-card {
-				background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+
+			/* Engineer's Note & Contact */
+			.engineer-section {
+				background: #ffffff;
 				border: 1px solid #e2e8f0;
-				border-radius: 18px;
-				padding: 1.75rem;
-				position: relative;
-			}
-			.value-icon {
-				font-size: 2rem;
-				margin-bottom: 1rem;
-				display: inline-block;
-			}
-			.value-title {
-				font-size: 1.2rem;
-				font-weight: 700;
-				color: #0f172a;
-				margin: 0 0 0.6rem;
-			}
-			.value-desc {
-				font-size: 0.93rem;
-				color: #475569;
-				line-height: 1.6;
-				margin: 0;
+				border-radius: 28px;
+				padding: 3rem 2.5rem;
+				box-shadow: 0 4px 16px rgba(15, 23, 42, 0.02);
+				display: grid;
+				grid-template-columns: 1.25fr 0.75fr;
+				gap: 2.5rem;
 			}
 
-			/* Contact / Links Box */
-			.contact-box {
-				background: #0f172a;
-				color: #ffffff;
-				border-radius: 20px;
-				padding: 2.5rem 2rem;
-				text-align: center;
-			}
-			.contact-box h3 {
-				font-size: 1.6rem;
-				font-weight: 700;
-				margin: 0 0 0.8rem;
-				color: #ffffff;
-			}
-			.contact-box p {
-				color: #94a3b8;
-				font-size: 1rem;
-				margin: 0 auto 1.75rem;
-				max-width: 540px;
-				line-height: 1.6;
-			}
-			.cta-buttons {
+			.engineer-note-box {
 				display: flex;
-				justify-content: center;
-				gap: 1rem;
-				flex-wrap: wrap;
-			}
-			.btn-home {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.75rem 1.5rem;
-				background: #2563eb;
-				color: #ffffff !important;
-				text-decoration: none;
-				border-radius: 10px;
-				font-weight: 600;
-				font-size: 0.95rem;
-				transition: background 0.2s;
-			}
-			.btn-home:hover {
-				background: #1d4ed8;
-			}
-			.btn-email {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.75rem 1.5rem;
-				background: #2563eb;
-				color: #ffffff !important;
-				text-decoration: none;
-				border-radius: 10px;
-				font-weight: 600;
-				font-size: 0.95rem;
-				transition: background 0.2s;
-			}
-			.btn-email:hover {
-				background: #1d4ed8;
-			}
-			.btn-x {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.75rem 1.5rem;
-				background: rgba(255, 255, 255, 0.1);
-				color: #ffffff !important;
-				text-decoration: none;
-				border-radius: 10px;
-				font-weight: 500;
-				font-size: 0.95rem;
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				transition: background 0.2s;
-			}
-			.btn-x:hover {
-				background: rgba(255, 255, 255, 0.18);
+				flex-direction: column;
+				justify-content: space-between;
 			}
 
-			@media (max-width: 680px) {
-				main {
-					padding: 1.25rem 1rem 3rem;
-				}
-				.hero-title {
-					font-size: 1.6rem;
-				}
-				.stats-row {
+			.engineer-quote-title {
+				font-size: 1.7rem;
+				font-weight: 800;
+				color: #0b1c30;
+				line-height: 1.35;
+				margin-bottom: 1.25rem;
+			}
+
+			.engineer-body {
+				space-y: 1rem;
+				font-size: 0.94rem;
+				color: #475569;
+				line-height: 1.7;
+			}
+
+			.engineer-profile-bar {
+				display: flex;
+				align-items: center;
+				gap: 0.85rem;
+				margin-top: 2rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid #f1f5f9;
+			}
+
+			.engineer-avatar {
+				width: 48px;
+				height: 48px;
+				border-radius: 50%;
+				background: #eff6ff;
+				color: #004ac6;
+				font-weight: 800;
+				font-size: 1.1rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid #dbeafe;
+			}
+
+			.engineer-name {
+				font-size: 1rem;
+				font-weight: 700;
+				color: #0b1c30;
+			}
+
+			.engineer-role {
+				font-size: 0.78rem;
+				color: #64748b;
+			}
+
+			/* Channels Box */
+			.channels-box {
+				background: #eff4ff;
+				border-radius: 20px;
+				padding: 2rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				border: 1px solid #dbeafe;
+			}
+
+			.channels-title {
+				font-size: 1.2rem;
+				font-weight: 800;
+				color: #0b1c30;
+				margin-bottom: 0.35rem;
+			}
+
+			.channels-sub {
+				font-size: 0.84rem;
+				color: #64748b;
+				margin-bottom: 1.5rem;
+				line-height: 1.5;
+			}
+
+			.channel-list {
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+				margin-bottom: 1.5rem;
+			}
+
+			.channel-item {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.85rem 1rem;
+				background: #ffffff;
+				border-radius: 14px;
+				border: 1px solid #e2e8f0;
+				color: inherit;
+				text-decoration: none;
+				transition: all 0.15s;
+			}
+
+			.channel-item:hover {
+				border-color: #2563eb;
+				transform: translateY(-1px);
+			}
+
+			.channel-left {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+			}
+
+			.channel-icon-wrap {
+				width: 36px;
+				height: 36px;
+				border-radius: 10px;
+				background: #eff6ff;
+				color: #004ac6;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.channel-label {
+				font-size: 0.85rem;
+				font-weight: 700;
+				color: #0b1c30;
+				display: block;
+			}
+
+			.channel-detail {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.75rem;
+				color: #64748b;
+			}
+
+			.active-tag {
+				font-size: 0.7rem;
+				font-weight: 700;
+				background: #d1fae5;
+				color: #065f46;
+				padding: 0.15rem 0.5rem;
+				border-radius: 6px;
+			}
+
+			.btn-explore-apps {
+				width: 100%;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.4rem;
+				padding: 0.85rem;
+				background: #2563eb;
+				color: #ffffff !important;
+				font-size: 0.9rem;
+				font-weight: 700;
+				border-radius: 12px;
+				box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+				transition: background 0.15s;
+			}
+
+			.btn-explore-apps:hover {
+				background: #1d4ed8;
+			}
+
+			/* Responsive */
+			@media (max-width: 900px) {
+				.about-hero,
+				.engineer-section {
 					grid-template-columns: 1fr;
-					gap: 0.75rem;
+				}
+				.principles-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 640px) {
+				main {
+					padding: 1.25rem 1rem 4rem;
 				}
 				.about-hero {
-					padding: 2rem 1.25rem;
-					border-radius: 18px;
+					padding: 1.75rem 1.25rem;
+					border-radius: 20px;
 					margin-bottom: 2rem;
 				}
-				.product-grid,
-				.values-grid {
+				.about-hero h1 {
+					font-size: 1.55rem;
+				}
+				.timeline-section {
+					padding: 1.75rem 1.25rem;
+					border-radius: 20px;
+				}
+				.engineer-section {
+					padding: 1.75rem 1.25rem;
+					border-radius: 20px;
+				}
+				.engineer-quote-title {
+					font-size: 1.35rem;
+				}
+				.apps-showcase-grid {
 					grid-template-columns: 1fr;
 				}
 			}
@@ -284,118 +733,417 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<main>
 			<!-- Hero Section -->
 			<section class="about-hero">
-				<div class="logo-badge">
-					<img src="/Newlogo.png" alt="UWILL Logo" onerror="this.src='/logo.png'" />
+				<div>
+					<div class="hero-badge-wrap">
+						<span class="pulse-indicator"></span>
+						<span>Crafted by Independent Engineer · 1인 독립 개발 스튜디오</span>
+					</div>
+					<h1>
+						일상과 업무의 몰입을 돕는<br />
+						<span class="text-highlight">단단하고 유용한 도구</span>를 만듭니다
+					</h1>
+					<p class="hero-desc">
+						2015년 첫 앱 출시 이후 10년 넘게 본질에 집중한 네이티브 유틸리티 소프트웨어를 지속적으로 빌드해오고 있습니다.
+						복잡한 플랫폼 수수료나 트래커 대신, 손끝에서 즉각 반응하는 기술적 순수함을 지향합니다.
+					</p>
+					<div class="hero-cta-group">
+						<a href="/" class="btn-cta-blue">
+							<span>출시된 앱 전체 보기</span>
+							<span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+						</a>
+						<a href="mailto:umaking@gmail.com" class="btn-cta-white">
+							<span class="material-symbols-outlined" style="font-size: 18px;">mail</span>
+							<span>엔지니어에게 메일 보내기</span>
+						</a>
+					</div>
 				</div>
-				<h1 class="hero-title">우리는 일상의 몰입을 돕는<br/>소프트웨어를 만듭니다</h1>
-				<p class="hero-subtitle">
-					<strong>UWILL</strong>은 군더더기 없는 인터페이스와 철저한 개인정보 보호를 바탕으로,
-					누구나 켜자마자 직관적으로 목적을 달성할 수 있는 네이티브 앱을 설계하고 서비스하는 인디 소프트웨어 스튜디오입니다.
-				</p>
-			</section>
 
-			<!-- Quick Stats -->
-			<section class="stats-row">
-				<div class="stat-card">
-					<div class="stat-number">2015~</div>
-					<div class="stat-label">10년 이상의 지속적인 운영</div>
-				</div>
-				<div class="stat-card">
-					<div class="stat-number">7+</div>
-					<div class="stat-label">자체 개발 멀티플랫폼 앱</div>
-				</div>
-				<div class="stat-card">
-					<div class="stat-number">100%</div>
-					<div class="stat-label">기기 로컬 완결형 (No Server)</div>
-				</div>
-			</section>
+				<!-- Identity Showcase Card -->
+				<div class="identity-card">
+					<div class="identity-logo-wrap">
+						<img src="/Newlogo-2.png" alt="UWILL Logo" class="identity-logo-img" onerror="this.src='/Newlogo.png'" />
+					</div>
+					<div class="identity-title">UWILL Studio</div>
+					<div class="identity-tagline">Est. 2015 · Native Craftsmanship</div>
 
-			<!-- What We Build -->
-			<section>
-				<h2 class="section-title">📦 우리가 만드는 것들 (What We Build)</h2>
-				<p class="section-lead">
-					복잡한 규칙과 불필요한 기능은 덜어내고, 사용자가 꼭 필요로 하는 핵심 가치에 집중한 7가지 라인업을 개발합니다.
-				</p>
-
-				<div class="product-grid">
-					<div class="product-item">
-						<div class="product-icon">⏱️</div>
-						<h3 class="product-name">루프셋 (LoopSet)</h3>
-						<p class="product-desc">50분 수업, 10분 휴식처럼 블록을 조립해 누르기만 하면 순서대로 흘러가는 나만의 반복 타이머입니다.</p>
-					</div>
-					<div class="product-item">
-						<div class="product-icon">📈</div>
-						<h3 class="product-name">증시 타이머</h3>
-						<p class="product-desc">한국거래소(KRX)와 넥스트레이드(NXT)의 복잡한 시장 거래 시간과 세션 전환을 실시간으로 알려줍니다.</p>
-					</div>
-					<div class="product-item">
-						<div class="product-icon">⌨️</div>
-						<h3 class="product-name">키캡 클리커</h3>
-						<p class="product-desc">손끝으로 누르는 실제 기계식 키보드의 찰진 타격감과 소리를 스마트폰에서 즐기는 힐링 인터랙션 앱입니다.</p>
-					</div>
-					<div class="product-item">
-						<div class="product-icon">🌙</div>
-						<h3 class="product-name">음력 알리미 (MyLunar)</h3>
-						<p class="product-desc">매년 날짜가 달라져 놓치기 쉬운 음력 생신, 제사, 명절을 한 번 등록으로 매년 양력으로 변환해 제때 알려줍니다.</p>
-					</div>
-					<div class="product-item">
-						<div class="product-icon">🎨</div>
-						<h3 class="product-name">컬러 피커 (Color Picker)</h3>
-						<p class="product-desc">카메라로 실물을 비추면 가장 가까운 색 이름과 HEX·RGB를 즉시 추출해 주는 현실 세계의 디지털 스포이드입니다.</p>
-					</div>
-					<div class="product-item">
-						<div class="product-icon">📊</div>
-						<h3 class="product-name">스마트 입찰예가산정</h3>
-						<p class="product-desc">조달청 나라장터 법정 층화 방식을 그대로 적용하여 복수예비가격 15개와 최적의 투찰금액을 시뮬레이션합니다.</p>
-					</div>
-					<div class="product-item">
-						<div class="product-icon">⭕</div>
-						<h3 class="product-name">O/X (Yes or No)</h3>
-						<p class="product-desc">말로 하기 어렵거나 시끄러울 때 화면을 상대에게 보이고 터치하면 명확한 O나 X로 답해주는 첫 오리지널 앱입니다.</p>
+					<div class="identity-stats-grid">
+						<div class="id-stat-cell">
+							<div class="id-stat-num">10+</div>
+							<div class="id-stat-lbl">Years of Craft</div>
+						</div>
+						<div class="id-stat-cell">
+							<div class="id-stat-num">7</div>
+							<div class="id-stat-lbl">Native Apps</div>
+						</div>
+						<div class="id-stat-cell">
+							<div class="id-stat-num emerald">100%</div>
+							<div class="id-stat-lbl">Native OS APIs</div>
+						</div>
+						<div class="id-stat-cell">
+							<div class="id-stat-num dark">0</div>
+							<div class="id-stat-lbl">Tracking & Ads</div>
+						</div>
 					</div>
 				</div>
 			</section>
 
-			<!-- Core Principles -->
-			<section>
-				<h2 class="section-title">💡 개발 철학 및 핵심 가치</h2>
-				<p class="section-lead">UWILL이 모든 제품을 만들 때 타협하지 않는 3가지 원칙입니다.</p>
+			<!-- 4 Core Principles -->
+			<section class="principles-section">
+				<div class="section-heading-wrap">
+					<div class="section-eyebrow">
+						<span class="material-symbols-outlined" style="font-size: 16px;">verified</span>
+						<span>Core Principles</span>
+					</div>
+					<h2 class="section-main-title">스튜디오 4대 핵심 원칙</h2>
+					<p class="section-lead-text">
+						타협하지 않는 기술 표준과 사용자 존중을 바탕으로 소프트웨어를 설계합니다.
+					</p>
+				</div>
 
-				<div class="values-grid">
-					<div class="value-card">
-						<div class="value-icon">🔒</div>
-						<h3 class="value-title">Zero Server Storage</h3>
-						<p class="value-desc">
-							사용자의 민감한 개인정보를 수집하는 서버를 두지 않습니다. 별도의 회원가입이나 로그인 없이 모든 데이터는 사용자의 기기 안에만 안전하게 머뭅니다.
+				<div class="principles-grid">
+					<!-- 01 Native Performance -->
+					<div class="principle-card">
+						<div>
+							<div class="principle-top">
+								<span class="principle-code blue">01 / ARCHITECTURE</span>
+								<div class="principle-icon blue">
+									<span class="material-symbols-outlined">speed</span>
+								</div>
+							</div>
+							<h3 class="principle-title">네이티브 퍼포먼스</h3>
+							<p class="principle-desc">
+								무거운 웹 래퍼나 크로스플랫폼 브릿지를 지양합니다. Swift, Kotlin 등 운영체제 공식 네이티브 기술로 빌드하여 배터리와 메모리 낭비 없이 기기 본연의 초당 120프레임 반응성을 보장합니다.
+							</p>
+						</div>
+						<div class="principle-tag blue">
+							<span class="material-symbols-outlined" style="font-size: 15px;">memory</span>
+							<span>Zero Runtime Overhead</span>
+						</div>
+					</div>
+
+					<!-- 02 Zero-Knowledge Privacy -->
+					<div class="principle-card">
+						<div>
+							<div class="principle-top">
+								<span class="principle-code emerald">02 / PRIVACY FIRST</span>
+								<div class="principle-icon emerald">
+									<span class="material-symbols-outlined">lock</span>
+								</div>
+							</div>
+							<h3 class="principle-title">프라이버시 최우선 & 로컬 저장</h3>
+							<p class="principle-desc">
+								불필요한 계정 가입이나 외부 데이터 수집 서버를 일체 두지 않습니다. 모든 데이터는 온디바이스 로컬 스토리지에 격리되어 안전하게 머무르며 사용자 통제권 아래 보관됩니다.
+							</p>
+						</div>
+						<div class="principle-tag emerald">
+							<span class="material-symbols-outlined" style="font-size: 15px;">shield_person</span>
+							<span>On-Device Encrypted Storage</span>
+						</div>
+					</div>
+
+					<!-- 03 No Annoying Ads -->
+					<div class="principle-card">
+						<div>
+							<div class="principle-top">
+								<span class="principle-code amber">03 / PURE UTILITY</span>
+								<div class="principle-icon amber">
+									<span class="material-symbols-outlined">do_not_disturb_on</span>
+								</div>
+							</div>
+							<h3 class="principle-title">제로 광고 & 방해 없는 인터페이스</h3>
+							<p class="principle-desc">
+								작업의 몰입을 파괴하는 전면 광고, 팝업 배너, 상업용 행동 추적 SDK를 절대 싣지 않습니다. 화면을 켜는 순간부터 원하는 결과에 즉시 도달할 수 있는 정갈한 UI를 제공합니다.
+							</p>
+						</div>
+						<div class="principle-tag amber">
+							<span class="material-symbols-outlined" style="font-size: 15px;">block</span>
+							<span>Ad-Free Pure Workspace</span>
+						</div>
+					</div>
+
+					<!-- 04 Long-term Reliability -->
+					<div class="principle-card">
+						<div>
+							<div class="principle-top">
+								<span class="principle-code indigo">04 / SUSTAINABILITY</span>
+								<div class="principle-icon indigo">
+									<span class="material-symbols-outlined">update</span>
+								</div>
+							</div>
+							<h3 class="principle-title">장기 지속성 & 지속 유지보수</h3>
+							<p class="principle-desc">
+								반짝이는 유행보다 오래 쓸 수 있는 실용성을 추구합니다. 10년 전 처음 출시된 앱도 최신 OS 판올림에 맞춰 꾸준히 최적화하고 유지보수하여 믿고 쓰는 도구로 남습니다.
+							</p>
+						</div>
+						<div class="principle-tag indigo">
+							<span class="material-symbols-outlined" style="font-size: 15px;">handshake</span>
+							<span>Decade-Long Commitment</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 10-Year Journey Timeline -->
+			<section class="timeline-section">
+				<div class="timeline-header">
+					<div class="section-eyebrow" style="color: #004ac6;">
+						<span class="material-symbols-outlined" style="font-size: 16px;">history</span>
+						<span>10-Year Timeline</span>
+					</div>
+					<h2 class="section-main-title">지속 가능한 빌드의 여정</h2>
+					<p class="section-lead-text">
+						단순한 아이디어에서 출발하여, 10년의 축적을 통해 7개의 네이티브 유틸리티 제품군으로 성장했습니다.
+					</p>
+				</div>
+
+				<div class="timeline-tree">
+					<!-- Milestone 1: 2015 -->
+					<div class="timeline-node">
+						<div class="node-dot"></div>
+						<div class="node-content-card">
+							<div class="node-year-badge">
+								<span class="node-year">2015</span>
+								<span class="node-stage">첫 출시 (The Beginning)</span>
+							</div>
+							<h4 class="node-title">스튜디오 1호 유틸리티 'O/X' 출시</h4>
+							<p class="node-text">
+								가장 단순하면서도 직관적인 터치 반응을 극대화한 의사결정 보조 인터랙션 툴 'O/X'를 릴리즈하며 독립 소프트웨어 빌더로서의 여정을 시작했습니다.
+							</p>
+							<div class="node-chips">
+								<span class="node-chip">#OX</span>
+								<span class="node-chip">#인터랙션</span>
+								<span class="node-chip">#초기빌드</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Milestone 2: 2020 -->
+					<div class="timeline-node">
+						<div class="node-dot"></div>
+						<div class="node-content-card">
+							<div class="node-year-badge">
+								<span class="node-year">2020</span>
+								<span class="node-stage">전문 실무 유틸리티 확장</span>
+							</div>
+							<h4 class="node-title">'스마트 입찰예가산정' 및 '컬러 피커' 개발</h4>
+							<p class="node-text">
+								공공조달 및 업무 현장에서 요구되는 복잡한 계산식을 자동화한 '스마트 입찰예가산정'과 디자이너를 위한 정밀 색상 변환 도구 '컬러 피커'를 연이어 공개하며 실질적인 생산성 도구로 범위를 넓혔습니다.
+							</p>
+							<div class="node-chips">
+								<span class="node-chip">#스마트입찰예가산정</span>
+								<span class="node-chip">#컬러피커</span>
+								<span class="node-chip">#실무생산성</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Milestone 3: 2026 -->
+					<div class="timeline-node">
+						<div class="node-dot current"></div>
+						<div class="node-content-card" style="border-left: 4px solid #2563eb;">
+							<div class="node-year-badge">
+								<span class="node-year">2026</span>
+								<span class="node-stage" style="background: #2563eb; color: #ffffff;">현행 7종 라인업 완성</span>
+							</div>
+							<h4 class="node-title">신작 유틸리티 생태계 구축 및 7종 라인업 정립</h4>
+							<p class="node-text">
+								운동 및 학업 몰입을 위한 '루프셋(LoopSet)', 글로벌 시장 개장 시간을 추적하는 '증시 타이머', 촉각 피드백 기반 '키캡 클리커', 세시풍속 생활 편의를 돕는 '음력 알리미'를 릴리즈하여 7개의 단단한 도구 생태계를 완성했습니다.
+							</p>
+							<div class="node-chips">
+								<span class="node-chip">#루프셋</span>
+								<span class="node-chip">#증시타이머</span>
+								<span class="node-chip">#키캡클리커</span>
+								<span class="node-chip">#음력알리미</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- What We Build: 7 Apps -->
+			<section class="apps-showcase-section">
+				<div class="section-heading-wrap">
+					<div class="section-eyebrow">
+						<span class="material-symbols-outlined" style="font-size: 16px;">apps</span>
+						<span>What We Build</span>
+					</div>
+					<h2 class="section-main-title">우리가 만드는 7가지 도구들</h2>
+					<p class="section-lead-text">
+						복잡한 규칙과 불필요한 기능은 덜어내고, 꼭 필요한 핵심 가치에 집중한 라인업입니다.
+					</p>
+				</div>
+
+				<div class="apps-showcase-grid">
+					<a href="/apps/loopset/" class="showcase-item">
+						<div>
+							<div class="showcase-icon">⏱️</div>
+							<h3 class="showcase-name">루프셋 (LoopSet)</h3>
+							<p class="showcase-desc">50분 수업, 10분 휴식처럼 블록을 조립해 누르기만 하면 순서대로 흘러가는 나만의 반복 타이머입니다.</p>
+						</div>
+						<span class="showcase-link-text">
+							<span>상세 보기</span>
+							<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+						</span>
+					</a>
+
+					<a href="/apps/stockmarkettimer/" class="showcase-item">
+						<div>
+							<div class="showcase-icon">📈</div>
+							<h3 class="showcase-name">증시 타이머</h3>
+							<p class="showcase-desc">한국거래소(KRX)와 넥스트레이드(NXT)의 복잡한 시장 거래 시간과 세션 전환을 실시간으로 알려줍니다.</p>
+						</div>
+						<span class="showcase-link-text">
+							<span>상세 보기</span>
+							<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+						</span>
+					</a>
+
+					<a href="/apps/keycapclicker/" class="showcase-item">
+						<div>
+							<div class="showcase-icon">⌨️</div>
+							<h3 class="showcase-name">키캡 클리커</h3>
+							<p class="showcase-desc">실제 기계식 키보드의 찰진 타격감과 소리를 스마트폰에서 즐기는 힐링 인터랙션 앱입니다.</p>
+						</div>
+						<span class="showcase-link-text">
+							<span>상세 보기</span>
+							<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+						</span>
+					</a>
+
+					<a href="/apps/lunar/" class="showcase-item">
+						<div>
+							<div class="showcase-icon">🌙</div>
+							<h3 class="showcase-name">음력 알리미 (MyLunar)</h3>
+							<p class="showcase-desc">매년 달라지는 음력 생신, 제사, 명절을 한 번 등록으로 매년 양력으로 변환해 제때 알려줍니다.</p>
+						</div>
+						<span class="showcase-link-text">
+							<span>상세 보기</span>
+							<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+						</span>
+					</a>
+
+					<a href="/apps/smartbidding/" class="showcase-item">
+						<div>
+							<div class="showcase-icon">📊</div>
+							<h3 class="showcase-name">스마트 입찰예가산정</h3>
+							<p class="showcase-desc">조달청 나라장터 법정 층화 방식을 적용해 복수예비가격 15개와 최적의 투찰금액을 시뮬레이션합니다.</p>
+						</div>
+						<span class="showcase-link-text">
+							<span>상세 보기</span>
+							<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+						</span>
+					</a>
+
+					<a href="/apps/colorpicker/" class="showcase-item">
+						<div>
+							<div class="showcase-icon">🎨</div>
+							<h3 class="showcase-name">컬러 피커</h3>
+							<p class="showcase-desc">카메라로 실물을 비추면 가장 가까운 색 이름과 HEX·RGB를 즉시 추출해 주는 디지털 스포이드입니다.</p>
+						</div>
+						<span class="showcase-link-text">
+							<span>상세 보기</span>
+							<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+						</span>
+					</a>
+
+					<a href="/apps/yesorno/" class="showcase-item">
+						<div>
+							<div class="showcase-icon">⭕</div>
+							<h3 class="showcase-name">O/X (Yes or No)</h3>
+							<p class="showcase-desc">시끄러운 곳에서 화면을 상대에게 보이고 터치하면 명확한 O나 X로 답해주는 첫 오리지널 앱입니다.</p>
+						</div>
+						<span class="showcase-link-text">
+							<span>상세 보기</span>
+							<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+						</span>
+					</a>
+				</div>
+			</section>
+
+			<!-- Engineer's Note & Official Channels -->
+			<section class="engineer-section">
+				<div class="engineer-note-box">
+					<div>
+						<div class="section-eyebrow">
+							<span class="material-symbols-outlined" style="font-size: 16px;">code</span>
+							<span>Engineer's Note</span>
+						</div>
+						<h2 class="engineer-quote-title">
+							"소음과 복잡성을 덜어내고,<br />
+							꼭 필요한 기능을 가장 높은 완성도로"
+						</h2>
+						<div class="engineer-body">
+							<p>
+								현대의 수많은 앱들은 사용자의 시간과 집중력을 빼앗기 위해 지나치게 많은 알림과 트래커를 장착합니다. 그러나 진정한 도구(Tool)란 부를 때 즉시 작동하고, 목적을 다하면 조용히 물러설 줄 알아야 한다고 믿습니다.
+							</p>
+							<p>
+								UWILL은 1인 독립 개발 스튜디오로서, 외부 투자자의 압박이나 마케팅 지표 대신 '소프트웨어 본연의 단단함'만을 기준으로 의사결정합니다. 사용자의 기기 자원을 존중하고, 개인정보를 안전히 보호하며, 언제 켜도 한결같이 빠르고 기분 좋은 소프트웨어를 앞으로도 계속 빌드해 나가겠습니다.
+							</p>
+						</div>
+					</div>
+
+					<div class="engineer-profile-bar">
+						<div class="engineer-avatar">UW</div>
+						<div>
+							<div class="engineer-name">UWILL Lead Engineer</div>
+							<div class="engineer-role">Independent Software Creator & Architect</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="channels-box">
+					<div>
+						<h3 class="channels-title">스튜디오 공식 채널 & 지원</h3>
+						<p class="channels-sub">
+							버그 리포트, 기능 제안, 협업 문의는 언제든 환영합니다. 엔지니어가 직접 확인하고 답변을 드립니다.
 						</p>
-					</div>
-					<div class="value-card">
-						<div class="value-icon">⚡</div>
-						<h3 class="value-title">직관성과 빠른 속도</h3>
-						<p class="value-desc">
-							설명서를 읽을 필요 없이 켜자마자 바로 쓸 수 있는 단순함을 추구합니다. 가볍고 쾌적한 네이티브 성능으로 일상의 작은 불편을 지체 없이 해결합니다.
-						</p>
-					</div>
-					<div class="value-card">
-						<div class="value-icon">🛠️</div>
-						<h3 class="value-title">10년의 지속성</h3>
-						<p class="value-desc">
-							2015년 첫 앱 출시 이후 최신 OS와 화면 규격에 맞춰 앱을 끊임없이 다듬고 업데이트해 왔습니다. 한 번 설치한 앱을 오랫동안 안심하고 사용할 수 있습니다.
-						</p>
-					</div>
-				</div>
-			</section>
 
-			<!-- Bottom CTA -->
-			<section class="contact-box">
-				<h3>지금 UWILL의 다양한 앱을 만나보세요</h3>
-				<p>
-					모든 앱은 Apple App Store 및 Google Play Store를 통해 안전하게 다운로드하실 수 있습니다.
-				</p>
-				<div class="cta-buttons">
-					<a href="/" class="btn-home">🚀 앱 스토어 목록 보기</a>
-					<a href="mailto:umaking@gmail.com" class="btn-email">✉️ 이메일 문의하기</a>
-					<a href="https://x.com/azovlive" target="_blank" rel="noopener noreferrer" class="btn-x">𝕏 @azovlive</a>
+						<div class="channel-list">
+							<a href="mailto:umaking@gmail.com" class="channel-item">
+								<div class="channel-left">
+									<div class="channel-icon-wrap">
+										<span class="material-symbols-outlined">mail</span>
+									</div>
+									<div>
+										<span class="channel-label">이메일 문의</span>
+										<span class="channel-detail">umaking@gmail.com</span>
+									</div>
+								</div>
+								<span class="material-symbols-outlined" style="font-size: 18px; color: #94a3b8;">send</span>
+							</a>
+
+							<a href="https://x.com/azovlive" target="_blank" rel="noopener noreferrer" class="channel-item">
+								<div class="channel-left">
+									<div class="channel-icon-wrap">
+										<span class="material-symbols-outlined">alternate_email</span>
+									</div>
+									<div>
+										<span class="channel-label">X (공식 소식)</span>
+										<span class="channel-detail">@azovlive</span>
+									</div>
+								</div>
+								<span class="material-symbols-outlined" style="font-size: 18px; color: #94a3b8;">open_in_new</span>
+							</a>
+
+							<div class="channel-item">
+								<div class="channel-left">
+									<div class="channel-icon-wrap">
+										<span class="material-symbols-outlined">language</span>
+									</div>
+									<div>
+										<span class="channel-label">공식 도메인</span>
+										<span class="channel-detail">uwillsoft.com</span>
+									</div>
+								</div>
+								<span class="active-tag">Active</span>
+							</div>
+						</div>
+					</div>
+
+					<a href="/" class="btn-explore-apps">
+						<span class="material-symbols-outlined">explore</span>
+						<span>앱 둘러보기 (Explore Apps)</span>
+					</a>
 				</div>
 			</section>
 		</main>

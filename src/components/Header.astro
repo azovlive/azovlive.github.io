@@ -3,91 +3,167 @@ import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
-<header>
-	<nav>
-		<h2>
+<header class="studio-header">
+	<nav class="header-nav">
+		<div class="brand-group">
 			<a href="/" class="brand-link">
-				<img src="/logo.png" alt="UWILL Logo" class="brand-logo" />
-				<span>{SITE_TITLE}</span>
+				<img src="/Newlogo-2.png" alt="UWILL Logo" class="brand-logo" onerror="this.src='/Newlogo.png'" />
+				<span class="brand-title">UWILL</span>
 			</a>
-		</h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
+			<span class="brand-badge">STUDIO</span>
+		</div>
+
+		<div class="nav-links">
+			<HeaderLink href="/">Apps</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
-		<div class="social-links">
-			<a href="mailto:umaking@gmail.com" title="Email: umaking@gmail.com">
-				<span class="sr-only">Send email to UWILL</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="24" height="24" fill="currentColor">
-					<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-				</svg>
+
+		<div class="header-actions">
+			<a href="mailto:umaking@gmail.com" class="icon-link" title="이메일 문의: umaking@gmail.com">
+				<span class="material-symbols-outlined">mail</span>
 			</a>
-			<a href="https://x.com/azovlive" target="_blank" rel="noopener noreferrer" title="X (@azovlive)">
-				<span class="sr-only">Follow @azovlive on X</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="24" height="24" fill="currentColor">
-					<path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.147H2.865l8.875 11.631Z"/>
-				</svg>
+			<a href="https://x.com/azovlive" target="_blank" rel="noopener noreferrer" class="icon-link" title="X (Twitter: @azovlive)">
+				<span class="material-symbols-outlined">alternate_email</span>
 			</a>
 		</div>
 	</nav>
 </header>
+
 <style>
-	header {
-		width: 100%;
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-		box-sizing: border-box;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-	.brand-link {
-		display: inline-flex;
+	.studio-header {
+		position: sticky;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		background: rgba(255, 255, 255, 0.88);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+		box-shadow: 0 1px 8px rgba(15, 23, 42, 0.03);
+		padding: 0 1.5rem;
+		height: 64px;
+		display: flex;
 		align-items: center;
-		gap: 10px;
-		color: var(--black);
-		text-decoration: none;
-		font-weight: 700;
-	}
-	.brand-logo {
-		width: 32px;
-		height: 32px;
-		object-fit: contain;
-		border-radius: 6px;
 	}
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
+	.header-nav {
+		width: 100%;
+		max-width: 1160px;
+		margin: 0 auto;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		max-width: 1080px;
-		margin: 0 auto;
-		box-sizing: border-box;
+		gap: 1rem;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
+
+	.brand-group {
 		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
-	@media (max-width: 720px) {
-		.social-links {
+
+	.brand-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.65rem;
+		color: #0b1c30;
+		text-decoration: none;
+		font-weight: 800;
+		font-size: 1.15rem;
+		letter-spacing: -0.02em;
+	}
+
+	.brand-logo {
+		width: 34px;
+		height: 34px;
+		object-fit: contain;
+		border-radius: 9px;
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+	}
+
+	.brand-badge {
+		font-size: 0.68rem;
+		font-weight: 700;
+		font-family: 'JetBrains Mono', monospace;
+		background: #eff6ff;
+		color: #1d4ed8;
+		padding: 0.15rem 0.45rem;
+		border-radius: 9999px;
+		border: 1px solid #dbeafe;
+		letter-spacing: 0.04em;
+	}
+
+	.nav-links {
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+		background: #f1f5f9;
+		padding: 0.25rem;
+		border-radius: 12px;
+	}
+
+	.nav-links :global(a) {
+		padding: 0.4rem 1rem;
+		color: #475569;
+		text-decoration: none;
+		font-size: 0.875rem;
+		font-weight: 600;
+		border-radius: 9px;
+		transition: all 0.15s ease;
+		border: none;
+	}
+
+	.nav-links :global(a:hover) {
+		color: #0b1c30;
+		background: rgba(255, 255, 255, 0.6);
+	}
+
+	.nav-links :global(a.active) {
+		background: #2563eb;
+		color: #ffffff;
+		box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+	}
+
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.icon-link {
+		width: 36px;
+		height: 36px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 10px;
+		color: #64748b;
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		transition: all 0.15s ease;
+	}
+
+	.icon-link:hover {
+		color: #2563eb;
+		border-color: #cbd5e1;
+		background: #eff6ff;
+		transform: translateY(-1px);
+	}
+
+	@media (max-width: 640px) {
+		.studio-header {
+			padding: 0 1rem;
+			height: 58px;
+		}
+		.brand-badge {
 			display: none;
+		}
+		.nav-links :global(a) {
+			padding: 0.35rem 0.75rem;
+			font-size: 0.82rem;
 		}
 	}
 </style>
