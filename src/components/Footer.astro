@@ -2,18 +2,18 @@
 const today = new Date();
 ---
 
-<footer class="studio-footer">
+<footer class="site-footer">
 	<div class="footer-container">
 		<div class="footer-brand-row">
 			<div class="footer-brand">
 				<img src="/Newlogo-2.png" alt="UWILL Logo" class="footer-logo" onerror="this.src='/Newlogo.png'" />
 				<div>
 					<span class="footer-brand-name">UWILL</span>
-					<span class="footer-copy">© {today.getFullYear()} UWILL Studio. All rights reserved.</span>
+					<span class="footer-copy">© {today.getFullYear()} UWILL. All rights reserved.</span>
 				</div>
 			</div>
 			<div class="footer-tagline">
-				<span>Independent Software Studio · 1인 독립 개발 스튜디오</span>
+				<span>Native Software Lab · UWILL</span>
 			</div>
 		</div>
 
@@ -31,7 +31,7 @@ const today = new Date();
 				</a>
 				<a href="/about" class="footer-link">
 					<span class="material-symbols-outlined icon-sm">info</span>
-					<span>스튜디오 소개</span>
+					<span>회사소개</span>
 				</a>
 			</div>
 			<div class="footer-metrics">
@@ -43,7 +43,7 @@ const today = new Date();
 </footer>
 
 <style>
-	.studio-footer {
+	.site-footer {
 		width: 100%;
 		background: #ffffff;
 		border-top: 1px solid #e2e8f0;
@@ -56,9 +56,8 @@ const today = new Date();
 		max-width: 1160px;
 		margin: 0 auto;
 		display: flex;
-		flex-col: column;
-		gap: 1.5rem;
 		flex-direction: column;
+		gap: 1.5rem;
 	}
 
 	.footer-brand-row {
@@ -157,7 +156,7 @@ const today = new Date();
 	}
 
 	@media (max-width: 640px) {
-		.studio-footer {
+		.site-footer {
 			padding: 2rem 1rem 3rem;
 		}
 		.footer-brand-row,
