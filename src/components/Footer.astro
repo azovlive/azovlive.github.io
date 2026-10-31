@@ -6,7 +6,7 @@ const today = new Date();
 	<div class="footer-container">
 		<div class="footer-brand-row">
 			<div class="footer-brand">
-				<img src="/Newlogo-2.png" alt="UWILL Logo" class="footer-logo" onerror="this.src='/Newlogo.png'" />
+				<img src="/Newlogo-2.png" alt="UWILL Logo" class="footer-logo" />
 				<div>
 					<span class="footer-brand-name">UWILL</span>
 					<span class="footer-copy">© {today.getFullYear()} UWILL. All rights reserved.</span>
@@ -75,16 +75,18 @@ const today = new Date();
 	}
 
 	.footer-logo {
-		width: 32px;
-		height: 32px;
-		border-radius: 8px;
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		border-radius: 9px;
 		border: 1px solid #e2e8f0;
+		background: #ffffff;
 	}
 
 	.footer-brand-name {
 		font-weight: 800;
 		color: #0b1c30;
-		font-size: 1rem;
+		font-size: 1.05rem;
 		margin-right: 0.5rem;
 	}
 

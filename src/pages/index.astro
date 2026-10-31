@@ -49,6 +49,25 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 				filter: blur(50px);
 				pointer-events: none;
 			}
+			.hero-logo-badge {
+				width: 72px;
+				height: 72px;
+				margin: 0 auto 1.5rem;
+				border-radius: 18px;
+				background: #ffffff;
+				padding: 6px;
+				border: 1px solid #dbeafe;
+				box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.12);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.hero-logo-img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				border-radius: 13px;
+			}
 			.hero h1 {
 				font-size: clamp(1.8rem, 4.5vw, 2.85rem);
 				font-weight: 800;
@@ -734,17 +753,18 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 				color: #64748b;
 			}
 
-			/* Company Philosophy Preview */
-			.philosophy-preview {
+			/* Bottom Section (Company Philosophy Preview) */
+			.bottom-preview-section {
 				background: #eff4ff;
-				border-radius: 24px;
+				border-radius: 28px;
 				padding: 2.5rem;
 				display: grid;
 				grid-template-columns: 1.2fr 0.8fr;
 				gap: 2rem;
 				align-items: center;
+				border: 1px solid #dbeafe;
 			}
-			.philosophy-badge {
+			.preview-badge {
 				display: inline-flex;
 				align-items: center;
 				gap: 0.4rem;
@@ -756,32 +776,32 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 				font-weight: 700;
 				margin-bottom: 0.75rem;
 			}
-			.philosophy-left h3 {
+			.preview-left h3 {
 				font-size: 1.6rem;
 				font-weight: 800;
 				color: #0b1c30;
 				margin-bottom: 0.75rem;
 				line-height: 1.3;
 			}
-			.philosophy-left p {
+			.preview-left p {
 				font-size: 0.9rem;
 				color: #475569;
 				line-height: 1.65;
 				margin-bottom: 1.25rem;
 			}
-			.philosophy-cards {
+			.preview-cards {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
 				gap: 0.75rem;
 				margin-bottom: 1.25rem;
 			}
-			.phil-mini-card {
+			.preview-mini-card {
 				background: #ffffff;
 				border-radius: 12px;
 				padding: 0.85rem 1rem;
 				border: 1px solid #dbeafe;
 			}
-			.phil-mini-card h5 {
+			.preview-mini-card h5 {
 				font-size: 0.85rem;
 				font-weight: 700;
 				color: #0b1c30;
@@ -790,12 +810,12 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 				align-items: center;
 				gap: 0.35rem;
 			}
-			.phil-mini-card p {
+			.preview-mini-card p {
 				font-size: 0.75rem;
 				color: #64748b;
 				margin: 0;
 			}
-			.btn-phil-link {
+			.btn-preview-link {
 				display: inline-flex;
 				align-items: center;
 				gap: 0.4rem;
@@ -803,11 +823,11 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 				font-weight: 700;
 				color: #004ac6;
 			}
-			.btn-phil-link:hover {
+			.btn-preview-link:hover {
 				color: #1d4ed8;
 				text-decoration: underline;
 			}
-			.philosophy-right-visual {
+			.preview-right-visual {
 				background: #ffffff;
 				border-radius: 20px;
 				padding: 1.5rem;
@@ -851,7 +871,7 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 				.playground-layout {
 					grid-template-columns: 1fr;
 				}
-				.philosophy-preview {
+				.bottom-preview-section {
 					grid-template-columns: 1fr;
 				}
 			}
@@ -867,6 +887,11 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 				}
 				.hero h1 {
 					font-size: 1.55rem;
+				}
+				.hero-logo-badge {
+					width: 60px;
+					height: 60px;
+					margin-bottom: 1rem;
 				}
 				.metrics-bar {
 					grid-template-columns: repeat(2, 1fr);
@@ -893,10 +918,10 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 				.playground-section {
 					padding: 1.5rem 1rem;
 				}
-				.philosophy-preview {
+				.bottom-preview-section {
 					padding: 1.5rem 1rem;
 				}
-				.philosophy-cards {
+				.preview-cards {
 					grid-template-columns: 1fr;
 				}
 			}
@@ -908,6 +933,9 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 			<!-- Hero Section -->
 			<section class="hero">
 				<div class="hero-glow"></div>
+				<div class="hero-logo-badge">
+					<img src="/Newlogo-2.png" alt="UWILL Logo" class="hero-logo-img" />
+				</div>
 				<h1>일상과 업무의 몰입을 돕는<br /><span class="gradient-text">심플하고 단단한 도구들</span></h1>
 				<p class="hero-desc">
 					시간 관리부터 네이티브 유틸리티까지, 군더더기 없는 완성도로 설계된 UWILL의 7가지 소프트웨어를 소개합니다.
@@ -923,7 +951,7 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 					</a>
 				</div>
 
-				<!-- Metrics Bar -->
+				<!-- Key Metrics Bar -->
 				<div class="metrics-bar">
 					<div class="metric-item">
 						<span class="metric-value c-blue">7개</span>
@@ -1173,10 +1201,10 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 				</div>
 			</section>
 
-			<!-- Company Philosophy Preview -->
-			<section class="philosophy-preview">
-				<div class="philosophy-left">
-					<div class="philosophy-badge">
+			<!-- Bottom Section (Company Philosophy Preview) -->
+			<section class="bottom-preview-section">
+				<div class="preview-left">
+					<div class="preview-badge">
 						<span class="material-symbols-outlined" style="font-size: 15px;">verified</span>
 						<span>Native Craftsmanship & Engineering</span>
 					</div>
@@ -1186,15 +1214,15 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 						불필요한 트래커와 무분별한 광고를 배제하고 투명하고 견고한 사용자 경험을 지향합니다.
 					</p>
 
-					<div class="philosophy-cards">
-						<div class="phil-mini-card">
+					<div class="preview-cards">
+						<div class="preview-mini-card">
 							<h5>
 								<span class="material-symbols-outlined" style="font-size: 16px; color: #2563eb;">verified</span>
 								<span>네이티브 퍼포먼스</span>
 							</h5>
 							<p>OS 공식 API 준수로 배터리와 메모리를 절약합니다.</p>
 						</div>
-						<div class="phil-mini-card">
+						<div class="preview-mini-card">
 							<h5>
 								<span class="material-symbols-outlined" style="font-size: 16px; color: #10b981;">lock</span>
 								<span>프라이버시 중심</span>
@@ -1203,13 +1231,13 @@ const featuredApp = apps.find(a => a.id === 'loopset') || apps[0];
 						</div>
 					</div>
 
-					<a href="/about" class="btn-phil-link">
+					<a href="/about" class="btn-preview-link">
 						<span>회사소개 및 4대 핵심 개발 원칙 보기</span>
 						<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
 					</a>
 				</div>
 
-				<div class="philosophy-right-visual">
+				<div class="preview-right-visual">
 					<div class="chart-header">
 						<span class="chart-title">UWILL_METRICS_2015_2026</span>
 						<span class="chart-badge">100% Native</span>

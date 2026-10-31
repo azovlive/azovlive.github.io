@@ -21,195 +21,145 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				box-sizing: border-box;
 			}
 
-			/* Hero Section */
-			.about-hero {
-				background: #eff4ff;
-				border: 1px solid #dbeafe;
+			/* Hero Section - Exactly identical to Apps page */
+			.hero {
+				position: relative;
+				text-align: center;
+				padding: 3.5rem 1.5rem 3rem;
+				background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
 				border-radius: 28px;
-				padding: 3rem 2.5rem;
-				margin-bottom: 3.5rem;
-				display: grid;
-				grid-template-columns: 1.25fr 0.75fr;
-				gap: 2.5rem;
-				align-items: center;
-				box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.04);
+				border: 1px solid #dbeafe;
+				box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.05);
+				margin-bottom: 3rem;
+				overflow: hidden;
 			}
-
-			.hero-badge-wrap {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.35rem 0.85rem;
-				border-radius: 9999px;
-				background: #dce9ff;
-				color: #004ac6;
-				font-size: 0.76rem;
-				font-weight: 700;
-				margin-bottom: 1.25rem;
+			.hero-glow {
+				position: absolute;
+				top: -120px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 700px;
+				height: 350px;
+				background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(99, 102, 241, 0.05) 60%, transparent 80%);
+				filter: blur(50px);
+				pointer-events: none;
 			}
-
-			.pulse-indicator {
-				width: 8px;
-				height: 8px;
-				border-radius: 50%;
-				background: #10b981;
-				box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-				animation: pulse-green 2s infinite;
-			}
-
-			@keyframes pulse-green {
-				0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-				70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-				100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-			}
-
-			.about-hero h1 {
-				font-size: clamp(1.8rem, 4vw, 2.7rem);
-				font-weight: 800;
-				letter-spacing: -0.025em;
-				line-height: 1.25;
-				color: #0b1c30;
-				margin-bottom: 1.25rem;
-			}
-
-			.about-hero h1 .text-highlight {
-				color: #004ac6;
-			}
-
-			.hero-desc {
-				font-size: 1rem;
-				color: #475569;
-				line-height: 1.7;
-				margin-bottom: 2rem;
-			}
-
-			.hero-cta-group {
+			.hero-logo-badge {
+				width: 72px;
+				height: 72px;
+				margin: 0 auto 1.5rem;
+				border-radius: 18px;
+				background: #ffffff;
+				padding: 6px;
+				border: 1px solid #dbeafe;
+				box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.12);
 				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.hero-logo-img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				border-radius: 13px;
+			}
+			.hero h1 {
+				font-size: clamp(1.8rem, 4.5vw, 2.85rem);
+				font-weight: 800;
+				letter-spacing: -0.03em;
+				line-height: 1.25;
+				margin: 0 0 1rem;
+				color: #0b1c30;
+			}
+			.gradient-text {
+				background: linear-gradient(135deg, #004ac6 0%, #4f46e5 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			.hero-desc {
+				font-size: clamp(0.95rem, 2vw, 1.12rem);
+				color: #475569;
+				max-width: 640px;
+				margin: 0 auto 2rem;
+				line-height: 1.65;
+				word-break: keep-all;
+			}
+			.hero-actions {
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				gap: 0.75rem;
 				flex-wrap: wrap;
+				margin-bottom: 2.5rem;
 			}
-
-			.btn-cta-blue {
+			.btn-cta-primary {
 				display: inline-flex;
 				align-items: center;
 				gap: 0.45rem;
 				padding: 0.75rem 1.4rem;
 				background: #2563eb;
 				color: #ffffff !important;
-				font-weight: 600;
 				font-size: 0.92rem;
+				font-weight: 600;
 				border-radius: 12px;
-				box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+				box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
 				transition: all 0.2s;
 			}
-
-			.btn-cta-blue:hover {
+			.btn-cta-primary:hover {
 				background: #1d4ed8;
 				transform: translateY(-1px);
 			}
-
-			.btn-cta-white {
+			.btn-cta-secondary {
 				display: inline-flex;
 				align-items: center;
 				gap: 0.45rem;
 				padding: 0.75rem 1.4rem;
 				background: #ffffff;
 				color: #0b1c30 !important;
-				font-weight: 600;
 				font-size: 0.92rem;
+				font-weight: 600;
 				border-radius: 12px;
 				border: 1px solid #e2e8f0;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 				transition: all 0.2s;
 			}
-
-			.btn-cta-white:hover {
-				background: #f8fafc;
+			.btn-cta-secondary:hover {
+				background: #eff6ff;
 				border-color: #cbd5e1;
 				transform: translateY(-1px);
 			}
 
-			/* Company Identity Card */
-			.identity-card {
-				background: #ffffff;
-				border-radius: 24px;
-				padding: 2rem 1.75rem;
-				border: 1px solid #dbeafe;
-				box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
-				text-align: center;
+			/* Key Metrics Grid - Identical to Apps page */
+			.metrics-bar {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 1rem;
+				background: rgba(255, 255, 255, 0.85);
+				backdrop-filter: blur(12px);
+				border: 1px solid #e2e8f0;
+				border-radius: 20px;
+				padding: 1.25rem 1.5rem;
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			.metric-item {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+				text-align: center;
 			}
-
-			.identity-logo-wrap {
-				width: 96px;
-				height: 96px;
-				border-radius: 22px;
-				background: #f1f5f9;
-				padding: 8px;
-				border: 1px solid #e2e8f0;
-				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-				margin-bottom: 1rem;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-
-			.identity-logo-img {
-				width: 100%;
-				height: 100%;
-				object-fit: contain;
-				border-radius: 16px;
-			}
-
-			.identity-title {
-				font-size: 1.35rem;
+			.metric-value {
+				font-size: 1.75rem;
 				font-weight: 800;
-				color: #0b1c30;
-				margin-bottom: 0.25rem;
+				line-height: 1.2;
+				letter-spacing: -0.02em;
 			}
-
-			.identity-tagline {
-				font-family: 'JetBrains Mono', monospace;
-				font-size: 0.72rem;
-				font-weight: 600;
-				background: #eff6ff;
-				color: #1d4ed8;
-				padding: 0.2rem 0.6rem;
-				border-radius: 9999px;
-				border: 1px solid #dbeafe;
-				margin-bottom: 1.5rem;
-			}
-
-			.identity-stats-grid {
-				width: 100%;
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 0.6rem;
-				background: #f8fafc;
-				padding: 0.75rem;
-				border-radius: 16px;
-			}
-
-			.id-stat-cell {
-				background: #ffffff;
-				border-radius: 10px;
-				padding: 0.75rem 0.5rem;
-				border: 1px solid #e2e8f0;
-			}
-
-			.id-stat-num {
-				font-size: 1.4rem;
-				font-weight: 800;
-				color: #004ac6;
-				line-height: 1.1;
-			}
-
-			.id-stat-num.emerald { color: #10b981; }
-			.id-stat-num.dark { color: #0b1c30; }
-
-			.id-stat-lbl {
-				font-size: 0.7rem;
+			.metric-value.c-blue { color: #004ac6; }
+			.metric-value.c-indigo { color: #4f46e5; }
+			.metric-value.c-dark { color: #0b1c30; }
+			.metric-value.c-emerald { color: #10b981; }
+			.metric-label {
+				font-size: 0.76rem;
 				color: #64748b;
 				margin-top: 0.2rem;
 				font-weight: 500;
@@ -219,11 +169,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			.principles-section {
 				margin-bottom: 4rem;
 			}
-
 			.section-heading-wrap {
 				margin-bottom: 2rem;
 			}
-
 			.section-eyebrow {
 				display: inline-flex;
 				align-items: center;
@@ -235,7 +183,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				text-transform: uppercase;
 				margin-bottom: 0.35rem;
 			}
-
 			.section-main-title {
 				font-size: 1.85rem;
 				font-weight: 800;
@@ -243,7 +190,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				letter-spacing: -0.02em;
 				margin-bottom: 0.5rem;
 			}
-
 			.section-lead-text {
 				font-size: 0.95rem;
 				color: #64748b;
@@ -255,7 +201,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				grid-template-columns: repeat(2, 1fr);
 				gap: 1.5rem;
 			}
-
 			.principle-card {
 				background: #ffffff;
 				border: 1px solid #e2e8f0;
@@ -266,19 +211,16 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				flex-direction: column;
 				justify-content: space-between;
 			}
-
 			.principle-card:hover {
 				border-color: #cbd5e1;
 				box-shadow: 0 10px 20px rgba(15, 23, 42, 0.04);
 			}
-
 			.principle-top {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
 				margin-bottom: 1.25rem;
 			}
-
 			.principle-code {
 				font-family: 'JetBrains Mono', monospace;
 				font-size: 0.72rem;
@@ -286,7 +228,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				padding: 0.25rem 0.6rem;
 				border-radius: 8px;
 			}
-
 			.principle-code.blue { background: #eff6ff; color: #1d4ed8; }
 			.principle-code.emerald { background: #ecfdf5; color: #047857; }
 			.principle-code.amber { background: #fffbeb; color: #b45309; }
@@ -301,7 +242,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				justify-content: center;
 				font-size: 20px;
 			}
-
 			.principle-icon.blue { background: #dbeafe; color: #1d4ed8; }
 			.principle-icon.emerald { background: #d1fae5; color: #047857; }
 			.principle-icon.amber { background: #fef3c7; color: #b45309; }
@@ -313,14 +253,12 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				color: #0b1c30;
 				margin-bottom: 0.5rem;
 			}
-
 			.principle-desc {
 				font-size: 0.9rem;
 				color: #475569;
 				line-height: 1.65;
 				margin-bottom: 1.5rem;
 			}
-
 			.principle-tag {
 				display: inline-flex;
 				align-items: center;
@@ -329,7 +267,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				font-weight: 600;
 				font-family: 'JetBrains Mono', monospace;
 			}
-
 			.principle-tag.blue { color: #1d4ed8; }
 			.principle-tag.emerald { color: #047857; }
 			.principle-tag.amber { color: #b45309; }
@@ -343,20 +280,17 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				margin-bottom: 4rem;
 				border: 1px solid #dbeafe;
 			}
-
 			.timeline-header {
 				text-align: center;
 				max-width: 600px;
 				margin: 0 auto 3rem;
 			}
-
 			.timeline-tree {
 				position: relative;
 				max-width: 760px;
 				margin: 0 auto;
 				padding-left: 2rem;
 			}
-
 			.timeline-tree::before {
 				content: '';
 				position: absolute;
@@ -366,16 +300,13 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				width: 2px;
 				background: #cbd5e1;
 			}
-
 			.timeline-node {
 				position: relative;
 				margin-bottom: 2.5rem;
 			}
-
 			.timeline-node:last-child {
 				margin-bottom: 0;
 			}
-
 			.node-dot {
 				position: absolute;
 				left: -2rem;
@@ -387,13 +318,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				border: 3px solid #004ac6;
 				box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 			}
-
 			.node-dot.current {
 				background: #2563eb;
 				border-color: #ffffff;
 				box-shadow: 0 0 0 4px #2563eb;
 			}
-
 			.node-content-card {
 				background: #ffffff;
 				border-radius: 18px;
@@ -401,21 +330,18 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				border: 1px solid #e2e8f0;
 				box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
 			}
-
 			.node-year-badge {
 				display: flex;
 				align-items: center;
 				gap: 0.5rem;
 				margin-bottom: 0.5rem;
 			}
-
 			.node-year {
 				font-size: 1.25rem;
 				font-weight: 800;
 				color: #004ac6;
 				font-family: 'JetBrains Mono', monospace;
 			}
-
 			.node-stage {
 				font-size: 0.72rem;
 				background: #eff6ff;
@@ -424,27 +350,23 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				border-radius: 9999px;
 				font-weight: 600;
 			}
-
 			.node-title {
 				font-size: 1.05rem;
 				font-weight: 700;
 				color: #0b1c30;
 				margin-bottom: 0.35rem;
 			}
-
 			.node-text {
 				font-size: 0.88rem;
 				color: #475569;
 				line-height: 1.6;
 				margin: 0 0 0.75rem 0;
 			}
-
 			.node-chips {
 				display: flex;
 				flex-wrap: wrap;
 				gap: 0.35rem;
 			}
-
 			.node-chip {
 				font-size: 0.72rem;
 				background: #f1f5f9;
@@ -454,17 +376,15 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				font-weight: 500;
 			}
 
-			/* What We Build (7 Apps Showcase) */
+			/* What We Build */
 			.apps-showcase-section {
 				margin-bottom: 4rem;
 			}
-
 			.apps-showcase-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 				gap: 1.25rem;
 			}
-
 			.showcase-item {
 				background: #ffffff;
 				border: 1px solid #e2e8f0;
@@ -476,25 +396,21 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				flex-direction: column;
 				justify-content: space-between;
 			}
-
 			.showcase-item:hover {
 				transform: translateY(-3px);
 				box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
 				border-color: #cbd5e1;
 			}
-
 			.showcase-icon {
 				font-size: 2.2rem;
 				margin-bottom: 0.75rem;
 			}
-
 			.showcase-name {
 				font-size: 1.15rem;
 				font-weight: 700;
 				color: #0b1c30;
 				margin-bottom: 0.35rem;
 			}
-
 			.showcase-desc {
 				font-size: 0.86rem;
 				color: #64748b;
@@ -502,7 +418,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				margin: 0 0 1rem 0;
 				flex: 1;
 			}
-
 			.showcase-link-text {
 				font-size: 0.82rem;
 				font-weight: 600;
@@ -512,189 +427,174 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				gap: 0.25rem;
 			}
 
-			/* Engineer's Note & Contact */
-			.engineer-section {
-				background: #ffffff;
-				border: 1px solid #e2e8f0;
+			/* Bottom Section (Engineer's Note & Official Channels) - Identical to Apps page bottom container */
+			.bottom-preview-section {
+				background: #eff4ff;
 				border-radius: 28px;
-				padding: 3rem 2.5rem;
-				box-shadow: 0 4px 16px rgba(15, 23, 42, 0.02);
+				padding: 2.5rem;
 				display: grid;
-				grid-template-columns: 1.25fr 0.75fr;
-				gap: 2.5rem;
+				grid-template-columns: 1.2fr 0.8fr;
+				gap: 2rem;
+				align-items: stretch;
+				border: 1px solid #dbeafe;
 			}
-
 			.engineer-note-box {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 			}
-
 			.engineer-quote-title {
-				font-size: 1.7rem;
+				font-size: 1.55rem;
 				font-weight: 800;
 				color: #0b1c30;
 				line-height: 1.35;
 				margin-bottom: 1.25rem;
 			}
-
 			.engineer-body {
-				space-y: 1rem;
-				font-size: 0.94rem;
+				font-size: 0.92rem;
 				color: #475569;
-				line-height: 1.7;
+				line-height: 1.65;
 			}
-
+			.engineer-body p {
+				margin-bottom: 0.85rem;
+			}
 			.engineer-profile-bar {
 				display: flex;
 				align-items: center;
 				gap: 0.85rem;
-				margin-top: 2rem;
-				padding-top: 1.5rem;
-				border-top: 1px solid #f1f5f9;
+				margin-top: 1.5rem;
+				padding-top: 1.25rem;
+				border-top: 1px solid #dbeafe;
 			}
-
 			.engineer-avatar {
-				width: 48px;
-				height: 48px;
+				width: 44px;
+				height: 44px;
 				border-radius: 50%;
-				background: #eff6ff;
+				background: #ffffff;
 				color: #004ac6;
 				font-weight: 800;
-				font-size: 1.1rem;
+				font-size: 1rem;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				border: 1px solid #dbeafe;
+				border: 1px solid #cbd5e1;
 			}
-
 			.engineer-name {
-				font-size: 1rem;
+				font-size: 0.95rem;
 				font-weight: 700;
 				color: #0b1c30;
 			}
-
 			.engineer-role {
 				font-size: 0.78rem;
 				color: #64748b;
 			}
 
 			/* Channels Box */
-			.channels-box {
-				background: #eff4ff;
+			.channels-card {
+				background: #ffffff;
 				border-radius: 20px;
-				padding: 2rem;
+				padding: 1.5rem;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 				border: 1px solid #dbeafe;
+				box-shadow: 0 4px 12px rgba(37, 99, 235, 0.04);
 			}
-
 			.channels-title {
-				font-size: 1.2rem;
+				font-size: 1.15rem;
 				font-weight: 800;
 				color: #0b1c30;
-				margin-bottom: 0.35rem;
+				margin-bottom: 0.25rem;
 			}
-
 			.channels-sub {
-				font-size: 0.84rem;
+				font-size: 0.82rem;
 				color: #64748b;
-				margin-bottom: 1.5rem;
+				margin-bottom: 1.25rem;
 				line-height: 1.5;
 			}
-
 			.channel-list {
 				display: flex;
 				flex-direction: column;
-				gap: 0.75rem;
-				margin-bottom: 1.5rem;
+				gap: 0.65rem;
+				margin-bottom: 1.25rem;
 			}
-
 			.channel-item {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				padding: 0.85rem 1rem;
-				background: #ffffff;
-				border-radius: 14px;
+				padding: 0.75rem 0.85rem;
+				background: #f8fafc;
+				border-radius: 12px;
 				border: 1px solid #e2e8f0;
 				color: inherit;
 				text-decoration: none;
 				transition: all 0.15s;
 			}
-
 			.channel-item:hover {
 				border-color: #2563eb;
+				background: #eff6ff;
 				transform: translateY(-1px);
 			}
-
 			.channel-left {
 				display: flex;
 				align-items: center;
-				gap: 0.75rem;
+				gap: 0.65rem;
 			}
-
 			.channel-icon-wrap {
-				width: 36px;
-				height: 36px;
-				border-radius: 10px;
-				background: #eff6ff;
+				width: 32px;
+				height: 32px;
+				border-radius: 8px;
+				background: #ffffff;
 				color: #004ac6;
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				border: 1px solid #e2e8f0;
 			}
-
 			.channel-label {
-				font-size: 0.85rem;
+				font-size: 0.82rem;
 				font-weight: 700;
 				color: #0b1c30;
 				display: block;
 			}
-
 			.channel-detail {
 				font-family: 'JetBrains Mono', monospace;
-				font-size: 0.75rem;
+				font-size: 0.72rem;
 				color: #64748b;
 			}
-
 			.active-tag {
-				font-size: 0.7rem;
+				font-size: 0.68rem;
 				font-weight: 700;
 				background: #d1fae5;
 				color: #065f46;
-				padding: 0.15rem 0.5rem;
+				padding: 0.15rem 0.45rem;
 				border-radius: 6px;
 			}
-
 			.btn-explore-apps {
 				width: 100%;
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
 				gap: 0.4rem;
-				padding: 0.85rem;
+				padding: 0.75rem;
 				background: #2563eb;
 				color: #ffffff !important;
-				font-size: 0.9rem;
+				font-size: 0.88rem;
 				font-weight: 700;
 				border-radius: 12px;
 				box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 				transition: background 0.15s;
 			}
-
 			.btn-explore-apps:hover {
 				background: #1d4ed8;
 			}
 
 			/* Responsive */
 			@media (max-width: 900px) {
-				.about-hero,
-				.engineer-section {
+				.principles-grid {
 					grid-template-columns: 1fr;
 				}
-				.principles-grid {
+				.bottom-preview-section {
 					grid-template-columns: 1fr;
 				}
 			}
@@ -703,20 +603,30 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				main {
 					padding: 1.25rem 1rem 4rem;
 				}
-				.about-hero {
-					padding: 1.75rem 1.25rem;
+				.hero {
+					padding: 2.25rem 1rem;
 					border-radius: 20px;
 					margin-bottom: 2rem;
 				}
-				.about-hero h1 {
+				.hero h1 {
 					font-size: 1.55rem;
+				}
+				.hero-logo-badge {
+					width: 60px;
+					height: 60px;
+					margin-bottom: 1rem;
+				}
+				.metrics-bar {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 0.75rem;
+					padding: 1rem;
 				}
 				.timeline-section {
 					padding: 1.75rem 1.25rem;
 					border-radius: 20px;
 				}
-				.engineer-section {
-					padding: 1.75rem 1.25rem;
+				.bottom-preview-section {
+					padding: 1.5rem 1rem;
 					border-radius: 20px;
 				}
 				.engineer-quote-title {
@@ -731,58 +641,48 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<!-- Hero Section -->
-			<section class="about-hero">
-				<div>
-					<div class="hero-badge-wrap">
-						<span class="pulse-indicator"></span>
-						<span>Native Craftsmanship & Engineering · 소프트웨어 전문 개발사</span>
-					</div>
-					<h1>
-						일상과 업무의 몰입을 돕는<br />
-						<span class="text-highlight">단단하고 유용한 도구</span>를 만듭니다
-					</h1>
-					<p class="hero-desc">
-						2015년 첫 앱 출시 이후 10년 넘게 본질에 집중한 네이티브 유틸리티 소프트웨어를 지속적으로 빌드해오고 있습니다.
-						복잡한 플랫폼 수수료나 트래커 대신, 손끝에서 즉각 반응하는 기술적 순수함을 지향합니다.
-					</p>
-					<div class="hero-cta-group">
-						<a href="/" class="btn-cta-blue">
-							<span>출시된 앱 전체 보기</span>
-							<span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-						</a>
-						<a href="mailto:umaking@gmail.com" class="btn-cta-white">
-							<span class="material-symbols-outlined" style="font-size: 18px;">mail</span>
-							<span>엔지니어에게 메일 보내기</span>
-						</a>
-					</div>
+			<!-- Hero Section - Exactly identical to Apps page -->
+			<section class="hero">
+				<div class="hero-glow"></div>
+				<div class="hero-logo-badge">
+					<img src="/Newlogo-2.png" alt="UWILL Logo" class="hero-logo-img" />
+				</div>
+				<h1>
+					일상과 업무의 몰입을 돕는<br />
+					<span class="gradient-text">단단하고 유용한 도구</span>를 만듭니다
+				</h1>
+				<p class="hero-desc">
+					2015년 첫 앱 출시 이후 10년 넘게 본질에 집중한 네이티브 유틸리티 소프트웨어를 지속적으로 빌드해오고 있습니다.
+					복잡한 플랫폼 수수료나 트래커 대신, 손끝에서 즉각 반응하는 기술적 순수함을 지향합니다.
+				</p>
+				<div class="hero-actions">
+					<a href="/" class="btn-cta-primary">
+						<span class="material-symbols-outlined">arrow_back</span>
+						<span>출시된 앱 전체 보기</span>
+					</a>
+					<a href="mailto:umaking@gmail.com" class="btn-cta-secondary">
+						<span class="material-symbols-outlined">mail</span>
+						<span>엔지니어에게 메일 보내기</span>
+					</a>
 				</div>
 
-				<!-- Identity Showcase Card -->
-				<div class="identity-card">
-					<div class="identity-logo-wrap">
-						<img src="/Newlogo-2.png" alt="UWILL Logo" class="identity-logo-img" onerror="this.src='/Newlogo.png'" />
+				<!-- Key Metrics Bar - Exactly identical to Apps page -->
+				<div class="metrics-bar">
+					<div class="metric-item">
+						<span class="metric-value c-blue">10+년</span>
+						<span class="metric-label">2015-2026 지속적 빌드</span>
 					</div>
-					<div class="identity-title">UWILL</div>
-					<div class="identity-tagline">Est. 2015 · Native Craftsmanship</div>
-
-					<div class="identity-stats-grid">
-						<div class="id-stat-cell">
-							<div class="id-stat-num">10+</div>
-							<div class="id-stat-lbl">Years of Craft</div>
-						</div>
-						<div class="id-stat-cell">
-							<div class="id-stat-num">7</div>
-							<div class="id-stat-lbl">Native Apps</div>
-						</div>
-						<div class="id-stat-cell">
-							<div class="id-stat-num emerald">100%</div>
-							<div class="id-stat-lbl">Native OS APIs</div>
-						</div>
-						<div class="id-stat-cell">
-							<div class="id-stat-num dark">0</div>
-							<div class="id-stat-lbl">Tracking & Ads</div>
-						</div>
+					<div class="metric-item">
+						<span class="metric-value c-indigo">7개</span>
+						<span class="metric-label">자체 개발 라인업</span>
+					</div>
+					<div class="metric-item">
+						<span class="metric-value c-dark">100%</span>
+						<span class="metric-label">네이티브 최적화</span>
+					</div>
+					<div class="metric-item">
+						<span class="metric-value c-emerald">0 Tracker</span>
+						<span class="metric-label">광고 없는 순수 유틸리티</span>
 					</div>
 				</div>
 			</section>
@@ -1060,8 +960,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Engineer's Note & Official Channels -->
-			<section class="engineer-section">
+			<!-- Bottom Section (Engineer's Note & Official Channels) - Identical layout container -->
+			<section class="bottom-preview-section">
 				<div class="engineer-note-box">
 					<div>
 						<div class="section-eyebrow">
@@ -1091,7 +991,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					</div>
 				</div>
 
-				<div class="channels-box">
+				<div class="channels-card">
 					<div>
 						<h3 class="channels-title">공식 채널 & 고객 지원</h3>
 						<p class="channels-sub">
