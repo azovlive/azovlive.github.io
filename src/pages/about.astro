@@ -9,7 +9,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 <html lang="ko">
 	<head>
 		<BaseHead
-			title={`회사소개 - ${SITE_TITLE}`}
+			title={`About - ${SITE_TITLE}`}
 			description="UWILL의 10년 여정과 네이티브 소프트웨어 개발 철학을 소개합니다."
 		/>
 		<style>
@@ -21,7 +21,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				box-sizing: border-box;
 			}
 
-			/* Hero Section - Exactly identical to Apps page */
+			/* Hero Section - Identical to Apps page */
 			.hero {
 				position: relative;
 				text-align: center;
@@ -129,17 +129,17 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				transform: translateY(-1px);
 			}
 
-			/* Key Metrics Grid - Identical to Apps page */
+			/* Key Metrics Grid - 3 Columns (Identical to Apps page) */
 			.metrics-bar {
 				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 1rem;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.25rem;
 				background: rgba(255, 255, 255, 0.85);
 				backdrop-filter: blur(12px);
 				border: 1px solid #e2e8f0;
 				border-radius: 20px;
 				padding: 1.25rem 1.5rem;
-				max-width: 900px;
+				max-width: 780px;
 				margin: 0 auto;
 			}
 			.metric-item {
@@ -156,7 +156,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			}
 			.metric-value.c-blue { color: #004ac6; }
 			.metric-value.c-indigo { color: #4f46e5; }
-			.metric-value.c-dark { color: #0b1c30; }
 			.metric-value.c-emerald { color: #10b981; }
 			.metric-label {
 				font-size: 0.76rem;
@@ -165,7 +164,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				font-weight: 500;
 			}
 
-			/* Principles Section */
+			/* Principles Section - 3 Principles */
 			.principles-section {
 				margin-bottom: 4rem;
 			}
@@ -198,7 +197,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 			.principles-grid {
 				display: grid;
-				grid-template-columns: repeat(2, 1fr);
+				grid-template-columns: repeat(3, 1fr);
 				gap: 1.5rem;
 			}
 			.principle-card {
@@ -230,7 +229,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			}
 			.principle-code.blue { background: #eff6ff; color: #1d4ed8; }
 			.principle-code.emerald { background: #ecfdf5; color: #047857; }
-			.principle-code.amber { background: #fffbeb; color: #b45309; }
 			.principle-code.indigo { background: #e0e7ff; color: #4338ca; }
 
 			.principle-icon {
@@ -244,7 +242,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			}
 			.principle-icon.blue { background: #dbeafe; color: #1d4ed8; }
 			.principle-icon.emerald { background: #d1fae5; color: #047857; }
-			.principle-icon.amber { background: #fef3c7; color: #b45309; }
 			.principle-icon.indigo { background: #e0e7ff; color: #4338ca; }
 
 			.principle-title {
@@ -269,7 +266,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			}
 			.principle-tag.blue { color: #1d4ed8; }
 			.principle-tag.emerald { color: #047857; }
-			.principle-tag.amber { color: #b45309; }
 			.principle-tag.indigo { color: #4338ca; }
 
 			/* Timeline Section */
@@ -427,7 +423,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				gap: 0.25rem;
 			}
 
-			/* Bottom Section (Engineer's Note & Official Channels) - Identical to Apps page bottom container */
+			/* Bottom Section (Engineer's Note & Official Channels) - Identical layout container */
 			.bottom-preview-section {
 				background: #eff4ff;
 				border-radius: 28px;
@@ -617,7 +613,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					margin-bottom: 1rem;
 				}
 				.metrics-bar {
-					grid-template-columns: repeat(2, 1fr);
+					grid-template-columns: 1fr;
 					gap: 0.75rem;
 					padding: 1rem;
 				}
@@ -653,7 +649,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				</h1>
 				<p class="hero-desc">
 					2015년 첫 앱 출시 이후 10년 넘게 본질에 집중한 네이티브 유틸리티 소프트웨어를 지속적으로 빌드해오고 있습니다.
-					복잡한 플랫폼 수수료나 트래커 대신, 손끝에서 즉각 반응하는 기술적 순수함을 지향합니다.
+					손끝에서 즉각 반응하는 기술적 완성도와 네이티브 소프트웨어 본연의 가치를 지향합니다.
 				</p>
 				<div class="hero-actions">
 					<a href="/" class="btn-cta-primary">
@@ -666,7 +662,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					</a>
 				</div>
 
-				<!-- Key Metrics Bar - Exactly identical to Apps page -->
+				<!-- Key Metrics Bar - Exactly identical to Apps page (3 Columns) -->
 				<div class="metrics-bar">
 					<div class="metric-item">
 						<span class="metric-value c-blue">10+년</span>
@@ -677,24 +673,20 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						<span class="metric-label">자체 개발 라인업</span>
 					</div>
 					<div class="metric-item">
-						<span class="metric-value c-dark">100%</span>
+						<span class="metric-value c-emerald">100%</span>
 						<span class="metric-label">네이티브 최적화</span>
-					</div>
-					<div class="metric-item">
-						<span class="metric-value c-emerald">0 Tracker</span>
-						<span class="metric-label">광고 없는 순수 유틸리티</span>
 					</div>
 				</div>
 			</section>
 
-			<!-- 4 Core Principles -->
+			<!-- 3 Core Principles -->
 			<section class="principles-section">
 				<div class="section-heading-wrap">
 					<div class="section-eyebrow">
 						<span class="material-symbols-outlined" style="font-size: 16px;">verified</span>
 						<span>Core Principles</span>
 					</div>
-					<h2 class="section-main-title">4대 핵심 개발 원칙</h2>
+					<h2 class="section-main-title">3대 핵심 개발 원칙</h2>
 					<p class="section-lead-text">
 						타협하지 않는 기술 표준과 사용자 존중을 바탕으로 소프트웨어를 설계합니다.
 					</p>
@@ -741,31 +733,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						</div>
 					</div>
 
-					<!-- 03 No Annoying Ads -->
+					<!-- 03 Long-term Reliability -->
 					<div class="principle-card">
 						<div>
 							<div class="principle-top">
-								<span class="principle-code amber">03 / PURE UTILITY</span>
-								<div class="principle-icon amber">
-									<span class="material-symbols-outlined">do_not_disturb_on</span>
-								</div>
-							</div>
-							<h3 class="principle-title">제로 광고 & 방해 없는 인터페이스</h3>
-							<p class="principle-desc">
-								작업의 몰입을 파괴하는 전면 광고, 팝업 배너, 상업용 행동 추적 SDK를 절대 싣지 않습니다. 화면을 켜는 순간부터 원하는 결과에 즉시 도달할 수 있는 정갈한 UI를 제공합니다.
-							</p>
-						</div>
-						<div class="principle-tag amber">
-							<span class="material-symbols-outlined" style="font-size: 15px;">block</span>
-							<span>Ad-Free Pure Workspace</span>
-						</div>
-					</div>
-
-					<!-- 04 Long-term Reliability -->
-					<div class="principle-card">
-						<div>
-							<div class="principle-top">
-								<span class="principle-code indigo">04 / SUSTAINABILITY</span>
+								<span class="principle-code indigo">03 / SUSTAINABILITY</span>
 								<div class="principle-icon indigo">
 									<span class="material-symbols-outlined">update</span>
 								</div>
@@ -974,7 +946,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						</h2>
 						<div class="engineer-body">
 							<p>
-								현대의 수많은 앱들은 사용자의 시간과 집중력을 빼앗기 위해 지나치게 많은 알림과 트래커를 장착합니다. 그러나 진정한 도구(Tool)란 부를 때 즉시 작동하고, 목적을 다하면 조용히 물러설 줄 알아야 한다고 믿습니다.
+								현대의 수많은 앱들은 지나치게 복잡한 절차와 부가 기능으로 본질을 흐리곤 합니다. 그러나 진정한 도구(Tool)란 부를 때 즉시 작동하고, 목적을 다하면 조용히 물러설 줄 알아야 한다고 믿습니다.
 							</p>
 							<p>
 								UWILL은 소프트웨어 전문 개발사로서, 단기적인 마케팅 지표 대신 '소프트웨어 본연의 단단함'만을 기준으로 의사결정합니다. 사용자의 기기 자원을 존중하고, 개인정보를 안전히 보호하며, 언제 켜도 한결같이 빠르고 기분 좋은 소프트웨어를 앞으로도 계속 빌드해 나가겠습니다.
