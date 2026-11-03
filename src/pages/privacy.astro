@@ -1,0 +1,948 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`개인정보처리방침 (Privacy Policy) - ${SITE_TITLE}`}
+			description="UWILL(uwillsoft)의 애플리케이션 및 Chrome 확장 프로그램 개인정보처리방침 및 사용자 데이터 보호 정책입니다."
+		/>
+		<style>
+			main {
+				width: 100%;
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 2.5rem 1.5rem 5rem;
+				box-sizing: border-box;
+			}
+
+			/* Hero Section */
+			.hero {
+				position: relative;
+				text-align: center;
+				padding: 3.5rem 1.5rem 2.5rem;
+				background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+				border-radius: 28px;
+				border: 1px solid #dbeafe;
+				box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.05);
+				margin-bottom: 2.5rem;
+				overflow: hidden;
+			}
+			.hero-glow {
+				position: absolute;
+				top: -120px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 700px;
+				height: 350px;
+				background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(99, 102, 241, 0.05) 60%, transparent 80%);
+				filter: blur(50px);
+				pointer-events: none;
+			}
+			.hero-logo-badge {
+				width: 72px;
+				height: 72px;
+				margin: 0 auto 1.5rem;
+				border-radius: 18px;
+				background: #ffffff;
+				padding: 6px;
+				border: 1px solid #dbeafe;
+				box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.12);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.hero-logo-img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				border-radius: 13px;
+			}
+			.hero h1 {
+				font-size: clamp(1.8rem, 4vw, 2.5rem);
+				font-weight: 800;
+				letter-spacing: -0.025em;
+				color: #0f172a;
+				margin: 0 0 0.75rem;
+				line-height: 1.25;
+			}
+			.gradient-text {
+				background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #6366f1 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			.hero-desc {
+				font-size: 1.05rem;
+				color: #475569;
+				max-width: 680px;
+				margin: 0 auto 1.5rem;
+				line-height: 1.65;
+			}
+			.policy-meta {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				background: #eff6ff;
+				border: 1px solid #bfdbfe;
+				padding: 0.4rem 1rem;
+				border-radius: 9999px;
+				font-size: 0.85rem;
+				color: #1e40af;
+				font-weight: 600;
+			}
+
+			/* Language Switcher */
+			.lang-switcher-container {
+				display: flex;
+				justify-content: center;
+				margin-bottom: 2rem;
+			}
+			.lang-switcher {
+				display: inline-flex;
+				background: #f1f5f9;
+				padding: 4px;
+				border-radius: 14px;
+				border: 1px solid #e2e8f0;
+			}
+			.lang-btn {
+				border: none;
+				background: transparent;
+				padding: 8px 20px;
+				border-radius: 10px;
+				font-size: 0.92rem;
+				font-weight: 600;
+				color: #64748b;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				display: flex;
+				align-items: center;
+				gap: 6px;
+			}
+			.lang-btn.active {
+				background: #ffffff;
+				color: #1d4ed8;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+			}
+
+			/* Policy Content Styling */
+			.policy-container {
+				background: #ffffff;
+				border-radius: 24px;
+				border: 1px solid #e2e8f0;
+				box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04);
+				padding: 2.5rem;
+				line-height: 1.75;
+				color: #334155;
+			}
+			@media (max-width: 640px) {
+				.policy-container {
+					padding: 1.5rem;
+					border-radius: 20px;
+				}
+			}
+
+			.policy-section {
+				margin-bottom: 3rem;
+			}
+			.policy-section:last-child {
+				margin-bottom: 0;
+			}
+
+			.section-header {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				margin-bottom: 1.25rem;
+				padding-bottom: 0.75rem;
+				border-bottom: 2px solid #f1f5f9;
+			}
+			.section-icon {
+				font-size: 26px;
+				color: #2563eb;
+			}
+			.policy-section h2 {
+				font-size: 1.35rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin: 0;
+				letter-spacing: -0.015em;
+			}
+			.policy-section p {
+				margin: 0 0 1rem;
+				font-size: 0.98rem;
+				color: #475569;
+			}
+
+			/* Callout Box (Chrome Web Store Policies) */
+			.callout-box {
+				background: #eff6ff;
+				border-left: 4px solid #2563eb;
+				border-radius: 12px;
+				padding: 1.25rem 1.5rem;
+				margin: 1.25rem 0;
+			}
+			.callout-title {
+				font-weight: 700;
+				color: #1e3a8a;
+				margin-bottom: 0.5rem;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 1.02rem;
+			}
+			.callout-content {
+				color: #1e40af;
+				font-size: 0.93rem;
+				line-height: 1.65;
+				margin: 0;
+			}
+			.callout-link {
+				color: #1d4ed8;
+				font-weight: 600;
+				text-decoration: underline;
+				word-break: break-all;
+			}
+
+			/* Data Items Grid / Table */
+			.data-table-wrap {
+				overflow-x: auto;
+				margin: 1.25rem 0;
+				border-radius: 14px;
+				border: 1px solid #e2e8f0;
+			}
+			.data-table {
+				width: 100%;
+				border-collapse: collapse;
+				text-align: left;
+				font-size: 0.92rem;
+			}
+			.data-table th {
+				background: #f8fafc;
+				padding: 0.85rem 1rem;
+				font-weight: 700;
+				color: #334155;
+				border-bottom: 1px solid #e2e8f0;
+			}
+			.data-table td {
+				padding: 0.85rem 1rem;
+				border-bottom: 1px solid #f1f5f9;
+				vertical-align: middle;
+			}
+			.data-table tr:last-child td {
+				border-bottom: none;
+			}
+			.badge-not-collected {
+				display: inline-flex;
+				align-items: center;
+				gap: 4px;
+				background: #ecfdf5;
+				color: #065f46;
+				border: 1px solid #a7f3d0;
+				padding: 0.25rem 0.65rem;
+				border-radius: 9999px;
+				font-size: 0.82rem;
+				font-weight: 700;
+				white-space: nowrap;
+			}
+
+			/* Affirmation Cards */
+			.affirmation-grid {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 1rem;
+				margin: 1.25rem 0;
+			}
+			.affirmation-card {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 14px;
+				padding: 1.2rem;
+				display: flex;
+				align-items: flex-start;
+				gap: 1rem;
+			}
+			.affirmation-icon-wrap {
+				width: 36px;
+				height: 36px;
+				border-radius: 10px;
+				background: #dbeafe;
+				color: #1d4ed8;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+				margin-top: 2px;
+			}
+			.affirmation-title {
+				font-weight: 700;
+				color: #0f172a;
+				margin-bottom: 0.35rem;
+				font-size: 0.98rem;
+			}
+			.affirmation-desc {
+				color: #64748b;
+				font-size: 0.9rem;
+				margin: 0;
+				line-height: 1.55;
+			}
+
+			/* Info List */
+			.info-list {
+				list-style: none;
+				padding: 0;
+				margin: 0 0 1rem;
+			}
+			.info-list li {
+				position: relative;
+				padding-left: 1.5rem;
+				margin-bottom: 0.75rem;
+				font-size: 0.96rem;
+				color: #475569;
+			}
+			.info-list li::before {
+				content: "•";
+				position: absolute;
+				left: 0.5rem;
+				color: #2563eb;
+				font-weight: bold;
+				font-size: 1.2rem;
+				line-height: 1;
+			}
+
+			/* Developer Info Box */
+			.developer-box {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 1.5rem;
+				margin-top: 1.5rem;
+			}
+			.dev-row {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+			}
+			@media (min-width: 640px) {
+				.dev-row {
+					flex-direction: row;
+					justify-content: space-between;
+				}
+			}
+			.dev-item {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 0.92rem;
+				color: #475569;
+			}
+			.dev-item strong {
+				color: #0f172a;
+			}
+
+			/* Bottom Navigation Link */
+			.bottom-nav {
+				text-align: center;
+				margin-top: 3rem;
+			}
+			.btn-back-home {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				background: #ffffff;
+				border: 1px solid #cbd5e1;
+				padding: 0.75rem 1.5rem;
+				border-radius: 12px;
+				font-weight: 600;
+				color: #334155;
+				text-decoration: none;
+				transition: all 0.2s;
+			}
+			.btn-back-home:hover {
+				background: #f8fafc;
+				border-color: #94a3b8;
+				color: #0f172a;
+			}
+
+			/* Language Content Visibility */
+			.lang-content {
+				display: none;
+			}
+			.lang-content.active {
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!-- Hero Section -->
+			<section class="hero">
+				<div class="hero-glow"></div>
+				<div class="hero-logo-badge">
+					<img src="/Newlogo-2.webp" alt="UWILL Logo" class="hero-logo-img" width="72" height="72" />
+				</div>
+				<h1>
+					개인정보처리방침<br />
+					<span class="gradient-text">Privacy Policy</span>
+				</h1>
+				<p class="hero-desc">
+					UWILL(uwillsoft)은 사용자의 개인정보와 데이터를 최우선으로 존중하며 안전하게 보호합니다.<br />
+					Google Chrome 웹 스토어 사용자 데이터 정책 및 스토어 규정을 철저히 준수합니다.
+				</p>
+				<div class="policy-meta">
+					<span class="material-symbols-outlined" style="font-size: 18px;">event</span>
+					<span>최종 시행일자: 2026년 11월 3일 (Effective: Nov 3, 2026)</span>
+				</div>
+			</section>
+
+			<!-- Language Switcher Tabs -->
+			<div class="lang-switcher-container">
+				<div class="lang-switcher" role="tablist">
+					<button class="lang-btn active" id="btn-ko" data-target="ko" role="tab" aria-selected="true">
+						<span class="material-symbols-outlined" style="font-size: 18px;">translate</span>
+						<span>한국어 (Korean)</span>
+					</button>
+					<button class="lang-btn" id="btn-en" data-target="en" role="tab" aria-selected="false">
+						<span class="material-symbols-outlined" style="font-size: 18px;">public</span>
+						<span>English</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- ========================================== -->
+			<!-- KOREAN CONTENT (한국어)                   -->
+			<!-- ========================================== -->
+			<div id="content-ko" class="lang-content active policy-container">
+				<!-- 1. Google Chrome 웹 스토어 정책 준수 선언 -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">verified_user</span>
+						<h2>1. Chrome 웹 스토어 및 스토어 정책 준수 선언</h2>
+					</div>
+					<p>
+						본 개인정보처리방침은 개발사 <strong>UWILL (uwillsoft)</strong>(이하 "개발자")이 배포하는 모든 모바일 애플리케이션 및 <strong>Google Chrome 확장 프로그램(Chrome Extension)</strong>에 공통 적용됩니다.
+					</p>
+					<p>
+						개발자가 제작 및 배포하는 모든 Chrome 확장 프로그램은 
+						<a href="https://developer.chrome.com/docs/webstore/program-policies/privacy/" target="_blank" rel="noopener noreferrer" class="callout-link">Google Chrome 웹 스토어 개발자 프로그램 정책(Chrome Web Store Developer Program Policies)</a>
+						의 <strong>사용자 데이터 개인정보처리방침(User Data Privacy Policy)</strong> 및 <strong>'제한된 사용(Limited Use)' 요건</strong>을 엄격히 준수합니다.
+					</p>
+
+					<div class="callout-box">
+						<div class="callout-title">
+							<span class="material-symbols-outlined">policy</span>
+							<span>Chrome 웹 스토어 사용자 데이터 정책 준수 확약</span>
+						</div>
+						<p class="callout-content">
+							"확장 프로그램을 통해 처리되는 모든 데이터의 사용은 <strong>'제한된 사용(Limited Use)'</strong> 요건을 포함하여 Chrome 웹 스토어 사용자 데이터 정책을 전면 준수하며, 단일 전용 목적 외의 어떠한 용도로도 사용자 데이터를 수집·이용·전송하지 않습니다."
+						</p>
+					</div>
+				</section>
+
+				<!-- 2. 사용자 데이터 수집 및 사용 현황 (구글 개발자 콘솔 9개 항목 매핑) -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">rule</span>
+						<h2>2. 사용자 데이터 수집 및 처리 현황 (9대 분류)</h2>
+					</div>
+					<p>
+						개발자는 사용자의 프라이버시를 절대적으로 보호하기 위해 <strong>데이터 최소화 원칙(Data Minimization)</strong>을 고수합니다. Google Chrome 웹 스토어 개발자 대시보드에서 규정하는 9대 사용자 데이터 항목 전체에 대해 <strong>일절 수집하거나 외부로 전송하지 않습니다.</strong>
+					</p>
+
+					<div class="data-table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>데이터 카테고리</th>
+									<th>상세 항목 예시</th>
+									<th>수집 및 전송 여부</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>개인 식별 정보</strong></td>
+									<td>이름, 주소, 이메일 주소, 연령, 개인 식별 번호, 전화번호 등</td>
+									<td><span class="badge-not-collected">✓ 미수집 (0건)</span></td>
+								</tr>
+								<tr>
+									<td><strong>건강 정보</strong></td>
+									<td>심박수 데이터, 의료 기록, 증상, 진단 및 시술 기록 등</td>
+									<td><span class="badge-not-collected">✓ 미수집 (0건)</span></td>
+								</tr>
+								<tr>
+									<td><strong>금융 및 결제 정보</strong></td>
+									<td>거래 내역, 신용카드 번호, 신용 등급, 재무제표 등</td>
+									<td><span class="badge-not-collected">✓ 미수집 (0건)</span></td>
+								</tr>
+								<tr>
+									<td><strong>인증 정보</strong></td>
+									<td>비밀번호, 사용자 인증 토큰, 보안 질문, PIN 번호 등</td>
+									<td><span class="badge-not-collected">✓ 미수집 (0건)</span></td>
+								</tr>
+								<tr>
+									<td><strong>개인적인 커뮤니케이션</strong></td>
+									<td>이메일 본문, 문자 메시지, 메신저 및 채팅 메시지 등</td>
+									<td><span class="badge-not-collected">✓ 미수집 (0건)</span></td>
+								</tr>
+								<tr>
+									<td><strong>위치 정보</strong></td>
+									<td>지역, IP 주소, GPS 좌표 또는 기기 주변 센서 정보</td>
+									<td><span class="badge-not-collected">✓ 미수집 (0건)</span></td>
+								</tr>
+								<tr>
+									<td><strong>웹 기록 (Web History)</strong></td>
+									<td>사용자가 방문한 웹 페이지 목록, 페이지 제목, 방문 시각</td>
+									<td><span class="badge-not-collected">✓ 미수집 (0건)</span></td>
+								</tr>
+								<tr>
+									<td><strong>사용자 활동 (User Activity)</strong></td>
+									<td>네트워크 모니터링, 클릭수, 마우스 위치, 스크롤, 키 입력 로깅</td>
+									<td><span class="badge-not-collected">✓ 미수집 (0건)</span></td>
+								</tr>
+								<tr>
+									<td><strong>웹사이트 콘텐츠</strong></td>
+									<td>방문 페이지의 텍스트, 이미지, 소리, 동영상, 하이퍼링크</td>
+									<td><span class="badge-not-collected">✓ 미수집 (0건)</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<!-- 3. 개발자의 3대 확약 사항 (Google Developer Console 필수 동의 항목) -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">fact_check</span>
+						<h2>3. 데이터 취급 3대 확약 사항</h2>
+					</div>
+					<p>
+						개발자는 Chrome 웹 스토어 정책에 따라 다음 3가지 사항이 진실임을 엄숙히 서약하며 준수합니다:
+					</p>
+
+					<div class="affirmation-grid">
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">gavel</span>
+							</div>
+							<div>
+								<div class="affirmation-title">1) 제3자 판매 및 전송 일체 금지</div>
+								<p class="affirmation-desc">
+									관련 법령 준수 등 승인된 필수 예외 사례를 제외하고, 어떠한 경우에도 사용자 데이터를 제3자, 광고 네트워크, 데이터 브로커 등에 판매하거나 전송하지 않습니다.
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">center_focus_strong</span>
+							</div>
+							<div>
+								<div class="affirmation-title">2) 단일 전용 목적(Single Purpose) 외 사용 금지</div>
+								<p class="affirmation-desc">
+									항목의 전용 목적과 무관한 목적으로 사용자 데이터를 사용하거나 전송하지 않으며, 확장 프로그램의 핵심 사용자 가치 실현에만 기술을 국한합니다.
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">block</span>
+							</div>
+							<div>
+								<div class="affirmation-title">3) 신용도 판단 또는 대출 목적 사용 금지</div>
+								<p class="affirmation-desc">
+									사용자의 신용도 판단, 대출 자격 심사, 타겟형 금융 마케팅 등을 위해 사용자 데이터를 사용하거나 전송하지 않습니다.
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- 4. 기기 내 로컬 저장 및 데이터 파기 정책 -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">storage</span>
+						<h2>4. 기기 내 로컬 저장 및 데이터 파기</h2>
+					</div>
+					<ul class="info-list">
+						<li>
+							<strong>로컬 격리 저장</strong>: 확장 프로그램의 사용자 설정(예: 테마 설정, 기본 옵션 등)은 사용자의 로컬 브라우저 내부 스토리지(<code>chrome.storage.local</code>)에만 격리 보관되며, 개발자의 외부 원격 서버로 일절 전송되지 않습니다.
+						</li>
+						<li>
+							<strong>즉시 파기 원칙</strong>: 사용자가 Chrome 브라우저에서 확장 프로그램을 삭제(제거)하거나 앱을 기기에서 제거하는 즉시 해당 로컬 데이터는 복구 불가능하게 자동 영구 파기됩니다.
+						</li>
+						<li>
+							<strong>원격 서버 미보유</strong>: 개발자는 사용자의 개인정보나 활동 내역을 저장하는 중앙 데이터베이스나 외부 로깅 서버를 운영하지 않습니다.
+						</li>
+					</ul>
+				</section>
+
+				<!-- 5. 요청 권한 및 서드파티 서비스 안내 -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">lock_open</span>
+						<h2>5. 권한 요청 및 서드파티 서비스 안내</h2>
+					</div>
+					<ul class="info-list">
+						<li>
+							<strong>최소 권한의 원칙</strong>: 확장 프로그램은 고유 기능을 수행하는 데 기술적으로 반드시 필요한 최소한의 브라우저 권한(Minimum Permissions)만을 요청합니다.
+						</li>
+						<li>
+							<strong>Chrome 확장 프로그램 광고 배제</strong>: UWILL의 Chrome 확장 프로그램에는 어떠한 상업적 광고 모듈이나 제3자 트래킹 스크립트도 포함되어 있지 않습니다.
+						</li>
+						<li>
+							<strong>모바일 앱의 서드파티 광고 안내</strong>: 모바일 앱 중 일부 무료 버전의 경우 Google AdMob을 통해 광고가 송출될 수 있습니다. 이 과정에서 기기 식별자 및 진단 데이터가 Google LLC에 의해 처리될 수 있으며, 이는 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="callout-link">Google 개인정보처리방침</a>을 따릅니다. 사용자는 기기 설정(추적 제한 또는 광고 ID 초기화)을 통해 언제든 이를 거부할 수 있습니다.
+						</li>
+					</ul>
+				</section>
+
+				<!-- 6. 아동의 개인정보 보호 -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">child_care</span>
+						<h2>6. 아동의 개인정보 보호</h2>
+					</div>
+					<p>
+						개발자의 소프트웨어 및 확장 프로그램은 만 14세 미만(또는 해당 국가 법령 기준 아동)을 주 대상으로 하지 않으며, 아동의 개인정보를 고의로 수집하지 않습니다.
+					</p>
+				</section>
+
+				<!-- 7. 개인정보 보호책임자 및 문의처 -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">contact_support</span>
+						<h2>7. 개인정보 보호책임자 및 개발자 정보</h2>
+					</div>
+					<p>
+						개인정보 보호 관련 문의, 권리 행사, 피드백은 아래 공식 창구로 연락 주시면 신속하고 성실하게 답변해 드리겠습니다.
+					</p>
+
+					<div class="developer-box">
+						<div class="dev-row">
+							<div class="dev-item">
+								<span class="material-symbols-outlined" style="color: #2563eb;">business</span>
+								<span><strong>개발자 / 팀</strong>: UWILL (uwillsoft)</span>
+							</div>
+							<div class="dev-item">
+								<span class="material-symbols-outlined" style="color: #2563eb;">mail</span>
+								<span><strong>문의 이메일</strong>: <a href="mailto:umaking@gmail.com" style="color: #2563eb; text-decoration: underline;">umaking@gmail.com</a></span>
+							</div>
+						</div>
+						<div class="dev-row" style="margin-top: 0.75rem;">
+							<div class="dev-item">
+								<span class="material-symbols-outlined" style="color: #2563eb;">link</span>
+								<span><strong>공식 사이트</strong>: <a href="https://www.uwillsoft.com" target="_blank" rel="noopener noreferrer" style="color: #2563eb;">https://www.uwillsoft.com</a></span>
+							</div>
+							<div class="dev-item">
+								<span class="material-symbols-outlined" style="color: #2563eb;">code</span>
+								<span><strong>GitHub</strong>: <a href="https://github.com/azovlive" target="_blank" rel="noopener noreferrer" style="color: #2563eb;">https://github.com/azovlive</a></span>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- ========================================== -->
+			<!-- ENGLISH CONTENT (Chrome Web Store Review)  -->
+			<!-- ========================================== -->
+			<div id="content-en" class="lang-content policy-container">
+				<!-- 1. Chrome Web Store Policy Compliance Statement -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">verified_user</span>
+						<h2>1. Compliance with Chrome Web Store User Data Policy</h2>
+					</div>
+					<p>
+						This Privacy Policy applies to all applications and <strong>Google Chrome Extensions</strong> developed and published by <strong>UWILL (uwillsoft)</strong> (the "Developer").
+					</p>
+					<p>
+						Every Chrome Extension created by the Developer strictly adheres to the 
+						<a href="https://developer.chrome.com/docs/webstore/program-policies/privacy/" target="_blank" rel="noopener noreferrer" class="callout-link">Chrome Web Store Developer Program Policies</a>, 
+						including the <strong>User Data Privacy Policy</strong> and <strong>Limited Use requirements</strong>.
+					</p>
+
+					<div class="callout-box">
+						<div class="callout-title">
+							<span class="material-symbols-outlined">policy</span>
+							<span>Chrome Web Store Limited Use Affirmation</span>
+						</div>
+						<p class="callout-content">
+							"The use and transfer of information received from Google APIs or processed by our extensions will strictly adhere to the <strong>Chrome Web Store User Data Policy</strong>, including the <strong>Limited Use</strong> requirements. No user data is used for purposes other than the prominent single purpose explicitly disclosed to the user."
+						</p>
+					</div>
+				</section>
+
+				<!-- 2. Data Collection and Usage Status (9 Categories) -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">rule</span>
+						<h2>2. User Data Collection and Processing (9 Categories)</h2>
+					</div>
+					<p>
+						The Developer strictly practices <strong>Data Minimization</strong>. Across all 9 categories defined by the Google Chrome Web Store Developer Dashboard, our extensions and apps <strong>DO NOT collect, record, or transmit</strong> any user data to external servers.
+					</p>
+
+					<div class="data-table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Category</th>
+									<th>Examples</th>
+									<th>Collection Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Personally Identifiable Info</strong></td>
+									<td>Name, address, email, phone number, age, national ID</td>
+									<td><span class="badge-not-collected">✓ NOT COLLECTED</span></td>
+								</tr>
+								<tr>
+									<td><strong>Health Information</strong></td>
+									<td>Heart rate data, medical records, symptoms, diagnoses</td>
+									<td><span class="badge-not-collected">✓ NOT COLLECTED</span></td>
+								</tr>
+								<tr>
+									<td><strong>Financial & Payment Info</strong></td>
+									<td>Transactions, credit card numbers, credit ratings, financial statements</td>
+									<td><span class="badge-not-collected">✓ NOT COLLECTED</span></td>
+								</tr>
+								<tr>
+									<td><strong>Authentication Info</strong></td>
+									<td>Passwords, authentication credentials, security questions, PINs</td>
+									<td><span class="badge-not-collected">✓ NOT COLLECTED</span></td>
+								</tr>
+								<tr>
+									<td><strong>Personal Communications</strong></td>
+									<td>Emails, SMS, messaging, or chat messages</td>
+									<td><span class="badge-not-collected">✓ NOT COLLECTED</span></td>
+								</tr>
+								<tr>
+									<td><strong>Location Information</strong></td>
+									<td>Region, IP address, GPS coordinates, nearby objects</td>
+									<td><span class="badge-not-collected">✓ NOT COLLECTED</span></td>
+								</tr>
+								<tr>
+									<td><strong>Web History</strong></td>
+									<td>List of visited web pages, page titles, visit timestamps</td>
+									<td><span class="badge-not-collected">✓ NOT COLLECTED</span></td>
+								</tr>
+								<tr>
+									<td><strong>User Activity</strong></td>
+									<td>Network monitoring, clicks, mouse positions, scrolls, keystroke logging</td>
+									<td><span class="badge-not-collected">✓ NOT COLLECTED</span></td>
+								</tr>
+								<tr>
+									<td><strong>Website Content</strong></td>
+									<td>Text, images, sounds, videos, or hyperlinks on visited pages</td>
+									<td><span class="badge-not-collected">✓ NOT COLLECTED</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<!-- 3. Three Affirmative Declarations -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">fact_check</span>
+						<h2>3. Three Affirmative Certifications</h2>
+					</div>
+					<p>
+						In accordance with Google's Developer Program Policies, the Developer formally certifies that:
+					</p>
+
+					<div class="affirmation-grid">
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">gavel</span>
+							</div>
+							<div>
+								<div class="affirmation-title">1) No Sale or Transfer to Third Parties</div>
+								<p class="affirmation-desc">
+									User data is never sold, leased, or transferred to third parties (including data brokers, ad networks, or analytics companies), outside of approved and legally required use cases.
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">center_focus_strong</span>
+							</div>
+							<div>
+								<div class="affirmation-title">2) Single Purpose Restriction</div>
+								<p class="affirmation-desc">
+									User data is never used or transferred for purposes unrelated to the extension's stated, prominent single purpose.
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">block</span>
+							</div>
+							<div>
+								<div class="affirmation-title">3) No Creditworthiness or Lending Evaluation</div>
+								<p class="affirmation-desc">
+									User data is never used or transferred for assessing creditworthiness, lending eligibility, or personalized financial advertising.
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- 4. Local Storage and Data Retention -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">storage</span>
+						<h2>4. Local Storage and Data Deletion</h2>
+					</div>
+					<ul class="info-list">
+						<li>
+							<strong>Local-Only Storage</strong>: Any preferences, settings, or user configurations are saved exclusively within the local browser sandbox (e.g., <code>chrome.storage.local</code>). No information is ever dispatched to developer-owned external servers.
+						</li>
+						<li>
+							<strong>Immediate Deletion</strong>: When a user uninstalls or removes the extension from Chrome, all locally stored data and settings are immediately and permanently removed by the browser.
+						</li>
+						<li>
+							<strong>Zero Server Retention</strong>: The Developer maintains no central database or remote servers for storing user logs or tracking profiles.
+						</li>
+					</ul>
+				</section>
+
+				<!-- 5. Minimal Permissions and Third-Party Clarifications -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">lock_open</span>
+						<h2>5. Minimal Permissions & Third-Party Clarifications</h2>
+					</div>
+					<ul class="info-list">
+						<li>
+							<strong>Permission Minimization</strong>: The extension requests only the narrowest browser permissions strictly necessary to execute its primary features.
+						</li>
+						<li>
+							<strong>No Ads in Extensions</strong>: UWILL's Chrome Extensions contain zero advertising networks, tracking pixels, or monetization SDKs.
+						</li>
+						<li>
+							<strong>Mobile App Disclosures</strong>: For certain free mobile applications, Google AdMob may be utilized to serve non-personalized or personalized ads. In such cases, advertising identifiers and diagnostic metrics may be processed by Google LLC in compliance with the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="callout-link">Google Privacy Policy</a>. Users can opt out via OS-level tracking settings at any time.
+						</li>
+					</ul>
+				</section>
+
+				<!-- 6. Children's Privacy -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">child_care</span>
+						<h2>6. Children's Privacy</h2>
+					</div>
+					<p>
+						Our extensions and software are not directed to children under 14 (or applicable age in your jurisdiction), and we do not knowingly solicit or collect personal data from children.
+					</p>
+				</section>
+
+				<!-- 7. Contact and Developer Details -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">contact_support</span>
+						<h2>7. Contact and Developer Information</h2>
+					</div>
+					<p>
+						If you have any questions, inquiries, or feedback regarding our privacy practices, please contact us directly:
+					</p>
+
+					<div class="developer-box">
+						<div class="dev-row">
+							<div class="dev-item">
+								<span class="material-symbols-outlined" style="color: #2563eb;">business</span>
+								<span><strong>Developer / Team</strong>: UWILL (uwillsoft)</span>
+							</div>
+							<div class="dev-item">
+								<span class="material-symbols-outlined" style="color: #2563eb;">mail</span>
+								<span><strong>Support Email</strong>: <a href="mailto:umaking@gmail.com" style="color: #2563eb; text-decoration: underline;">umaking@gmail.com</a></span>
+							</div>
+						</div>
+						<div class="dev-row" style="margin-top: 0.75rem;">
+							<div class="dev-item">
+								<span class="material-symbols-outlined" style="color: #2563eb;">link</span>
+								<span><strong>Official Website</strong>: <a href="https://www.uwillsoft.com" target="_blank" rel="noopener noreferrer" style="color: #2563eb;">https://www.uwillsoft.com</a></span>
+							</div>
+							<div class="dev-item">
+								<span class="material-symbols-outlined" style="color: #2563eb;">code</span>
+								<span><strong>GitHub</strong>: <a href="https://github.com/azovlive" target="_blank" rel="noopener noreferrer" style="color: #2563eb;">https://github.com/azovlive</a></span>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Back to Home Button -->
+			<div class="bottom-nav">
+				<a href="/" class="btn-back-home">
+					<span class="material-symbols-outlined">arrow_back</span>
+					<span>홈으로 돌아가기 (Back to Home)</span>
+				</a>
+			</div>
+		</main>
+		<Footer />
+
+		<script>
+			// Language switching logic with URL hash support
+			function setupLangSwitcher() {
+				const btnKo = document.getElementById('btn-ko');
+				const btnEn = document.getElementById('btn-en');
+				const contentKo = document.getElementById('content-ko');
+				const contentEn = document.getElementById('content-en');
+
+				function setLang(lang: string) {
+					if (lang === 'en') {
+						btnEn?.classList.add('active');
+						btnEn?.setAttribute('aria-selected', 'true');
+						btnKo?.classList.remove('active');
+						btnKo?.setAttribute('aria-selected', 'false');
+						contentEn?.classList.add('active');
+						contentKo?.classList.remove('active');
+						history.replaceState(null, '', '#en');
+					} else {
+						btnKo?.classList.add('active');
+						btnKo?.setAttribute('aria-selected', 'true');
+						btnEn?.classList.remove('active');
+						btnEn?.setAttribute('aria-selected', 'false');
+						contentKo?.classList.add('active');
+						contentEn?.classList.remove('active');
+						history.replaceState(null, '', '#ko');
+					}
+				}
+
+				btnKo?.addEventListener('click', () => setLang('ko'));
+				btnEn?.addEventListener('click', () => setLang('en'));
+
+				// Check URL hash or query param or browser language
+				const hash = window.location.hash.toLowerCase();
+				const urlParams = new URLSearchParams(window.location.search);
+				const langParam = urlParams.get('lang');
+
+				if (hash === '#en' || langParam === 'en') {
+					setLang('en');
+				} else if (hash === '#ko' || langParam === 'ko') {
+					setLang('ko');
+				} else {
+					// Default to English if non-Korean browser, otherwise Korean
+					const userLang = navigator.language || '';
+					if (userLang.toLowerCase().startsWith('ko')) {
+						setLang('ko');
+					} else {
+						setLang('en');
+					}
+				}
+			}
+
+			// Initialize
+			setupLangSwitcher();
+		</script>
+	</body>
+</html>
