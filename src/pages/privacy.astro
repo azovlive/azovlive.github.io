@@ -10,7 +10,7 @@ import { SITE_TITLE } from '../consts';
 	<head>
 		<BaseHead
 			title={`개인정보처리방침 (Privacy Policy) - ${SITE_TITLE}`}
-			description="UWILL(uwillsoft)의 애플리케이션 및 Chrome 확장 프로그램 개인정보처리방침 및 사용자 데이터 보호 정책입니다."
+			description="UWILL(uwillsoft)의 애플리케이션 및 Chrome 확장 프로그램 개인정보처리방침 및 Google Chrome 웹 스토어 사용자 데이터 정책(User Data FAQ) 준수 명세서입니다."
 		/>
 		<style>
 			main {
@@ -79,7 +79,7 @@ import { SITE_TITLE } from '../consts';
 			.hero-desc {
 				font-size: 1.05rem;
 				color: #475569;
-				max-width: 680px;
+				max-width: 720px;
 				margin: 0 auto 1.5rem;
 				line-height: 1.65;
 			}
@@ -89,7 +89,7 @@ import { SITE_TITLE } from '../consts';
 				gap: 0.5rem;
 				background: #eff6ff;
 				border: 1px solid #bfdbfe;
-				padding: 0.4rem 1rem;
+				padding: 0.45rem 1.15rem;
 				border-radius: 9999px;
 				font-size: 0.85rem;
 				color: #1e40af;
@@ -135,7 +135,7 @@ import { SITE_TITLE } from '../consts';
 				border-radius: 24px;
 				border: 1px solid #e2e8f0;
 				box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04);
-				padding: 2.5rem;
+				padding: 2.75rem 2.5rem;
 				line-height: 1.75;
 				color: #334155;
 			}
@@ -147,7 +147,7 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.policy-section {
-				margin-bottom: 3rem;
+				margin-bottom: 3.25rem;
 			}
 			.policy-section:last-child {
 				margin-bottom: 0;
@@ -171,6 +171,12 @@ import { SITE_TITLE } from '../consts';
 				color: #0f172a;
 				margin: 0;
 				letter-spacing: -0.015em;
+			}
+			.policy-section h3 {
+				font-size: 1.1rem;
+				font-weight: 600;
+				color: #1e293b;
+				margin: 1.5rem 0 0.5rem;
 			}
 			.policy-section p {
 				margin: 0 0 1rem;
@@ -206,6 +212,25 @@ import { SITE_TITLE } from '../consts';
 				font-weight: 600;
 				text-decoration: underline;
 				word-break: break-all;
+			}
+
+			/* Policy References Link Bar */
+			.policy-refs-bar {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 12px;
+				padding: 1rem 1.25rem;
+				margin: 1.25rem 0;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				font-size: 0.9rem;
+			}
+			.policy-ref-item {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				color: #475569;
 			}
 
 			/* Data Items Grid / Table */
@@ -250,25 +275,30 @@ import { SITE_TITLE } from '../consts';
 				white-space: nowrap;
 			}
 
-			/* Affirmation Cards */
+			/* Affirmation & Limited Use Cards */
 			.affirmation-grid {
 				display: grid;
 				grid-template-columns: 1fr;
 				gap: 1rem;
 				margin: 1.25rem 0;
 			}
+			@media (min-width: 640px) {
+				.affirmation-grid.two-cols {
+					grid-template-columns: 1fr 1fr;
+				}
+			}
 			.affirmation-card {
 				background: #f8fafc;
 				border: 1px solid #e2e8f0;
 				border-radius: 14px;
-				padding: 1.2rem;
+				padding: 1.25rem;
 				display: flex;
 				align-items: flex-start;
 				gap: 1rem;
 			}
 			.affirmation-icon-wrap {
-				width: 36px;
-				height: 36px;
+				width: 38px;
+				height: 38px;
 				border-radius: 10px;
 				background: #dbeafe;
 				color: #1d4ed8;
@@ -300,9 +330,10 @@ import { SITE_TITLE } from '../consts';
 			.info-list li {
 				position: relative;
 				padding-left: 1.5rem;
-				margin-bottom: 0.75rem;
+				margin-bottom: 0.85rem;
 				font-size: 0.96rem;
 				color: #475569;
+				line-height: 1.65;
 			}
 			.info-list li::before {
 				content: "•";
@@ -325,7 +356,7 @@ import { SITE_TITLE } from '../consts';
 			.dev-row {
 				display: flex;
 				flex-direction: column;
-				gap: 0.5rem;
+				gap: 0.6rem;
 			}
 			@media (min-width: 640px) {
 				.dev-row {
@@ -392,7 +423,7 @@ import { SITE_TITLE } from '../consts';
 				</h1>
 				<p class="hero-desc">
 					UWILL(uwillsoft)은 사용자의 개인정보와 데이터를 최우선으로 존중하며 안전하게 보호합니다.<br />
-					Google Chrome 웹 스토어 사용자 데이터 정책 및 스토어 규정을 철저히 준수합니다.
+					Google Chrome 웹 스토어 사용자 데이터 정책 및 <strong>User Data FAQ</strong> 규정을 철저히 준수합니다.
 				</p>
 				<div class="policy-meta">
 					<span class="material-symbols-outlined" style="font-size: 18px;">event</span>
@@ -422,36 +453,45 @@ import { SITE_TITLE } from '../consts';
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">verified_user</span>
-						<h2>1. Chrome 웹 스토어 및 스토어 정책 준수 선언</h2>
+						<h2>1. Chrome 웹 스토어 정책 및 User Data FAQ 준수 선언</h2>
 					</div>
 					<p>
 						본 개인정보처리방침은 개발사 <strong>UWILL (uwillsoft)</strong>(이하 "개발자")이 배포하는 모든 모바일 애플리케이션 및 <strong>Google Chrome 확장 프로그램(Chrome Extension)</strong>에 공통 적용됩니다.
 					</p>
 					<p>
-						개발자가 제작 및 배포하는 모든 Chrome 확장 프로그램은 
-						<a href="https://developer.chrome.com/docs/webstore/program-policies/privacy/" target="_blank" rel="noopener noreferrer" class="callout-link">Google Chrome 웹 스토어 개발자 프로그램 정책(Chrome Web Store Developer Program Policies)</a>
-						의 <strong>사용자 데이터 개인정보처리방침(User Data Privacy Policy)</strong> 및 <strong>'제한된 사용(Limited Use)' 요건</strong>을 엄격히 준수합니다.
+						개발자가 제작 및 배포하는 모든 Chrome 확장 프로그램은 Google이 고지한 아래 공식 정책 규정을 전면 준수하도록 설계되었습니다:
 					</p>
+
+					<div class="policy-refs-bar">
+						<div class="policy-ref-item">
+							<span class="material-symbols-outlined" style="color: #2563eb; font-size: 18px;">link</span>
+							<span><strong>사용자 데이터 정책</strong>: <a href="https://developer.chrome.com/docs/webstore/program-policies/privacy/" target="_blank" rel="noopener noreferrer" class="callout-link">Chrome Web Store User Data Privacy Policy</a></span>
+						</div>
+						<div class="policy-ref-item">
+							<span class="material-symbols-outlined" style="color: #2563eb; font-size: 18px;">help_outline</span>
+							<span><strong>공식 FAQ 문서</strong>: <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq/" target="_blank" rel="noopener noreferrer" class="callout-link">Chrome Web Store User Data FAQ</a></span>
+						</div>
+					</div>
 
 					<div class="callout-box">
 						<div class="callout-title">
 							<span class="material-symbols-outlined">policy</span>
-							<span>Chrome 웹 스토어 사용자 데이터 정책 준수 확약</span>
+							<span>'제한된 사용(Limited Use)' 요건 전면 준수 확약</span>
 						</div>
 						<p class="callout-content">
-							"확장 프로그램을 통해 처리되는 모든 데이터의 사용은 <strong>'제한된 사용(Limited Use)'</strong> 요건을 포함하여 Chrome 웹 스토어 사용자 데이터 정책을 전면 준수하며, 단일 전용 목적 외의 어떠한 용도로도 사용자 데이터를 수집·이용·전송하지 않습니다."
+							"확장 프로그램을 통해 처리되는 모든 데이터의 사용은 <strong>'제한된 사용(Limited Use)'</strong> 요건을 포함하여 Chrome 웹 스토어 사용자 데이터 정책 및 FAQ 가이드를 철저히 준수하며, 단일 전용 목적(Single Purpose) 외의 어떠한 용도로도 사용자 데이터를 수집·이용·전송·판매하지 않습니다."
 						</p>
 					</div>
 				</section>
 
-				<!-- 2. 사용자 데이터 수집 및 사용 현황 (구글 개발자 콘솔 9개 항목 매핑) -->
+				<!-- 2. 사용자 데이터 수집 및 처리 현황 (구글 개발자 콘솔 9개 항목 매핑) -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">rule</span>
 						<h2>2. 사용자 데이터 수집 및 처리 현황 (9대 분류)</h2>
 					</div>
 					<p>
-						개발자는 사용자의 프라이버시를 절대적으로 보호하기 위해 <strong>데이터 최소화 원칙(Data Minimization)</strong>을 고수합니다. Google Chrome 웹 스토어 개발자 대시보드에서 규정하는 9대 사용자 데이터 항목 전체에 대해 <strong>일절 수집하거나 외부로 전송하지 않습니다.</strong>
+						개발자는 사용자의 프라이버시를 절대적으로 보호하기 위해 <strong>데이터 최소화 원칙(Data Minimization)</strong>을 엄격히 고수합니다. Google Chrome 웹 스토어 개발자 대시보드 및 User Data FAQ에서 규정하는 9대 사용자 데이터 항목 전체에 대해 <strong>일절 수집하거나 외부로 전송하지 않습니다.</strong>
 					</p>
 
 					<div class="data-table-wrap">
@@ -514,112 +554,162 @@ import { SITE_TITLE } from '../consts';
 					</div>
 				</section>
 
-				<!-- 3. 개발자의 3대 확약 사항 (Google Developer Console 필수 동의 항목) -->
+				<!-- 3. User Data FAQ 기반 제한된 사용(Limited Use) 세부 원칙 -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">fact_check</span>
-						<h2>3. 데이터 취급 3대 확약 사항</h2>
+						<h2>3. User Data FAQ 기반 5대 핵심 확약 사항</h2>
 					</div>
 					<p>
-						개발자는 Chrome 웹 스토어 정책에 따라 다음 3가지 사항이 진실임을 엄숙히 서약하며 준수합니다:
+						Chrome Web Store User Data FAQ에서 규정하는 '제한된 사용(Limited Use)' 기준에 따라 다음 5가지 사항을 엄숙히 준수합니다:
 					</p>
 
-					<div class="affirmation-grid">
-						<div class="affirmation-card">
-							<div class="affirmation-icon-wrap">
-								<span class="material-symbols-outlined">gavel</span>
-							</div>
-							<div>
-								<div class="affirmation-title">1) 제3자 판매 및 전송 일체 금지</div>
-								<p class="affirmation-desc">
-									관련 법령 준수 등 승인된 필수 예외 사례를 제외하고, 어떠한 경우에도 사용자 데이터를 제3자, 광고 네트워크, 데이터 브로커 등에 판매하거나 전송하지 않습니다.
-								</p>
-							</div>
-						</div>
-
+					<div class="affirmation-grid two-cols">
 						<div class="affirmation-card">
 							<div class="affirmation-icon-wrap">
 								<span class="material-symbols-outlined">center_focus_strong</span>
 							</div>
 							<div>
-								<div class="affirmation-title">2) 단일 전용 목적(Single Purpose) 외 사용 금지</div>
+								<div class="affirmation-title">1) 단일 전용 목적 (Single Purpose)</div>
 								<p class="affirmation-desc">
-									항목의 전용 목적과 무관한 목적으로 사용자 데이터를 사용하거나 전송하지 않으며, 확장 프로그램의 핵심 사용자 가치 실현에만 기술을 국한합니다.
+									오직 스토어에 공표된 핵심 기능(단일 목적)을 구현하고 개선하는 데만 기술을 한정하며, 부가적인 목적이나 무관한 기능을 위해 데이터를 우회 활용하지 않습니다.
 								</p>
 							</div>
 						</div>
 
 						<div class="affirmation-card">
 							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">gavel</span>
+							</div>
+							<div>
+								<div class="affirmation-title">2) 제3자 판매 및 데이터 브로커 전송 금지</div>
+								<p class="affirmation-desc">
+									어떠한 경우에도 사용자 데이터를 제3자, 데이터 중개인(Data Broker), 리셀러에게 판매, 대여 또는 전송하지 않습니다.
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">ads_click</span>
+							</div>
+							<div>
+								<div class="affirmation-title">3) 맞춤형 광고 및 리타겟팅 전면 금지</div>
+								<p class="affirmation-desc">
+									개인화 광고(Personalized Advertising), 관심사 기반 타겟 광고, 리타겟팅(Re-targeting)을 목적으로 사용자 데이터를 이용하거나 전송하지 않습니다.
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">visibility_off</span>
+							</div>
+							<div>
+								<div class="affirmation-title">4) 사람에 의한 열람 금지 (Human-Read Restriction)</div>
+								<p class="affirmation-desc">
+									사용자의 명시적 요청(기술 지원)이나 보안 침해 사고 조사, 법률 준수를 제외하고는 개발자 또는 제3자가 사용자의 데이터를 직접 열람(Human Read)하지 않습니다.
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card" style="grid-column: 1 / -1;">
+							<div class="affirmation-icon-wrap">
 								<span class="material-symbols-outlined">block</span>
 							</div>
 							<div>
-								<div class="affirmation-title">3) 신용도 판단 또는 대출 목적 사용 금지</div>
+								<div class="affirmation-title">5) 신용도 판단 및 대출 자격 심사 목적 사용 금지</div>
 								<p class="affirmation-desc">
-									사용자의 신용도 판단, 대출 자격 심사, 타겟형 금융 마케팅 등을 위해 사용자 데이터를 사용하거나 전송하지 않습니다.
+									신용도 판단(Creditworthiness determination), 금융 대출 심사 또는 이에 준하는 평가 목적으로 사용자 데이터를 수집하거나 전송하지 않습니다.
 								</p>
 							</div>
 						</div>
 					</div>
 				</section>
 
-				<!-- 4. 기기 내 로컬 저장 및 데이터 파기 정책 -->
+				<!-- 4. 로컬 스토리지 처리 및 데이터 파기 (User Data FAQ 문답 반영) -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">storage</span>
-						<h2>4. 기기 내 로컬 저장 및 데이터 파기</h2>
+						<h2>4. 기기 내 로컬 스토리지 처리 및 영구 파기 정책</h2>
 					</div>
+					<p>
+						<strong>User Data FAQ 규정 안내</strong>: 구글 User Data FAQ는 <em>"데이터가 사용자 기기에만 로컬 저장되고 외부 서버로 전송되지 않더라도 데이터 취급(Handling)에 해당하므로 투명하게 공개해야 한다"</em>고 명시하고 있습니다. 이에 따라 로컬 저장 처리 내용을 명확히 밝힙니다:
+					</p>
+
 					<ul class="info-list">
 						<li>
-							<strong>로컬 격리 저장</strong>: 확장 프로그램의 사용자 설정(예: 테마 설정, 기본 옵션 등)은 사용자의 로컬 브라우저 내부 스토리지(<code>chrome.storage.local</code>)에만 격리 보관되며, 개발자의 외부 원격 서버로 일절 전송되지 않습니다.
+							<strong>로컬 환경에 격리 저장되는 항목</strong>: 사용자가 확장 프로그램 팝업이나 설정 화면에서 직접 지정한 비개인정보 UI 옵션(예: 다크 모드/라이트 모드 테마, 정렬 기준 등)에 한하여 브라우저 로컬 저장소(<code>chrome.storage.local</code>)에 저장됩니다.
 						</li>
 						<li>
-							<strong>즉시 파기 원칙</strong>: 사용자가 Chrome 브라우저에서 확장 프로그램을 삭제(제거)하거나 앱을 기기에서 제거하는 즉시 해당 로컬 데이터는 복구 불가능하게 자동 영구 파기됩니다.
+							<strong>개인정보 및 웹 콘텐츠 로컬 비저장</strong>: 브라우징 내역, 방문 웹페이지 본문, 비밀번호, 결제 정보 등은 기기 로컬 스토리지에도 <strong>일절 저장되지 않습니다.</strong>
 						</li>
 						<li>
-							<strong>원격 서버 미보유</strong>: 개발자는 사용자의 개인정보나 활동 내역을 저장하는 중앙 데이터베이스나 외부 로깅 서버를 운영하지 않습니다.
+							<strong>즉시 파기 원칙</strong>: 사용자가 브라우저에서 확장 프로그램을 제거(Uninstall)하거나 브라우저 캐시를 삭제하는 즉시 모든 로컬 설정 데이터는 복구 불가능하게 자동 영구 파기됩니다.
+						</li>
+						<li>
+							<strong>외부 중앙 서버 미운영</strong>: 개발자는 사용자 활동을 로깅하거나 데이터를 동기화하는 자체 외부 데이터베이스 및 원격 서버를 일절 운영하지 않습니다.
 						</li>
 					</ul>
 				</section>
 
-				<!-- 5. 요청 권한 및 서드파티 서비스 안내 -->
+				<!-- 5. 데이터 보안 및 전송 암호화 규정 (HTTPS/TLS) -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">security</span>
+						<h2>5. 데이터 보안 및 전송 암호화 규정 (HTTPS / TLS)</h2>
+					</div>
+					<p>
+						User Data FAQ의 보안 전송 요건(Secure Transmission)에 따라 다음 안전 조치를 이행합니다:
+					</p>
+					<ul class="info-list">
+						<li>
+							<strong>전송 구간 암호화</strong>: 확장 프로그램 및 개발자의 공식 사이트(www.uwillsoft.com)와 연결되는 모든 웹 요청은 최신 암호화 프로토콜인 <strong>HTTPS / TLS 1.3</strong>을 통하여 암호화 전송됩니다. 평문(HTTP) 형태의 비암호화 통신은 일체 지원하지 않습니다.
+						</li>
+						<li>
+							<strong>계정 인증 정보 미접근</strong>: 확장 프로그램은 별도의 회원가입이나 로그인을 요구하지 않으며, 구글 계정 OAuth 토큰, 비밀번호, 쿠키 등의 인증 정보에 접근하거나 외부로 전송하지 않습니다.
+						</li>
+					</ul>
+				</section>
+
+				<!-- 6. 최소 권한의 원칙 (Use of Permissions Policy) -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">lock_open</span>
-						<h2>5. 권한 요청 및 서드파티 서비스 안내</h2>
+						<h2>6. 최소 권한의 원칙 및 권한 사용 범위</h2>
 					</div>
 					<ul class="info-list">
 						<li>
-							<strong>최소 권한의 원칙</strong>: 확장 프로그램은 고유 기능을 수행하는 데 기술적으로 반드시 필요한 최소한의 브라우저 권한(Minimum Permissions)만을 요청합니다.
+							<strong>최소 권한의 원칙(Minimum Permissions)</strong>: 확장 프로그램의 <code>manifest.json</code>에 정의된 브라우저 권한은 핵심 기능 구현에 기술적으로 불가결한 최소한의 권한만을 선별하여 요청합니다. 미래의 확장성만을 이유로 광범위한 권한(불필요한 호스트 권한 등)을 사전 요청하지 않습니다.
 						</li>
 						<li>
-							<strong>Chrome 확장 프로그램 광고 배제</strong>: UWILL의 Chrome 확장 프로그램에는 어떠한 상업적 광고 모듈이나 제3자 트래킹 스크립트도 포함되어 있지 않습니다.
+							<strong>사전 고지 및 투명성(Prominent Disclosure)</strong>: 백그라운드에서 임의로 데이터를 가로채거나 스크랩하는 은닉 동작을 수행하지 않습니다.
 						</li>
 						<li>
-							<strong>모바일 앱의 서드파티 광고 안내</strong>: 모바일 앱 중 일부 무료 버전의 경우 Google AdMob을 통해 광고가 송출될 수 있습니다. 이 과정에서 기기 식별자 및 진단 데이터가 Google LLC에 의해 처리될 수 있으며, 이는 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="callout-link">Google 개인정보처리방침</a>을 따릅니다. 사용자는 기기 설정(추적 제한 또는 광고 ID 초기화)을 통해 언제든 이를 거부할 수 있습니다.
+							<strong>모바일 앱의 서드파티 광고 안내</strong>: Chrome 확장 프로그램에는 어떠한 상업 광고도 포함되지 않습니다. 단, UWILL이 별도로 배포하는 모바일 앱 중 일부 무료 버전의 경우 Google AdMob을 사용하여 광고가 송출될 수 있으며, 이는 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="callout-link">Google 개인정보처리방침</a>을 준수합니다.
 						</li>
 					</ul>
 				</section>
 
-				<!-- 6. 아동의 개인정보 보호 -->
+				<!-- 7. 아동의 개인정보 보호 -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">child_care</span>
-						<h2>6. 아동의 개인정보 보호</h2>
+						<h2>7. 아동의 개인정보 보호</h2>
 					</div>
 					<p>
-						개발자의 소프트웨어 및 확장 프로그램은 만 14세 미만(또는 해당 국가 법령 기준 아동)을 주 대상으로 하지 않으며, 아동의 개인정보를 고의로 수집하지 않습니다.
+						개발자의 소프트웨어 및 확장 프로그램은 만 14세 미만(또는 관할 지역 법령에 따른 아동)을 주 대상으로 하지 않으며, 아동의 개인정보를 고의로 수집하거나 취급하지 않습니다.
 					</p>
 				</section>
 
-				<!-- 7. 개인정보 보호책임자 및 문의처 -->
+				<!-- 8. 개인정보 보호책임자 및 문의처 -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">contact_support</span>
-						<h2>7. 개인정보 보호책임자 및 개발자 정보</h2>
+						<h2>8. 개인정보 보호책임자 및 개발자 정보</h2>
 					</div>
 					<p>
-						개인정보 보호 관련 문의, 권리 행사, 피드백은 아래 공식 창구로 연락 주시면 신속하고 성실하게 답변해 드리겠습니다.
+						본 개인정보처리방침 및 User Data FAQ 준수 내용과 관련하여 궁금한 점이나 의견이 있으실 경우 아래 공식 창구로 문의해 주시기 바랍니다.
 					</p>
 
 					<div class="developer-box">
@@ -655,24 +745,33 @@ import { SITE_TITLE } from '../consts';
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">verified_user</span>
-						<h2>1. Compliance with Chrome Web Store User Data Policy</h2>
+						<h2>1. Compliance with Chrome Web Store Policy & User Data FAQ</h2>
 					</div>
 					<p>
 						This Privacy Policy applies to all applications and <strong>Google Chrome Extensions</strong> developed and published by <strong>UWILL (uwillsoft)</strong> (the "Developer").
 					</p>
 					<p>
-						Every Chrome Extension created by the Developer strictly adheres to the 
-						<a href="https://developer.chrome.com/docs/webstore/program-policies/privacy/" target="_blank" rel="noopener noreferrer" class="callout-link">Chrome Web Store Developer Program Policies</a>, 
-						including the <strong>User Data Privacy Policy</strong> and <strong>Limited Use requirements</strong>.
+						Every Chrome Extension created by the Developer is strictly engineered to comply with Google's official policies:
 					</p>
+
+					<div class="policy-refs-bar">
+						<div class="policy-ref-item">
+							<span class="material-symbols-outlined" style="color: #2563eb; font-size: 18px;">link</span>
+							<span><strong>User Data Policy</strong>: <a href="https://developer.chrome.com/docs/webstore/program-policies/privacy/" target="_blank" rel="noopener noreferrer" class="callout-link">Chrome Web Store User Data Privacy Policy</a></span>
+						</div>
+						<div class="policy-ref-item">
+							<span class="material-symbols-outlined" style="color: #2563eb; font-size: 18px;">help_outline</span>
+							<span><strong>Official FAQ</strong>: <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq/" target="_blank" rel="noopener noreferrer" class="callout-link">Chrome Web Store User Data FAQ</a></span>
+						</div>
+					</div>
 
 					<div class="callout-box">
 						<div class="callout-title">
 							<span class="material-symbols-outlined">policy</span>
-							<span>Chrome Web Store Limited Use Affirmation</span>
+							<span>Full Adherence to Limited Use Requirements</span>
 						</div>
 						<p class="callout-content">
-							"The use and transfer of information received from Google APIs or processed by our extensions will strictly adhere to the <strong>Chrome Web Store User Data Policy</strong>, including the <strong>Limited Use</strong> requirements. No user data is used for purposes other than the prominent single purpose explicitly disclosed to the user."
+							"The use and transfer of information received from Google APIs or processed by our extensions strictly adhere to the <strong>Chrome Web Store User Data Policy</strong>, including the <strong>Limited Use</strong> requirements and User Data FAQ. No user data is used for purposes other than the single prominent purpose explicitly disclosed to the user."
 						</p>
 					</div>
 				</section>
@@ -684,7 +783,7 @@ import { SITE_TITLE } from '../consts';
 						<h2>2. User Data Collection and Processing (9 Categories)</h2>
 					</div>
 					<p>
-						The Developer strictly practices <strong>Data Minimization</strong>. Across all 9 categories defined by the Google Chrome Web Store Developer Dashboard, our extensions and apps <strong>DO NOT collect, record, or transmit</strong> any user data to external servers.
+						The Developer strictly practices <strong>Data Minimization</strong>. Across all 9 categories defined by the Google Chrome Web Store Developer Dashboard and User Data FAQ, our extensions and apps <strong>DO NOT collect, record, or transmit</strong> any user data to external servers.
 					</p>
 
 					<div class="data-table-wrap">
@@ -747,112 +846,158 @@ import { SITE_TITLE } from '../consts';
 					</div>
 				</section>
 
-				<!-- 3. Three Affirmative Declarations -->
+				<!-- 3. Five Core Affirmations (Limited Use & User Data FAQ) -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">fact_check</span>
-						<h2>3. Three Affirmative Certifications</h2>
+						<h2>3. Five Core Limited Use Certifications (User Data FAQ)</h2>
 					</div>
 					<p>
-						In accordance with Google's Developer Program Policies, the Developer formally certifies that:
+						In direct alignment with the Chrome Web Store User Data FAQ and Limited Use policies, the Developer certifies that:
 					</p>
 
-					<div class="affirmation-grid">
-						<div class="affirmation-card">
-							<div class="affirmation-icon-wrap">
-								<span class="material-symbols-outlined">gavel</span>
-							</div>
-							<div>
-								<div class="affirmation-title">1) No Sale or Transfer to Third Parties</div>
-								<p class="affirmation-desc">
-									User data is never sold, leased, or transferred to third parties (including data brokers, ad networks, or analytics companies), outside of approved and legally required use cases.
-								</p>
-							</div>
-						</div>
-
+					<div class="affirmation-grid two-cols">
 						<div class="affirmation-card">
 							<div class="affirmation-icon-wrap">
 								<span class="material-symbols-outlined">center_focus_strong</span>
 							</div>
 							<div>
-								<div class="affirmation-title">2) Single Purpose Restriction</div>
+								<div class="affirmation-title">1) Single Purpose Limitation</div>
 								<p class="affirmation-desc">
-									User data is never used or transferred for purposes unrelated to the extension's stated, prominent single purpose.
+									Data handling is strictly limited to providing or improving the single, prominent user-facing purpose disclosed in the extension listing.
 								</p>
 							</div>
 						</div>
 
 						<div class="affirmation-card">
 							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">gavel</span>
+							</div>
+							<div>
+								<div class="affirmation-title">2) No Sale or Transfer to Data Brokers</div>
+								<p class="affirmation-desc">
+									User data is never sold, leased, or transferred to third parties (including data brokers, ad networks, or analytics companies).
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">ads_click</span>
+							</div>
+							<div>
+								<div class="affirmation-title">3) Prohibition on Personalized Advertising</div>
+								<p class="affirmation-desc">
+									User data is never used or transferred for serving personalized, interest-based, or re-targeted advertisements.
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card">
+							<div class="affirmation-icon-wrap">
+								<span class="material-symbols-outlined">visibility_off</span>
+							</div>
+							<div>
+								<div class="affirmation-title">4) Human-Read Restriction</div>
+								<p class="affirmation-desc">
+									Humans are prohibited from reading user data, unless the user provides explicit consent (e.g. for customer support), or it is strictly required for security investigations or legal compliance.
+								</p>
+							</div>
+						</div>
+
+						<div class="affirmation-card" style="grid-column: 1 / -1;">
+							<div class="affirmation-icon-wrap">
 								<span class="material-symbols-outlined">block</span>
 							</div>
 							<div>
-								<div class="affirmation-title">3) No Creditworthiness or Lending Evaluation</div>
+								<div class="affirmation-title">5) No Creditworthiness or Lending Evaluation</div>
 								<p class="affirmation-desc">
-									User data is never used or transferred for assessing creditworthiness, lending eligibility, or personalized financial advertising.
+									User data is never used or transferred for assessing creditworthiness, lending eligibility, or personalized financial evaluation.
 								</p>
 							</div>
 						</div>
 					</div>
 				</section>
 
-				<!-- 4. Local Storage and Data Retention -->
+				<!-- 4. Local Storage and Data Retention (User Data FAQ clarification) -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">storage</span>
-						<h2>4. Local Storage and Data Deletion</h2>
+						<h2>4. Local Storage & Deletion Policy (User Data FAQ Compliance)</h2>
 					</div>
+					<p>
+						<strong>User Data FAQ Clarification</strong>: Google's User Data FAQ explicitly specifies that <em>"even if user data is processed or stored strictly locally on the user's device and never transmitted to an external server, developers must disclose how it is handled."</em> In compliance with this rule:
+					</p>
 					<ul class="info-list">
 						<li>
-							<strong>Local-Only Storage</strong>: Any preferences, settings, or user configurations are saved exclusively within the local browser sandbox (e.g., <code>chrome.storage.local</code>). No information is ever dispatched to developer-owned external servers.
+							<strong>Local-Only Storage</strong>: Only non-sensitive user interface configurations (such as user-selected dark/light theme options) are saved locally in the browser sandbox (<code>chrome.storage.local</code>). No personal data or browsing content is stored.
 						</li>
 						<li>
-							<strong>Immediate Deletion</strong>: When a user uninstalls or removes the extension from Chrome, all locally stored data and settings are immediately and permanently removed by the browser.
+							<strong>Immediate & Complete Deletion</strong>: When a user uninstalls or removes the extension from Chrome, all locally stored data and settings are immediately and permanently removed by the browser.
 						</li>
 						<li>
-							<strong>Zero Server Retention</strong>: The Developer maintains no central database or remote servers for storing user logs or tracking profiles.
+							<strong>Zero Remote Servers</strong>: The Developer operates no external database, telemetry backend, or remote tracking servers.
 						</li>
 					</ul>
 				</section>
 
-				<!-- 5. Minimal Permissions and Third-Party Clarifications -->
+				<!-- 5. Secure Transmission and Encryption -->
+				<section class="policy-section">
+					<div class="section-header">
+						<span class="material-symbols-outlined section-icon">security</span>
+						<h2>5. Secure Transmission & Cryptography (HTTPS / TLS)</h2>
+					</div>
+					<p>
+						In accordance with the User Data FAQ requirement for secure data handling:
+					</p>
+					<ul class="info-list">
+						<li>
+							<strong>Mandatory Encryption</strong>: Any web communication associated with the Developer's official domain (www.uwillsoft.com) or documentation strictly requires <strong>HTTPS / TLS 1.3</strong>. Plain-text (HTTP) transmission is prohibited.
+						</li>
+						<li>
+							<strong>Zero Credential Access</strong>: The extension does not require login or registration, and never accesses, reads, or transmits Google account credentials, passwords, or authentication cookies.
+						</li>
+					</ul>
+				</section>
+
+				<!-- 6. Minimal Permissions and Third-Party Clarifications -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">lock_open</span>
-						<h2>5. Minimal Permissions & Third-Party Clarifications</h2>
+						<h2>6. Minimal Permissions & Use of Permissions Policy</h2>
 					</div>
 					<ul class="info-list">
 						<li>
-							<strong>Permission Minimization</strong>: The extension requests only the narrowest browser permissions strictly necessary to execute its primary features.
+							<strong>Permission Minimization</strong>: In accordance with the Chrome Web Store Use of Permissions policy, the extension requests only the narrowest browser permissions strictly necessary to execute its primary user-facing features. Broad host permissions (such as <code>&lt;all_urls&gt;</code>) are not requested unless strictly required.
 						</li>
 						<li>
-							<strong>No Ads in Extensions</strong>: UWILL's Chrome Extensions contain zero advertising networks, tracking pixels, or monetization SDKs.
+							<strong>No Ads in Extensions</strong>: UWILL's Chrome Extensions contain zero advertising networks, tracking pixels, or third-party monetization scripts.
 						</li>
 						<li>
-							<strong>Mobile App Disclosures</strong>: For certain free mobile applications, Google AdMob may be utilized to serve non-personalized or personalized ads. In such cases, advertising identifiers and diagnostic metrics may be processed by Google LLC in compliance with the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="callout-link">Google Privacy Policy</a>. Users can opt out via OS-level tracking settings at any time.
+							<strong>Mobile App Disclosures</strong>: For certain separate mobile applications distributed by UWILL, Google AdMob may be used to serve non-personalized or personalized ads. In such cases, advertising identifiers and diagnostic metrics may be processed by Google LLC in compliance with the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="callout-link">Google Privacy Policy</a>. Users can opt out via OS-level tracking settings at any time.
 						</li>
 					</ul>
 				</section>
 
-				<!-- 6. Children's Privacy -->
+				<!-- 7. Children's Privacy -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">child_care</span>
-						<h2>6. Children's Privacy</h2>
+						<h2>7. Children's Privacy</h2>
 					</div>
 					<p>
-						Our extensions and software are not directed to children under 14 (or applicable age in your jurisdiction), and we do not knowingly solicit or collect personal data from children.
+						Our extensions and software are not directed to children under 14 (or applicable age in your jurisdiction), and we do not knowingly solicit, collect, or handle personal data from children.
 					</p>
 				</section>
 
-				<!-- 7. Contact and Developer Details -->
+				<!-- 8. Contact and Developer Details -->
 				<section class="policy-section">
 					<div class="section-header">
 						<span class="material-symbols-outlined section-icon">contact_support</span>
-						<h2>7. Contact and Developer Information</h2>
+						<h2>8. Contact and Developer Information</h2>
 					</div>
 					<p>
-						If you have any questions, inquiries, or feedback regarding our privacy practices, please contact us directly:
+						If you have any questions, inquiries, or feedback regarding our privacy practices and User Data FAQ compliance, please contact us directly:
 					</p>
 
 					<div class="developer-box">
@@ -891,7 +1036,7 @@ import { SITE_TITLE } from '../consts';
 		<Footer />
 
 		<script>
-			// Language switching logic with URL hash support
+			// Language switching logic with URL hash and browser language support
 			function setupLangSwitcher() {
 				const btnKo = document.getElementById('btn-ko');
 				const btnEn = document.getElementById('btn-en');
@@ -921,7 +1066,7 @@ import { SITE_TITLE } from '../consts';
 				btnKo?.addEventListener('click', () => setLang('ko'));
 				btnEn?.addEventListener('click', () => setLang('en'));
 
-				// Check URL hash or query param or browser language
+				// Check URL hash, query param, or browser language
 				const hash = window.location.hash.toLowerCase();
 				const urlParams = new URLSearchParams(window.location.search);
 				const langParam = urlParams.get('lang');
